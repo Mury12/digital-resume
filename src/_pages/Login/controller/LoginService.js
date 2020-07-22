@@ -1,4 +1,4 @@
-import Vue from '../../prototype';
+import Vue from '../../../prototype';
 
 const LoginService = new Vue({
   data: {

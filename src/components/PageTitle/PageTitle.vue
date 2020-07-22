@@ -1,6 +1,6 @@
 <template>
-  <b-row class="justify-content-center text-center mb-5">
-    <b-col cols="6">
+  <b-row class="justify-content-center align-items-center text-center mx-0">
+    <b-col cols="12">
       <h1 v-if="h1">{{title}}</h1>
       <h2 v-else-if="h2">{{title}}</h2>
       <h3 v-else-if="h3">{{title}}</h3>

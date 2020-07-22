@@ -5,7 +5,16 @@ const env = {
   VUE_SESSION_TIMEOUT: 60,
 
   WS: {
-    URL: "https://server/ws/v2/",
+    URL: "http://yoobot.eastus.cloudapp.azure.com:4200/",
+    USER: {
+      LOGIN: 'login/',
+      LOGOUT: 'logout/',
+      USER: 'user/',
+
+    },
+    BP: {
+      SESSIONS: 'sessions/'
+    }
   }
 }
 export default env;

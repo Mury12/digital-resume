@@ -12,6 +12,9 @@
           </b-col>
         </b-row>
       </b-container>
+      <b-container class="position-relative" style="height: 150px">
+        <page-footer />
+      </b-container>
     </div>
   </div>
 </template>
@@ -19,6 +22,7 @@
 <script>
 import Navbar from "./components/Navbar/Navbar";
 import PageHeader from "./components/PageHeader/PageHeader";
+import PageFooter from "./components/Footer/Footer";
 export default {
   name: "App",
   data() {
@@ -41,6 +45,7 @@ export default {
   components: {
     Navbar,
     PageHeader,
+    PageFooter
   },
   //  beforeCreate: function() {
   //   if (

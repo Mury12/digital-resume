@@ -8,13 +8,23 @@
       </b-row>
       <div class="menu-list mt-5">
         <router-link class="nav-item" :to="item.route" v-for="(item, idx) in items" :key="idx">
-          <b-row class="justify-content-left text-left pl-4 py-3" >
+          <div class="position-relative item-wrapper">
+          <b-row class="justify-content-left text-left pl-4 py-3  default-transition">
             <b-col cols="1">
               <fas class="text-white" :icon="item.icon" />
             </b-col>
             <b-col cols="10" class="ml-3 pl-0 text-white" of>{{item.name}}</b-col>
           </b-row>
+          </div>
         </router-link>
+      </div>
+      <div id="sidebar-logout" class=" default-transition">
+        <b-row class="justify-content-left text-left pl-4 py-3">
+          <b-col cols="1">
+            <fas icon="power-off" />
+          </b-col>
+          <b-col cols="10">Sair</b-col>
+        </b-row>
       </div>
     </b-col>
   </b-row>
@@ -31,7 +41,7 @@ export default {
 
 <style scoped>
 #navbar-left {
-  width: 400px;
+  width: var(--def-sidebar-size);
   position: fixed;
   height: 100vh;
   background-color: var(--def-brand-darker);
@@ -43,17 +53,27 @@ export default {
 }
 .nav-item {
   cursor: pointer;
-  text-decoration: none
+  text-decoration: none;
 }
 .nav-item:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 .nav-item a {
   text-decoration: none;
   color: white;
 }
-
-.nav-item:hover .row {
+.nav-item:hover .row,
+#sidebar-logout:hover {
   background-color: var(--def-brand-lighter);
+  box-shadow: -1em 1em 0.3em rgba(0,0,0,0.125);
+  /* transform: scale(1.015) */
+}
+
+#sidebar-logout {
+  position: absolute;
+  bottom: 45px;
+  width: 95.5%;
+  cursor: pointer
+  
 }
 </style>

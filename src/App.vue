@@ -55,10 +55,13 @@ export default {
   watch: {
     $route: {
       handler: function () {
-        document.title = this.$route.meta.title + " | Yoobot";
+        document.title = this.$route.meta.title + " | Dashboard Yoobot";
       },
     },
   },
+  beforeCreate() {
+    document.title = this.$route.meta.title + " | Dashboard Yoobot";
+  }
 };
 </script>
 
@@ -79,13 +82,17 @@ export default {
   border: 1px dashed var(--def-brand) ;
 }
 .opened {
-  margin-left: var(--def-sidebar-size);
+  margin-left: 305px;
   transition: ease-in 200ms;
 }
 
 .closed {
-  margin-left: 0;
+  margin-left: 45px;
   transition: ease-in 200ms;
+}
+
+.default-transition{
+  transition: ease-in-out 150ms;
 }
 
 /**Vue Transitions */
@@ -165,7 +172,7 @@ export default {
   --def-darker-alpha: #183f5752;
   --def-lightblue: #6b579b;
   --def-lightgray: #e7e7e7;
-  --def-sidebar-size: 385px;
+  --def-sidebar-size: 320px;
 }
 .spin {
   animation: spin 1s forwards;

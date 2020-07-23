@@ -18,7 +18,7 @@ export default {
 <style scoped>
 #page-header{
     height: 85px;
-    background-color: var(--def-lightgray)
+    background-color: var(--def-lightblue-alpha)
 
 }
 </style>

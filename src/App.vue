@@ -34,7 +34,7 @@ export default {
           icon: "home",
         },
         {
-          name: "Painel Administrativo",
+          name: "Administração",
           route: "/painel-administrativo",
           icon: "cog",
         },
@@ -71,9 +71,9 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,200;0,300;0,400;0,700;1,200;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,700;1,200;1,400&display=swap");
 #app {
-  font-family: "Roboto";
+  font-family: "Mulish";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: lighter;
@@ -176,6 +176,7 @@ export default {
   --def-brand-darker: #183f57;
   --def-darker-alpha: #183f5752;
   --def-lightblue: #6b579b;
+  --def-lightblue-alpha: #d0e9ff61;
   --def-lightgray: #e7e7e7;
   --def-sidebar-size: 320px;
 }

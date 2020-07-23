@@ -20,7 +20,7 @@ let routes = [
             component: Home,
             meta: {
                 protected: true,
-                title: 'Painel Administrativo'
+                title: 'Administração'
             }
         },
 

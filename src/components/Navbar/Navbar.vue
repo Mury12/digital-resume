@@ -8,8 +8,8 @@
       </b-row>
       <div class="menu-list mt-5">
         <router-link class="nav-item" :to="item.route" v-for="(item, idx) in items" :key="idx">
-          <div class="position-relative item-wrapper">
-          <b-row class="justify-content-left text-left pl-4 py-3  default-transition">
+          <div class="position-relative item-wrapper ">
+          <b-row class="justify-content-left text-left position-relative pl-4 py-3  default-transition">
             <b-col cols="1">
               <fas class="text-white" :icon="item.icon" />
             </b-col>
@@ -55,6 +55,9 @@ export default {
   cursor: pointer;
   text-decoration: none;
 }
+.nav-item .row{
+  left: 0
+}
 .nav-item:hover {
   text-decoration: none;
 }
@@ -65,8 +68,9 @@ export default {
 .nav-item:hover .row,
 #sidebar-logout:hover {
   background-color: var(--def-brand-lighter);
-  box-shadow: -1em 1em 0.3em rgba(0,0,0,0.125);
-  /* transform: scale(1.015) */
+  box-shadow: -1em 0.5em 0.3em rgba(0,0,0,0.125);
+  position: relative;
+  left: 10px
 }
 
 #sidebar-logout {

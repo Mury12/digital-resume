@@ -1,21 +1,29 @@
 <template>
-    <b-row>
-        <b-col>
-
-        </b-col>
-    </b-row>
+  <b-row>
+    <b-col>
+      <past-execution-table :data="data" />
+    </b-col>
+  </b-row>
 </template>
 
 <script>
+import PastExecutionTable from "../../../components/PastExecutionTable/PastExecutionTable";
 export default {
-    data() {
-        return {
-            
-        }
-    }    
-}
+  name: "ExecutionList",
+  data() {
+    return {
+     
+    };
+  },
+  components: {
+    PastExecutionTable,
+  },
+  props: ['data'],
+  created() {
+      //get
+  }
+};
 </script>
 
 <style scoped>
-
 </style>

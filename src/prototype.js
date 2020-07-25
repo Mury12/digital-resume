@@ -115,9 +115,12 @@ Vue.prototype.$orionPriceOf = coinAmount => {
   return coinAmount * 0.7;
 }
 
-Vue.prototype.$getWsUrl = (domain, name = "base") => {
+Vue.prototype.$getWsUrl = (domain, name = "BASE") => {
   domain = domain.toUpperCase();
   name = name.toUpperCase() || "";
+  if(domain === 'BASE') {
+    return wsr.WS.URL
+  }
   return wsr.WS.URL + wsr.WS[domain][name]
 }
 

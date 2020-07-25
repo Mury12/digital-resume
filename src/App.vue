@@ -84,7 +84,6 @@ export default {
 #main {
   min-height: 70vh;
   margin-top: 25px;
-  border: 1px dashed var(--def-brand) ;
 }
 .opened {
   margin-left: 305px;

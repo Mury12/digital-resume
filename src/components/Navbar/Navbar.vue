@@ -65,19 +65,23 @@ export default {
   text-decoration: none;
   color: white;
 }
-.nav-item:hover .row,
-#sidebar-logout:hover {
+.nav-item:hover .row {
   background-color: var(--def-brand-lighter);
   box-shadow: -1em 0.5em 0.3em rgba(0,0,0,0.125);
   position: relative;
   left: 10px
 }
+#sidebar-logout:hover {
+  background-color: rgb(252, 186, 64);
+  box-shadow: -1em 0.5em 0.3em rgba(0,0,0,0.125);
+  left: 15px
+}
 
 #sidebar-logout {
   position: absolute;
   bottom: 45px;
-  width: 95.5%;
-  cursor: pointer
-  
+  width: 100%;
+  cursor: pointer;
+  left: 10px
 }
 </style>

@@ -1,7 +1,20 @@
 <template>
   <b-row>
     <b-col cols="12">
-      <b-table show-empty :items="data" :fields="fields" striped hover bordered  style="min-height: 60vh" sticky-header foot-clone sort-by.sync="start_date">
+      <b-table
+        show-empty
+        :items="data"
+        :fields="fields"
+        striped
+        hover
+        bordered
+        style="min-height: 60vh"
+        sticky-header
+        foot-clone
+        sort-by.sync="start_date"
+        @row-clicked="selectRow"
+        tbody-tr-class="pointer"
+      >
         <template v-slot:cell(start_date)="row">{{getDate(row.item.start_date)}}</template>
         <template v-slot:cell(end_date)="row">{{getDate(row.item.end_date)}}</template>
         <template v-slot:cell(processID)="row">{{duration(row.item.start_date, row.item.end_date)}}</template>
@@ -15,7 +28,7 @@
             v-if="row.item.exception.length"
             @click="openExceptionsModal(row.index)"
           >{{row.item.exception.length}}</b-button>
-          <span v-else> - </span>
+          <span v-else>-</span>
         </template>
       </b-table>
     </b-col>
@@ -33,22 +46,22 @@ export default {
         {
           key: "processName",
           label: "Processo",
-          sortable: true
+          sortable: true,
         },
         {
           key: "laststage",
           label: "Último estágio",
-          sortable: true
+          sortable: true,
         },
         {
           key: "start_date",
           label: "Início",
-          sortable: true
+          sortable: true,
         },
         {
           key: "end_date",
           label: "Término",
-          sortable: true
+          sortable: true,
         },
         {
           key: "processID",
@@ -57,7 +70,7 @@ export default {
         {
           key: "exception",
           label: "Exceções",
-          sortable: false
+          sortable: false,
         },
       ],
       exceptions: [],
@@ -68,6 +81,10 @@ export default {
     ExceptionsModal,
   },
   methods: {
+    selectRow: function(row){
+      this.$emit('select', row);
+      this.$scrollTo('#last_exec_cards')
+    },
     duration: function (start, end) {
       return this.$dateDiff(start, end);
     },

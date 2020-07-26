@@ -61,7 +61,7 @@ export default {
 #page-header {
   position: relative;
   height: 85px;
-  background-color: var(--def-brand-light);
+  background-color: var(--def-brand-darkmid);
   color: white;
   box-shadow: 0 0.2em 0.1em rgba(0, 0, 0, 0.225);
 }

@@ -3,7 +3,7 @@ import BootstrapVue from 'bootstrap-vue';
 import VueTheMask from 'vue-the-mask';
 import VueSession from 'vue-session';
 import PageTitle from './components/PageTitle/PageTitle.vue';
-import VueScrollTo from 'vue-scroll-to';
+import VueScrollTo from 'vue-scrollto'
 import moment from 'moment'
 let wsr;
 
@@ -308,6 +308,13 @@ Vue.prototype.$verificaCPF = (value) => {
   return true
 }
 
+Vue.prototype.$hasType = (type) => {
+  const user = Vue.prototype.$user;
+  return user.role.match(/(ADM)|(YOOBOT)/) || user.emailer.match(type) ? true : false
+
+}
+
+
 Vue.prototype.$dateDiff = (start, end) => {
   const date1 = new Date(moment(start).format("YYYY/MM/DD hh:mm:ss"));
   let date2 = new Date(moment().subtract(3, 'hours'));
@@ -318,7 +325,7 @@ Vue.prototype.$dateDiff = (start, end) => {
 
   let seconds = Math.floor((diffTime / 1000) % 60)
   let minutes = Math.floor((diffTime / (1000 * 60)) % 60)
-  let hours = Math.floor((diffTime / (1000 * 60 * 60)) % 24)
+  let hours = Math.floor((diffTime / (1000 * 60 * 60)))
 
   hours = hours < 10 ? "0" + hours : hours;
   minutes = minutes < 10 ? "0" + minutes : minutes;

@@ -1,7 +1,7 @@
 <template>
   <b-row>
     <b-col>
-      <past-execution-table :data="data" />
+      <past-execution-table @select="handle" :data="data" />
     </b-col>
   </b-row>
 </template>
@@ -19,6 +19,11 @@ export default {
     PastExecutionTable,
   },
   props: ['data'],
+  methods: {
+    handle: function(select) {
+      this.$emit('select', select)
+    }
+  },
   created() {
       //get
   }

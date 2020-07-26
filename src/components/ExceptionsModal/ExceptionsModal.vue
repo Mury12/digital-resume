@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="exceptions_modal" size="xl" title="Exceções de Negócio" ok-only ok-title="Voltar">
+  <b-modal :id="name" size="xl" title="Exceções de Negócio" ok-only ok-title="Voltar">
     <b-tabs>
       <b-tab title="Aéreo" v-if="exceptionList && exceptionList.air.length">
         <b-table
@@ -57,7 +57,13 @@ export default {
       ],
     };
   },
-  props: ["exceptions"],
+  props: {
+    exceptions: Array,
+    name: {
+      type: String,
+      default: 'exceptions_modal'
+    }
+  },
   watch: {
     exceptions() {
       this.exceptionList.air = [];

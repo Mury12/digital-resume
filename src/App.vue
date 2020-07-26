@@ -213,10 +213,11 @@ export default {
   position: absolute;
 }
 :root {
-  --def-brand-lighter: #3589bd;
-  --def-brand-light: #40a4e3;
+  --def-brand-light: #3589bd;
+  --def-brand-lighter: #40a4e3;
   --def-brand: #3b9bd5;
   --def-brand-dark: #2a6d96;
+  --def-brand-darkmid: #14435F;
   --def-brand-darker: #183f57;
   --def-darker-alpha: #183f5752;
   --def-lightblue: #6b579b;

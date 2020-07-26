@@ -79,7 +79,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.history = JSON.parse(sessionStorage.getItem("processHistory"));
+      this.history = JSON.parse(sessionStorage.getItem("processHistory")) || [];
       this.row_limit = this.history.length >= 10 ? this.history.length : 10;
       this.restartSocket();
     });

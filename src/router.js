@@ -7,8 +7,8 @@ let routes = [
     /** Auth needed */
     ...[
         {
-            path: '/',
-            name: 'Início',
+            path: '/dashboard',
+            name: 'Dashboard',
             component: Home,
             meta: {
                 protected: true,
@@ -17,7 +17,7 @@ let routes = [
         },
         {
             path: '/painel-administrativo',
-            name: 'Painel Administrativo',
+            name: 'Administração',
             component: AdminPanel,
             meta: {
                 protected: true,
@@ -37,6 +37,11 @@ let routes = [
                 title: 'Realizar Login'
             }
         },
+        {
+            path: '*',
+            component: Login,
+            name: 'Other'
+        }
     ],
 
 

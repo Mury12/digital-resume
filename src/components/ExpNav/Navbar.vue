@@ -5,7 +5,7 @@
     :class="{'navbar-open': navbar.isOpen, 'navbar-closed': !navbar.isOpen}"
   >
     <b-row class="justify-content-center mt-0">
-      <b-col cols="12" class="m-0 p-0">
+      <b-col cols="12" class="logo">
         <!-- <div class="user-image" :style="{backgroundImage: `url(${$getMedia(user_data.pic)})`}"></div> -->
         <transition mode="out-in" name="slide">
           <img
@@ -18,33 +18,37 @@
       </b-col>
     </b-row>
     <b-nav class="d-flex flex-column mt-5">
-      <router-link
-        class="nav-item text-white default-transition no-decoration py-1"
-        v-for="(item, idx) in items"
-        :key="idx"
-        :to="item.uri"
-      >
-        <div class="text-left my-2">
-          <fas :icon="item.icon || 'project-diagram'" class="text-white link-icon" />
-          {{item.name}}
-        </div>
-      </router-link>
+      <div class="nav-item px-0 py-2" v-for="(item, idx) in items" :key="idx">
+        <router-link
+          v-if="((item.protected && $profile().role.match('_ADM')) || !item.protected)"
+          class="nav-link pl-0 text-white default-transition no-decoration"
+          :to="item.uri"
+        >
+          <div class="text-left my-2">
+            <fas :icon="item.icon || 'project-diagram'" class="text-white link-icon" />
+            <transition mode="out-in" name="fade">
+              <span v-show="navbar.isOpen">{{item.name}}</span>
+            </transition>
+          </div>
+        </router-link>
+      </div>
     </b-nav>
     <div class="shrink-icon d-flex align-items-center justify-content-center" @click="navbarShrink">
       <fas icon="caret-left" class="fa-2x text-white" :class="{'rotate': !navbar.isOpen}" />
     </div>
     <div id="sidebar-logout" class="text-white default-transition">
-      <b-row class="justify-content-left text-left pl-4 py-3">
+      <b-row class="justify-content-left text-left pl-3 py-2">
         <b-col cols="1">
           <fas icon="power-off" />
         </b-col>
-        <b-col cols="10">Sair</b-col>
+        <b-col cols="10" @click="logout" v-show="navbar.isOpen">Sair</b-col>
       </b-row>
     </div>
   </div>
 </template>
 
 <script>
+import LoginService from "../../_pages/Login/controller/LoginService";
 export default {
   data() {
     return {
@@ -64,20 +68,10 @@ export default {
       this.navbar.isOpen = !this.navbar.isOpen;
       this.$emit("toggle", this.navbar.isOpen);
     },
-    endSession: function () {
-      this.$post(this.$getWsUrl("user", "logout"), {
-        session_token: this.$sessionToken,
-        _: "logout",
-      })
-        .then((r) => {
-          if (r.data.res) {
-            this.$user = null;
-            window.location = "/";
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    logout: function () {
+      if (LoginService.done()) {
+        this.$emit("logout");
+      }
     },
   },
 };
@@ -96,50 +90,70 @@ export default {
   animation: navbar-shrink 1000ms forwards;
 }
 #main_navbar.navbar-open {
-  animation: navbar-opening 1000ms reverse;
+  animation: navbar-opening 250ms;
 }
 #sidebar-logout:hover {
   background-color: rgb(252, 186, 64);
   box-shadow: -1em 0.5em 0.3em rgba(0, 0, 0, 0.125);
-  left: 15px;
 }
-
+.logo{
+  margin-top: -15px;
+  padding: 25px 0 ;
+  border-radius: 0 0 30% 30%;
+  transition: ease-in-out 200ms;
+  transition-delay: 400ms;
+}
+.navbar-closed .logo{
+  margin-top: -15px;
+  padding: 25px 0 ;
+  border-radius: 0 0 30% 30%;
+  box-shadow: none !important
+}
 #sidebar-logout {
   position: absolute;
   bottom: 45px;
   width: 100%;
   cursor: pointer;
-  left: 10px;
+  left: 0px;
 }
-.nav-item {
+.nav-item .nav-link {
   position: relative;
   z-index: 1;
   width: 200px;
 }
 .bg-brand-dark {
-  background-color: var(--def-brand-darker);
+  background-color: #11354b;
 }
-.nav-item::before {
+.nav-item .nav-link::before {
   content: " ";
   height: 80%;
   width: 0px;
   position: absolute;
   left: -10px;
   top: 10%;
-  border-top: 1px solid var(--def-brand-dark);
+  border-top: 1px solid var(--def-brand-darker);
   border-right: 5px solid var(--def-brand-dark);
-  border-bottom: 1px solid var(--def-brand-dark);
+  border-bottom: 1px solid var(--def-brand-darker);
   z-index: -1;
-  transition: ease-in-out 500ms;
+  transition: ease-in-out 200ms;
 }
 
-.nav-item.router-link-active::before {
-  border-right-color: white !important;
-  background-color: var(--def-brand-lighter) !important;
+.nav-item .nav-link.router-link-active::before {
+  border-right-color: orange !important;
+  background-color: var(--def-brand-darker) !important;
 }
-.nav-item:hover::before {
-  background-color: var(--def-brand);
-  width: 100%
+.nav-item .nav-link:hover::before {
+  background-color: var(--def-brand-darker);
+  left: -12px;
+  border-right: 10px solid var(--def-brand-dark);
+  border-radius: 0 50% 50% 0
+}
+.nav-link{
+  transition: ease-in-out 200ms;
+  left: 0
+}
+.nav-item .nav-link:hover {
+  left: 2px;
 }
 
 .link-icon {
@@ -257,7 +271,7 @@ export default {
   }
 }
 
-@keyframes navbar-opening {
+@keyframes navbar-closing {
   0% {
     width: 232px;
   }
@@ -270,6 +284,16 @@ export default {
   80%,
   100% {
     width: 50px;
+  }
+}
+@keyframes navbar-opening {
+  0% {
+    width: 50px;
+  }
+
+  80%,
+  100% {
+    width: 232px;
   }
 }
 </style>

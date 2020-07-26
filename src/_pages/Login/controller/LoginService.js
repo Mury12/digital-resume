@@ -5,22 +5,15 @@ const LoginService = new Vue({
     vm: this
   },
   methods: {
-    do: async function (user, password) {
-      return await this.$post(this.$getWsUrl('user', 'login'), {
-        user,
+    do: async function (username, password) {
+      return await this.$post(this.$getWsUrl('USER', 'LOGIN'), {
+        username,
         password,
-        _: 'auth_request'
-      }).then(async (r) => {
-
-        if ("err" in r.data) {
-          return {
-            success: false,
-            msg: r.data.err
-          }
-        } else if ("session_token" in r.data) {
-          this.$setSessionToken(r.data.session_token);
-          const user = await this.getProfile();
-          sessionStorage.setItem('usuario', JSON.stringify(user));
+      }).then((res) => {
+        console.log(res);
+        if ("token" in res.data) {
+          this.$setSessionToken(res.data.token);
+          sessionStorage.setItem('usuario', JSON.stringify(res.data));
           return {
             success: true,
             msg: "Você entrou. Estamos carregando seus dados."
@@ -29,9 +22,14 @@ const LoginService = new Vue({
       }).catch(() => {
         return {
           success: false,
-          msg: 'Houve um erro ao realizar login.'
+          msg: 'Usuário ou senha incorretos.'
         }
       });
+    },
+    done: function () {
+      this.$setSessionToken('');
+      sessionStorage.clear();
+      return true;
     }
   }
 })

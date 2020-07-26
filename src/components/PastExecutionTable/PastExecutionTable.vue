@@ -1,7 +1,7 @@
 <template>
   <b-row>
     <b-col cols="12">
-      <b-table show-empty :items="data" :fields="fields" striped hover bordered>
+      <b-table show-empty :items="data" :fields="fields" striped hover bordered  style="min-height: 60vh" sticky-header foot-clone sort-by.sync="start_date">
         <template v-slot:cell(start_date)="row">{{getDate(row.item.start_date)}}</template>
         <template v-slot:cell(end_date)="row">{{getDate(row.item.end_date)}}</template>
         <template v-slot:cell(processID)="row">{{duration(row.item.start_date, row.item.end_date)}}</template>
@@ -30,18 +30,22 @@ export default {
         {
           key: "processName",
           label: "Processo",
+          sortable: true
         },
         {
           key: "laststage",
           label: "Último estágio",
+          sortable: true
         },
         {
           key: "start_date",
           label: "Início",
+          sortable: true
         },
         {
           key: "end_date",
           label: "Término",
+          sortable: true
         },
         {
           key: "processID",
@@ -50,6 +54,7 @@ export default {
         {
           key: "exception",
           label: "Exceções",
+          sortable: false
         },
       ],
       exceptions: [],

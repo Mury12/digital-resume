@@ -1,5 +1,5 @@
 <template>
-  <b-form class>
+  <b-form class @keyup.enter="auth">
     <label>
       Nome de usuário:
       <br />
@@ -12,22 +12,17 @@
       <b-input type="password" placeholder="•••••••••" v-model="password" />
     </label>
     <br />
-    <transition mode="out-in" name="fade">
-        <div v-if="!request.onRequest">
-      <b-button
-        :disabled="request.onRequest"
-        type="button"
-        @click="auth"
-        variant="success"
-      >Entrar</b-button>
+    <transition mode="out-in" name="shrink-fade">
+      <div v-if="!request.onRequest">
+        <b-button :disabled="request.onRequest" type="button" @click="auth" variant="success">Entrar</b-button>
       </div>
-      <b-spinner variant="success" v-if="request.onRequest" />
+      <b-spinner type="grow" variant="success" v-if="request.onRequest" />
     </transition>
   </b-form>
 </template>
 
 <script>
-// import LoginService from "../controller/LoginService";
+import LoginService from "../controller/LoginService";
 export default {
   data() {
     return {
@@ -42,14 +37,31 @@ export default {
   },
   methods: {
     auth: function () {
+      if (this.request.onRequest) return;
       this.request.onRequest = true;
+      this.request.requested = false;
 
-      setTimeout(() => {
-        this.request.onRequest = false;
-      }, 3000);
-      //   LoginService.do(this.username, this.password).then((res) => {
-      //       console.log(res);
-      //   });
+      this.request.onRequest = true;
+      LoginService.do(this.username, this.password)
+        .then((res) => {
+          if (res) {
+            this.request.success = res.success;
+            this.request.msg = res.msg;
+            if (res.success) {
+              this.$router.push("/dashboard");
+            }
+          }
+        })
+        .finally(() => {
+          this.request.requested = true;
+          this.request.onRequest = false;
+          this.$bvToast.toast(this.request.msg, {
+            title: "Mensagem",
+            autoHideDelay: 5000,
+            appendToast: false,
+            variant: this.request.success ? 'success' : 'danger',
+          });
+        });
     },
   },
 };

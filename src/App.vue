@@ -1,9 +1,23 @@
 <template>
-  <div id="app">
-    <navbar v-if="!$authenticated()" :items="navbar" @toggle="toggler" class="d-none d-md-block" />
-    <mobile-navbar :items="navbar" class="d-block d-md-none" />
-    <div class="page-body" :class="{'navbar-is-open': navbarIsOpen, 'navbar-is-closed': !navbarIsOpen && !$authenticated()}">
-      <page-header v-if="!$authenticated()" />
+  <div id="app" :class="{'hide': hide}">
+    <navbar
+      @logout="closePage"
+      v-if="$authenticated() || hide"
+      :items="navbar"
+      @toggle="toggler"
+      class="d-none d-md-block"
+    />
+    <mobile-navbar
+      @logout="closePage"
+      v-if="$authenticated() || hide"
+      :items="navbar"
+      class="d-block d-md-none"
+    />
+    <div
+      class="page-body"
+      :class="{'navbar-is-open': navbarIsOpen && $authenticated(), 'navbar-is-closed': !navbarIsOpen && $authenticated()}"
+    >
+      <page-header v-if="$authenticated()" />
       <b-container id="main">
         <b-row>
           <b-col cols="12">
@@ -32,40 +46,41 @@ export default {
       navbar: [
         {
           name: "Início",
-          uri: "/",
+          uri: "/dashboard",
           icon: "home",
         },
         {
           name: "Administração",
           uri: "/painel-administrativo",
           icon: "cog",
+          protected: true
         },
       ],
-      navbarIsOpen: !this.$authenticated()
+      navbarIsOpen: true,
+      hide: false,
     };
   },
   components: {
     Navbar,
     MobileNavbar,
     PageHeader,
-    PageFooter
+    PageFooter,
   },
   methods: {
-     toggler: function(e) {
+    toggler: function (e) {
       this.navbarIsOpen = e;
-    }
+    },
+    closePage: function () {
+      this.hide = true;
+        window.location = '/'
+      setTimeout(() => {
+      }, 200);
+      setTimeout(() => {
+        this.hide = false;
+      }, 1000);
+    },
   },
-  
-  //  beforeCreate: function() {
-  //   if (
-  //     (!this.$authenticated() && this.$route.meta.protected) ||
-  //     (this.$route.name == "Other" && !this.$authenticated())
-  //   )
-  //     this.$router.push("/auth/login");
-  //   else if (this.$authenticated()) {
-  //     this.$router.push("/");
-  //   }
-  // },
+
   watch: {
     $route: {
       handler: function () {
@@ -75,8 +90,16 @@ export default {
   },
   beforeCreate() {
     document.title = this.$route.meta.title + " | Dashboard Yoobot";
-    this.$setSessionToken('1f506cd53dab271d92e6d74cbebfbda64062280122f88ac8d61d235336a8d017')
-  }
+
+    if (
+      (!this.$authenticated() && this.$route.meta.protected) ||
+      (this.$route.name == "Other" && !this.$authenticated())
+    )
+      this.$router.push("/entrar");
+    else if (this.$authenticated() && !this.$route.name.match('Dashboard')) {
+      this.$router.push("/dashboard");
+    }
+  },
 };
 </script>
 
@@ -90,6 +113,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0;
+}
+#app.hide {
+  transition: ease-in-out 200ms;
+  opacity: 0;
 }
 #main {
   min-height: 70vh;
@@ -112,7 +139,7 @@ export default {
   cursor: pointer !important;
 }
 
-.default-transition{
+.default-transition {
   transition: ease-in-out 150ms;
 }
 

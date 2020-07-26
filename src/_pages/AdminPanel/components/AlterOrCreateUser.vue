@@ -64,12 +64,6 @@
           >Enviar</b-button>
           <b-spinner v-if="request.onRequest" small variant="success" class="ml-3" />
 
-          <b-alert
-            v-if="request.msg"
-            :show="request.msg.length"
-            :variant="request.success ? 'success' : 'warning' "
-            class="mt-3"
-          >{{request.msg}}</b-alert>
           <br />
           <b-badge
             variant="warning"
@@ -150,7 +144,16 @@ export default {
           .then((res) => {
             this.request.success = res.success;
             this.request.msg = res.msg;
-            if (res.success) this.$emit("update", this.form);
+            if (res.success) {
+              this.$emit("update", this.form);
+
+              this.$bvToast.toast(res.msg, {
+                title: "Mensagem",
+                autoHideDelay: 5000,
+                appendToast: false,
+                variant: "warning",
+              });
+            }
           })
           .finally(() => {
             this.request.onRequest = false;
@@ -165,6 +168,13 @@ export default {
                 this.form.id = res.id;
                 this.form.new = true;
                 this.$emit("update", this.form);
+
+                this.$bvToast.toast(res.msg, {
+                  title: "Mensagem",
+                  autoHideDelay: 5000,
+                  appendToast: false,
+                  variant: "warning",
+                });
               }
             }
           })

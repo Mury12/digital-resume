@@ -1,19 +1,25 @@
 <template>
   <detail-card :title="data.processName">
-
     <template v-slot:body>
-        <b-row class="number-lg-showcase d-flex my-5 justify-content-center">
-          <b-col cols="6" style="border-right: 1px solid rgba(0,0,0,0.125)">
-            <b>Início</b>
-            <br />
-            <small>{{startDate}}</small>
-          </b-col>
-          <b-col cols="6" style="">
-            <b>Término</b>
-            <br />
-            <small>{{endDate}}</small>
-          </b-col>
-        </b-row>
+      <b-row class="number-lg-showcase d-flex my-5 justify-content-center">
+        <b-col cols="6" style="border-right: 1px solid rgba(0,0,0,0.125)">
+          <b>Início</b>
+          <br />
+          <small>{{startDate}}</small>
+        </b-col>
+        <b-col cols="6" style>
+          <b>Término</b>
+          <br />
+          <small>{{endDate}}</small>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <div class="fa-2x d-flex justify-content-center">
+            <p class="text-success">{{duration}}</p>
+          </div>
+        </b-col>
+      </b-row>
     </template>
   </detail-card>
 </template>
@@ -51,6 +57,9 @@ export default {
           return "Iniciando..";
       }
     },
+    duration() {
+      return this.$dateDiff(this.data.start_date, this.data.end_date);
+    },
   },
 };
 </script>
@@ -59,4 +68,5 @@ export default {
 .number-lg-showcase {
   font-size: 1.4em;
 }
+
 </style>

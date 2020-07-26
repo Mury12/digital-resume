@@ -26,6 +26,7 @@
           hover
           bordered
           foot-clone
+          responsive
         >
           <template v-slot:cell(emailer)="row">
             <div v-for="(item, idx) in row.item.emailer" :key="idx">

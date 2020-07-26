@@ -1,7 +1,7 @@
 <template>
-  <div>
+
     <list-users :items="users" />
-  </div>
+
 </template>
 
 <script>

@@ -2,15 +2,14 @@
   <b-row>
     <overlayer :show="onRequest" />
     <b-col cols="12">
+      <page-title title="Última execução" divisorWidth="25" class="mt-5" />
+      <p class="mb-3">Este é o último processo executado ou em execução.</p>
 
-      <page-title title="Última execução" divisorWidth="25" class="mt-5"/>
-    <p class="mb-3">Este é o último processo executado ou em execução.</p>
+      <last-execution-details :data="curProcess ? curProcess : history.length ? history[0] : {}" />
 
-      <last-execution-details :data="history.length ? history[0] : {}" />
-
-      <page-title title="Histórico" divisorWidth="25" class="mt-5"/>
-    <p class="mb-3">Esta é a lista dos processos já executados.</p>
-      <execution-history :data="history.length ? history : []"  />
+      <page-title title="Histórico" divisorWidth="25" class="mt-5" />
+      <p class="mb-3">Esta é a lista dos processos já executados.</p>
+      <execution-history @select="handleSelect" :data="history.length ? history : []" />
       <b-button
         type="button"
         :disabled="onRequest || row_limit < 20"
@@ -44,9 +43,13 @@ export default {
       history: [],
       row_limit: 10,
       onRequest: false,
+      curProcess: null
     };
   },
   methods: {
+    handleSelect: function(process) {
+      this.curProcess = process
+    },
     increaseRowLimit: function () {
       this.onRequest = true;
       this.row_limit += 10;
@@ -79,7 +82,7 @@ export default {
             JSON.stringify(data.sessions ? data.sessions : [])
           ) || [];
           this.history = data.sessions ? data.sessions : [];
-          if(this.onRequest) this.onRequest = false;
+          if (this.onRequest) this.onRequest = false;
         }
       });
     },

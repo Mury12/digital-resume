@@ -1,8 +1,5 @@
 import Vue from './prototype'
 import App from './App.vue'
-import VueTheMask from 'vue-the-mask';
-import BootstrapVue from 'bootstrap-vue';
-import VueSession from 'vue-session';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -21,10 +18,6 @@ Vue.component('Overlayer', Overlayer)
 
 import router from './router.js';
 
-Vue
-  .use(VueSession)
-  .use(VueTheMask)
-  .use(BootstrapVue)
 
 
 Vue.config.productionTip = false

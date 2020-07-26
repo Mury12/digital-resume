@@ -1,6 +1,6 @@
 <template>
   <b-row class="justify-content-center align-items-center text-center mx-0">
-    <b-col cols="12">
+    <b-col xs=12 lg=6>
       <h1 v-if="h1">{{title}}</h1>
       <h2 v-else-if="h2">{{title}}</h2>
       <h3 v-else-if="h3">{{title}}</h3>
@@ -14,7 +14,7 @@
 export default {
   data(){
     return{
-      divisorClass: 'w-100'
+      divisorClass: 'w-50'
     }
   },
   props: {
@@ -44,7 +44,7 @@ export default {
     },
     divisorWidth: {
       type: String,
-      default: '100'
+      default: '50'
     }
   },
   created: function() {
@@ -59,3 +59,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.divisor{
+  height: 3px;
+  background: var(--def-brand-light);
+  margin: 0 auto;
+
+}
+</style>

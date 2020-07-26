@@ -2,8 +2,15 @@
   <b-row>
     <overlayer :show="onRequest" />
     <b-col cols="12">
+
+      <page-title title="Última execução" divisorWidth="25" class="mt-5"/>
+    <p class="mb-3">Este é o último processo executado ou em execução.</p>
+
       <last-execution-details :data="history.length ? history[0] : {}" />
-      <execution-history :data="history.length ? history : []" class="mt-5" />
+
+      <page-title title="Histórico" divisorWidth="25" class="mt-5"/>
+    <p class="mb-3">Esta é a lista dos processos já executados.</p>
+      <execution-history :data="history.length ? history : []"  />
       <b-button
         type="button"
         :disabled="onRequest || row_limit < 20"

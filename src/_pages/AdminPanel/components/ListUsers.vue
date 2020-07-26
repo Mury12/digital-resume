@@ -1,7 +1,20 @@
 <template>
   <div>
     <overlayer :show="request.onRequest" />
+    <page-title title="Gerenciar Usuários" divisorWidth="25" class="mt-5" />
+    <p class="mb-3">Cadastre, altere ou exclua usuários do sistema.</p>
     <b-row>
+      <b-col cols="12" class="position-relative">
+        <div class="btn-wrap d-flex justify-content-center">
+          <div
+            class="add-user-btn shadow pointer d-flex align-items-center justify-content-center"
+            v-b-tooltip.hover.left
+            title="Novo Usuário"
+          >
+            <fas icon="plus" class="fa-2x" @click="createUser"></fas>
+          </div>
+        </div>
+      </b-col>
       <b-col cols="12">
         <b-table
           ref="usertable"
@@ -40,15 +53,6 @@
         />
       </b-col>
     </b-row>
-    <div class="btn-wrap d-flex justify-content-center">
-      <div
-        class="add-user-btn shadow pointer d-flex align-items-center justify-content-center"
-        v-b-tooltip.hover.left
-        title="Novo Usuário"
-      >
-        <fas icon="plus" class="fa-2x" @click="createUser"></fas>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -64,13 +68,12 @@ export default {
         {
           key: "name",
           label: "Nome",
-          sortable:true,
+          sortable: true,
         },
         {
           key: "username",
           label: "Nome de Usuário",
-          sortable:true,
-
+          sortable: true,
         },
         {
           key: "email",
@@ -79,8 +82,7 @@ export default {
         {
           key: "role",
           label: "Grupo",
-          sortable:true,
-
+          sortable: true,
         },
         {
           key: "emailer",
@@ -199,6 +201,7 @@ export default {
 }
 .btn-wrap {
   position: absolute;
+  z-index: 2;
   top: -25px;
   right: -10px;
 }

@@ -7,13 +7,8 @@ import VueScrollTo from 'vue-scroll-to';
 import moment from 'moment'
 let wsr;
 
-try {
-  wsr = require('../routes.local.js').default;
-} catch (err) {
-  if (err instanceof Error) {
-    wsr = require('../routes.prod.js').default;
-  }
-}
+
+wsr = require('../ws-routes.js').default;
 
 import $user from './models/user';
 import Axios from 'axios';

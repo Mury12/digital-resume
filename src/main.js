@@ -11,11 +11,13 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import PageTitle from './components/PageTitle/PageTitle';
 import DetailCard from './components/DetailCard/DetailCard';
+import Overlayer from './components/Overlayer/Overlayer';
 
 library.add(fas)
 Vue.component('fas', FontAwesomeIcon)
 Vue.component('PageTitle', PageTitle)
 Vue.component('DetailCard', DetailCard)
+Vue.component('Overlayer', Overlayer)
 
 import router from './router.js';
 

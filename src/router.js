@@ -1,6 +1,7 @@
 import Vue from './prototype';
 import VueRouter from 'vue-router'
 import Home from './_pages/Home/Home'
+import AdminPanel from './_pages/AdminPanel/AdminPanel'
 import Login from './_pages/Login/Login'
 let routes = [
     /** Auth needed */
@@ -17,7 +18,7 @@ let routes = [
         {
             path: '/painel-administrativo',
             name: 'Painel Administrativo',
-            component: Home,
+            component: AdminPanel,
             meta: {
                 protected: true,
                 title: 'Administração'
@@ -32,8 +33,8 @@ let routes = [
             name: 'Realizar Login',
             component: Login,
             meta: {
-                protected: true,
-                title: 'Halo!'
+                protected: false,
+                title: 'Realizar Login'
             }
         },
     ],

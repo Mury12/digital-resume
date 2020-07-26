@@ -2,20 +2,27 @@
   <b-row>
     <b-col cols="12">
       <b-table show-empty :items="data" :fields="fields" striped hover bordered>
-        <template v-slot:cell(exception)="row">{{row.item.exception.length}}</template>
         <template v-slot:cell(start_date)="row">{{getDate(row.item.start_date)}}</template>
         <template v-slot:cell(end_date)="row">{{getDate(row.item.end_date)}}</template>
         <template v-slot:cell(processID)="row">{{duration(row.item.start_date, row.item.end_date)}}</template>
         <template v-slot:cell(laststage)="row">
           <b-badge variant="info" v-if="row.item.laststage">{{row.item.laststage}}</b-badge>
         </template>
+        <template v-slot:cell(exception)="row">
+          <b-button
+            type="button"
+            @click="openExceptionsModal(row.index)"
+          >{{row.item.exception.length}}</b-button>
+        </template>
       </b-table>
     </b-col>
+    <exceptions-modal :exceptions="exceptions" />
   </b-row>
 </template>
 
 <script>
 import moment from "moment";
+import ExceptionsModal from "../ExceptionsModal/ExceptionsModal";
 export default {
   data() {
     return {
@@ -45,33 +52,25 @@ export default {
           label: "Exceções",
         },
       ],
+      exceptions: [],
     };
   },
   props: ["data"],
+  components: {
+    ExceptionsModal,
+  },
   methods: {
     duration: function (start, end) {
-      if (start && end) {
-        const date1 = new Date(moment(start).format("YYYY/MM/DD hh:mm:ss"));
-        const date2 = new Date(moment(end).format("YYYY/MM/DD hh:mm:ss"));
-        let diffTime = Math.abs(date2 - date1);
-
-          let seconds = Math.floor((diffTime / 1000) % 60)
-          let minutes = Math.floor((diffTime / (1000 * 60)) % 60)
-          let hours = Math.floor((diffTime / (1000 * 60 * 60)) % 24)
-
-        hours = hours < 10 ? "0" + hours : hours;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        return hours + ":" + minutes + ":" + seconds;
-        // return `${time.hours}h${time.minutes}`;
-      }
-      return 0;
+      return this.$dateDiff(start, end);
     },
     getDate: function (date) {
       if (date) {
         return moment.utc(date).format("DD/MM/YYYY HH:mm");
       }
+    },
+    openExceptionsModal: function (idx) {
+      this.exceptions = this.data[idx].exception;
+      this.$bvModal.show("exceptions_modal");
     },
   },
 };

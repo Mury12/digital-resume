@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <navbar :items="navbar" />
-    <div class="page-body" :class="opened ? 'opened' : 'closed'">
-      <page-header />
+    <navbar v-if="!$authenticated()" :items="navbar" @toggle="toggler" class="d-none d-md-block" />
+    <mobile-navbar :items="navbar" class="d-block d-md-none" />
+    <div class="page-body" :class="{'navbar-is-open': navbarIsOpen, 'navbar-is-closed': !navbarIsOpen && !$authenticated()}">
+      <page-header v-if="!$authenticated()" />
       <b-container id="main">
         <b-row>
           <b-col cols="12">
             <transition mode="out-in" name="shrink-fade">
-              <router-view :key="$route.params.name"></router-view>
+              <router-view :key="$route.name"></router-view>
             </transition>
           </b-col>
         </b-row>
@@ -20,7 +21,8 @@
 </template>
 
 <script>
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/ExpNav/Navbar";
+import MobileNavbar from "./components/ExpNav/MobileNavbar";
 import PageHeader from "./components/PageHeader/PageHeader";
 import PageFooter from "./components/Footer/Footer";
 export default {
@@ -30,23 +32,30 @@ export default {
       navbar: [
         {
           name: "Início",
-          route: "/",
+          uri: "/",
           icon: "home",
         },
         {
           name: "Administração",
-          route: "/painel-administrativo",
+          uri: "/painel-administrativo",
           icon: "cog",
         },
       ],
-      opened: true,
+      navbarIsOpen: !this.$authenticated()
     };
   },
   components: {
     Navbar,
+    MobileNavbar,
     PageHeader,
     PageFooter
   },
+  methods: {
+     toggler: function(e) {
+      this.navbarIsOpen = e;
+    }
+  },
+  
   //  beforeCreate: function() {
   //   if (
   //     (!this.$authenticated() && this.$route.meta.protected) ||
@@ -66,6 +75,7 @@ export default {
   },
   beforeCreate() {
     document.title = this.$route.meta.title + " | Dashboard Yoobot";
+    this.$setSessionToken('1f506cd53dab271d92e6d74cbebfbda64062280122f88ac8d61d235336a8d017')
   }
 };
 </script>
@@ -85,14 +95,21 @@ export default {
   min-height: 70vh;
   margin-top: 25px;
 }
-.opened {
-  margin-left: 305px;
-  transition: ease-in 200ms;
+@media screen and (min-width: 761.99px) {
+  .navbar-is-open {
+    margin-left: 232px !important;
+    transition: ease-in-out 200ms;
+  }
+  .navbar-is-closed {
+    margin-left: 50px !important;
+    transition: ease-in-out 200ms;
+  }
 }
-
-.closed {
-  margin-left: 45px;
-  transition: ease-in 200ms;
+.no-decoration {
+  text-decoration: none !important;
+}
+.pointer {
+  cursor: pointer !important;
 }
 
 .default-transition{
@@ -181,5 +198,56 @@ export default {
 }
 .spin {
   animation: spin 1s forwards;
+}
+
+@keyframes circle-wave {
+  0% {
+  }
+  100% {
+    height: 300px;
+    width: 300px;
+  }
+}
+
+@keyframes circle-fade {
+  0% {
+    opacity: 1;
+    height: 200%;
+    width: 200%;
+  }
+  80% {
+    opacity: 0;
+    height: 200%;
+    width: 200%;
+  }
+  81%,
+  100% {
+    height: 0;
+    width: 0;
+  }
+}
+
+.circle-wave {
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circle-wave::before {
+  content: "";
+  background-color: rgba(176, 167, 177, 0.198);
+  height: 0;
+  width: 0;
+  position: absolute;
+  transition: ease-in-out 200ms;
+  z-index: 0;
+  border-radius: 50%;
+  animation: circle-fade 500ms forwards;
+}
+
+.circle-wave:hover::before {
+  animation: circle-wave 500ms forwards;
 }
 </style>

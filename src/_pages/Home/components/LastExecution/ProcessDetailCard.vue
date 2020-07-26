@@ -10,8 +10,8 @@
           <label>
             Último estágio:
             <br />
-            <b-badge variant="info">{{data.lastStage}}</b-badge>
-          </label>
+            <b-badge variant="info">{{data.lastStage || ' - '}}</b-badge>
+          </label> 
           <br />
           <label>
             Tempo de Execução:
@@ -48,34 +48,16 @@ export default {
   props: ["data"],
   computed: {
     startDate() {
-      return moment(this.data.start_date).format("DD/MM/YYYY HH:mm:ss");
+      return moment.utc(this.data.start_date).format("DD/MM/YYYY HH:mm:ss");
     },
     endDate() {
       if (this.data.end_date) {
-        return moment(this.data.end_date).format("DD/MM/YYYY HH:mm:ss");
+        return moment.utc(this.data.end_date).format("DD/MM/YYYY HH:mm:ss");
       }
-      return 'Em execução'
+      return ' - '
     },
-   duration: function (start, end) {
-        const date1 = new Date(moment(start).format("YYYY/MM/DD hh:mm:ss"));
-        let date2;
-        if(end){
-          date2 = new Date(moment(end).format("YYYY/MM/DD hh:mm:ss"));
-        }else{
-          date2 = new Date()
-        }
-        let diffTime = Math.abs(date2 - date1);
-
-          let seconds = Math.floor((diffTime / 1000) % 60)
-          let minutes = Math.floor((diffTime / (1000 * 60)) % 60)
-          let hours = Math.floor((diffTime / (1000 * 60 * 60)) % 24)
-
-        hours = hours < 10 ? "0" + hours : hours;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        return hours + ":" + minutes + ":" + seconds;
-        // return `${time.hours}h${time.minutes}`;
+   duration () {
+        return this.$dateDiff(this.data.start_date, this.data.end_date)
     },
     status() {
       switch (Number(this.data.statusID)) {

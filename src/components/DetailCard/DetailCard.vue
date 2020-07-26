@@ -17,7 +17,7 @@ export default {
     props: {
         title: {
             type: String,
-            default: 'Title Here'
+            default: ''
         },
         footer: {
             type: Boolean,

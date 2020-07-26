@@ -1,13 +1,5 @@
 <template>
-  <b-modal
-    no-close-on-backdrop
-    out
-    :id="`${name}_modal`"
-    size="xl"
-    ok-only
-    ok-title="Voltar"
-    @ok="clearForm"
-  >
+  <b-modal no-close-on-backdrop out :id="`${name}_modal`" size="xl" ok-only ok-title="Voltar">
     <template v-slot:modal-header>
       <h4 v-if="!createUser">Alterar Usuário</h4>
       <h4 v-else>Novo Usuário</h4>
@@ -18,17 +10,17 @@
           <label class="w-100">
             Nome:
             <br />
-            <b-input class type="text" :required="createUser" v-model="form.name" />
+            <b-input class type="text" required v-model="form.name" />
           </label>
-          <label class="w-100">
+          <label class="w-100" v-if="!self">
             Usuário:
             <br />
-            <b-input class type="text" :required="createUser" v-model="form.username" />
+            <b-input class type="text" required v-model="form.username" />
           </label>
           <label class="w-100">
             E-mail:
             <br />
-            <b-input class type="text" :required="createUser" v-model="form.email" />
+            <b-input class type="text" required v-model="form.email" />
           </label>
           <label>
             Receber relatório Logcomex?
@@ -38,7 +30,7 @@
         </b-col>
 
         <b-col xs="12" md="4">
-          <label class="w-100">
+          <label class="w-100" v-if="!self">
             Grupo:
             <br />
             <b-select class type="text" :required="createUser" v-model="form.role">
@@ -77,7 +69,7 @@
 </template>
 
 <script>
-import UserService from "../controller/UserService";
+import UserService from "./controller/AlterUserService";
 export default {
   data() {
     return {
@@ -87,7 +79,8 @@ export default {
         onRequest: this.$onRequest,
         msg: "",
       },
-      form: {
+      form: {},
+      model: {
         email: "",
         emailer: [],
         id: "",
@@ -126,6 +119,10 @@ export default {
     createUser: {
       type: Boolean,
       default: false,
+    },
+    self: {
+      type: Boolean,
+      deafult: false,
     },
   },
   methods: {
@@ -169,6 +166,12 @@ export default {
                 this.form.new = true;
                 this.$emit("update", this.form);
 
+                if (this.self) {
+                  this.form.password = "";
+                  this.form.confirm = "";
+                  sessionStorage.setItem("user", JSON.stringify(this.form));
+                }
+
                 this.$bvToast.toast(res.msg, {
                   title: "Mensagem",
                   autoHideDelay: 5000,
@@ -196,31 +199,45 @@ export default {
       console.log(e);
     },
     clearForm: function () {
-      this.form = this.resetForm;
+      this.form = this.model
+    },
+    mapReports: function () {
+      this.report = {
+        maritime: this.form.emailer.find(
+          (el) => String(el).toLowerCase() === "maritime"
+        )
+          ? true
+          : false,
+        air: this.form.emailer.find((el) => String(el).toLowerCase() === "air")
+          ? true
+          : false,
+      };
     },
   },
   mounted() {
     this.$nextTick(() => {
-      this.resetForm = this.form;
+      if (this.self) {
+        this.form = {
+          email: this.$profile().email,
+          emailer: JSON.parse(this.$profile().emailer),
+          id: this.$profile().id,
+          name: this.$profile().name,
+          role: this.$profile().role,
+          username: this.$profile().username,
+          password: "",
+          confirm: "",
+        };
+        this.mapReports();
+      }else{
+        this.clearForm();
+      }
     });
   },
   watch: {
     user: {
       handler() {
         this.form = { ...this.form, ...this.user };
-        if (!this.createUser)
-          this.report = {
-            maritime: this.user.emailer.find(
-              (el) => String(el).toLowerCase() === "maritime"
-            )
-              ? true
-              : false,
-            air: this.user.emailer.find(
-              (el) => String(el).toLowerCase() === "air"
-            )
-              ? true
-              : false,
-          };
+        if (!this.createUser) this.mapReports();
       },
     },
   },

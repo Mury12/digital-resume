@@ -221,7 +221,7 @@ Vue.prototype.$setSessionToken = (token) => {
 Vue.prototype.$getSessionToken = () => {
   if (sessionStorage.getItem('token')) {
     Vue.prototype.$sessionToken = JSON.parse(sessionStorage.getItem('token'));
-    Vue.prototype.$user = JSON.parse(sessionStorage.getItem('usuario'));
+    Vue.prototype.$user = JSON.parse(sessionStorage.getItem('user'));
   }
   return Vue.prototype.$sessionToken;
 }

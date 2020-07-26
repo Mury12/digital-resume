@@ -13,7 +13,7 @@ const LoginService = new Vue({
         console.log(res);
         if ("token" in res.data) {
           this.$setSessionToken(res.data.token);
-          sessionStorage.setItem('usuario', JSON.stringify(res.data));
+          sessionStorage.setItem('user', JSON.stringify(res.data));
           return {
             success: true,
             msg: "Você entrou. Estamos carregando seus dados."

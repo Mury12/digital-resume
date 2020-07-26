@@ -113,6 +113,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0;
+  background-color:rgba(222, 231, 255, 0.2)
 }
 #app.hide {
   transition: ease-in-out 200ms;

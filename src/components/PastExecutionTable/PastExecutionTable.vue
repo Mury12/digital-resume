@@ -11,8 +11,11 @@
         <template v-slot:cell(exception)="row">
           <b-button
             type="button"
+            variant="link"
+            v-if="row.item.exception.length"
             @click="openExceptionsModal(row.index)"
           >{{row.item.exception.length}}</b-button>
+          <span v-else> - </span>
         </template>
       </b-table>
     </b-col>

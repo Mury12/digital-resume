@@ -1,8 +1,8 @@
 <template>
-  <detail-card title="Registros Afetados">
+  <detail-card title="Tempo de Execução">
     <template v-slot:body>
-      <div class="number-lg-showcase d-flex my-5 justify-content-center">
-        <b-badge variant="info">{{rowsAffected}}</b-badge>
+      <div class="number-lg-showcase d-flex my-5 pt-3 justify-content-center">
+        <p class="text-success">{{duration}}</p>
       </div>
     </template>
   </detail-card>
@@ -13,7 +13,7 @@ export default {
   data() {
     return {};
   },
-  props: ["exceptions"],
+  props: ['duration'],
   computed: {
     rowsAffected() {
       if (this.exceptions && this.exceptions.rowsAffected) {
@@ -22,11 +22,14 @@ export default {
       return 0;
     },
   },
+  methods:{
+
+  }
 };
 </script>
 
 <style scoped>
 .number-lg-showcase {
-  font-size: 5em;
+  font-size: 3.5em;
 }
 </style>

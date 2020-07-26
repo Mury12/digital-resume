@@ -1,40 +1,19 @@
 <template>
-  <detail-card footer :title="data.processName">
-    <template v-slot:header>
-      <b-badge :variant="data.statusID == 4 ? 'success' : 'warn' ">{{status}}</b-badge>
-    </template>
+  <detail-card :title="data.processName">
 
     <template v-slot:body>
-      <b-row>
-        <b-col cols="12">
-          <label>
-            Último estágio:
+        <b-row class="number-lg-showcase d-flex my-5 justify-content-center">
+          <b-col cols="6" style="border-right: 1px solid rgba(0,0,0,0.125)">
+            <b>Início</b>
             <br />
-            <b-badge variant="info">{{data.lastStage || ' - '}}</b-badge>
-          </label> 
-          <br />
-          <label>
-            Tempo de Execução:
+            <small>{{startDate}}</small>
+          </b-col>
+          <b-col cols="6" style="">
+            <b>Término</b>
             <br />
-            <b-badge variant="info">{{duration}}</b-badge>
-          </label>
-        </b-col>
-      </b-row>
-    </template>
-
-    <template v-slot:footer>
-      <b-row>
-        <b-col cols="6">
-          <b>Início</b>
-          <br />
-          {{startDate}}
-        </b-col>
-        <b-col cols="6">
-          <b>Fim</b>
-          <br />
-          {{endDate}}
-        </b-col>
-      </b-row>
+            <small>{{endDate}}</small>
+          </b-col>
+        </b-row>
     </template>
   </detail-card>
 </template>
@@ -54,10 +33,7 @@ export default {
       if (this.data.end_date) {
         return moment.utc(this.data.end_date).format("DD/MM/YYYY HH:mm:ss");
       }
-      return ' - '
-    },
-   duration () {
-        return this.$dateDiff(this.data.start_date, this.data.end_date)
+      return " - ";
     },
     status() {
       switch (Number(this.data.statusID)) {
@@ -80,4 +56,7 @@ export default {
 </script>
 
 <style scoped>
+.number-lg-showcase {
+  font-size: 1.4em;
+}
 </style>

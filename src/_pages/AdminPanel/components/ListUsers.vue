@@ -19,7 +19,7 @@
               <fas :icon="bindIcon(item)" />
             </div>
           </template>
-          <template v-slot:cell(role)="row">
+          <template v-slot:cell(action)="row">
             <fas
               icon="edit"
               class="mr-2 pointer hover default-transition"
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import AlterUser from "./AlterOrCreateUser";
+import AlterUser from "../../../components/AlterUser/AlterOrCreateUser";
 import UserService from "../controller/UserService";
 export default {
   data() {
@@ -64,25 +64,30 @@ export default {
         {
           key: "name",
           label: "Nome",
+          sortable:true,
         },
         {
           key: "username",
           label: "Nome de Usuário",
+          sortable:true,
+
         },
         {
           key: "email",
           label: "Email",
         },
         {
-          key: "rolename",
+          key: "role",
           label: "Grupo",
+          sortable:true,
+
         },
         {
           key: "emailer",
           label: "Relatório",
         },
         {
-          key: "role",
+          key: "action",
           label: "Ações",
         },
       ],

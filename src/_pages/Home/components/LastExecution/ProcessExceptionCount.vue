@@ -2,7 +2,7 @@
   <detail-card title="Exceções de Negócio">
     <template v-slot:body>
       <div class="number-lg-showcase d-flex my-5 justify-content-center">
-        <b-badge :variant="exceptionBadgeColor">{{amount}}</b-badge>
+        <p class="text-success">{{amount}}</p>
       </div>
     </template>
   </detail-card>

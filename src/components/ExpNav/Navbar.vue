@@ -11,7 +11,6 @@
           <img
             src="../../assets/logo.png"
             width="80%"
-            :style="{marginLeft: navbar.isOpen ? '-20px' : 0}"
           />
           <!-- <img src="../../assets/logobot.png" width=100% v-else /> -->
         </transition>
@@ -20,7 +19,7 @@
     <b-nav class="d-flex flex-column mt-5">
       <div class="nav-item px-0 py-2" v-for="(item, idx) in items" :key="idx">
         <router-link
-          v-if="((item.protected && $profile().role.match('_ADM')) || !item.protected)"
+          v-if="((item.protected && $profile() && $profile().role.match('_ADM')) || !item.protected)"
           class="nav-link pl-0 text-white default-transition no-decoration"
           :to="item.uri"
         >

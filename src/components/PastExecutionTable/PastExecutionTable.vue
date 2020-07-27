@@ -1,9 +1,12 @@
 <template>
   <b-row>
+    <b-col xs="12" id="process-filters" class="mb-2">
+      <process-filters :data="data" @filter="filter" />
+    </b-col>
     <b-col cols="12">
       <b-table
         show-empty
-        :items="data"
+        :items="filtered"
         :fields="fields"
         striped
         hover
@@ -15,12 +18,15 @@
         @row-clicked="selectRow"
         tbody-tr-class="pointer"
       >
+        <template v-slot:cell(statusID)="row">
+          <status-text :status="row.item.statusID" />
+        </template>
+        <template v-slot:cell(laststage)="row">
+          <small v-if="row.item.laststage">{{row.item.laststage}}</small>
+        </template>
         <template v-slot:cell(start_date)="row">{{getDate(row.item.start_date)}}</template>
         <template v-slot:cell(end_date)="row">{{getDate(row.item.end_date)}}</template>
         <template v-slot:cell(processID)="row">{{duration(row.item.start_date, row.item.end_date)}}</template>
-        <template v-slot:cell(laststage)="row">
-          <b-badge variant="info" v-if="row.item.laststage">{{row.item.laststage}}</b-badge>
-        </template>
         <template v-slot:cell(exception)="row">
           <b-button
             type="button"
@@ -38,7 +44,9 @@
 
 <script>
 import moment from "moment";
+import StatusText from "../ProcessStatusText/ProcessStatusText";
 import ExceptionsModal from "../ExceptionsModal/ExceptionsModal";
+import ProcessFilters from "./ProcessFilter";
 export default {
   data() {
     return {
@@ -46,6 +54,11 @@ export default {
         {
           key: "processName",
           label: "Processo",
+          sortable: true,
+        },
+        {
+          key: "statusID",
+          label: "Estado",
           sortable: true,
         },
         {
@@ -74,16 +87,22 @@ export default {
         },
       ],
       exceptions: [],
+      filtered: [],
     };
   },
   props: ["data"],
   components: {
     ExceptionsModal,
+    ProcessFilters,
+    StatusText,
   },
   methods: {
-    selectRow: function(row){
-      this.$emit('select', row);
-      this.$scrollTo('#last_exec_cards')
+    filter: function (filtered) {
+      this.filtered = filtered;
+    },
+    selectRow: function (row) {
+      this.$emit("select", row);
+      this.$scrollTo("#details-title");
     },
     duration: function (start, end) {
       return this.$dateDiff(start, end);
@@ -96,6 +115,11 @@ export default {
     openExceptionsModal: function (idx) {
       this.exceptions = this.data[idx].exception;
       this.$bvModal.show("exceptions_modal");
+    },
+  },
+  watch: {
+    data() {
+      this.filtered = this.data;
     },
   },
 };

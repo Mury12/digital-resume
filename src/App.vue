@@ -228,7 +228,9 @@ export default {
 .spin {
   animation: spin 1s forwards;
 }
-
+.custom-control-label{
+  cursor: pointer !important;
+}
 @keyframes circle-wave {
   0% {
   }

@@ -311,7 +311,10 @@ Vue.prototype.$verificaCPF = (value) => {
 Vue.prototype.$hasType = (type) => {
   const user = Vue.prototype.$user;
   return user.role.match(/(ADM)|(YOOBOT)/) || user.emailer.match(type) ? true : false
-
+}
+Vue.prototype.$hasRole = (type) => {
+  const user = Vue.prototype.$user;
+  return user.role.match(type)
 }
 
 

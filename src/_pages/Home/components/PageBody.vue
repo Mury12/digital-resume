@@ -1,41 +1,48 @@
 <template>
   <b-row>
     <overlayer :show="onRequest" />
-    <b-col cols="12">
-      <page-title id="details-title" title="Detalhes do Processo" divisorWidth="25" class="mt-5" />
-      <p class="mb-3">Estes são os detalhes do processo selecionado.</p>
+    <transition mode="out-in" name="shrink-fade">
 
-      <last-execution-details :data="curProcess ? curProcess : history.length ? history[0] : {}" />
+      <b-col cols="12" v-if="!onRequest && (!history || !history.length)">
+        <nothing-to-show />
+      </b-col>
+      <b-col cols="12" v-else>
+        <page-title id="details-title" title="Detalhes do Processo" divisorWidth="25" class="mt-5" />
+        <p class="mb-3">Estes são os detalhes do processo selecionado.</p>
+        <last-execution-details :data="curProcess ? curProcess : history.length ? history[0] : {}" />
 
-      <page-title title="Histórico" divisorWidth="25" class="mt-5" />
-      <p class="mb-3">Esta é a lista dos processos já executados.</p>
-      <execution-history @select="handleSelect" :data="history.length ? history : []" />
-      <b-button
-        type="button"
-        :disabled="onRequest || row_limit < 20"
-        @click="decreaseRowLimit"
-        variant="info"
-      >Mostrar menos</b-button>
-      <b-button
-        type="button"
-        :disabled="onRequest"
-        class="ml-2"
-        @click="increaseRowLimit"
-        variant="info"
-      >Mostrar mais</b-button>
-    </b-col>
+        <page-title title="Histórico" divisorWidth="25" class="mt-5" />
+        <p class="mb-3">Esta é a lista dos processos já executados.</p>
+        <execution-history @select="handleSelect" :data="history.length ? history : []" />
+        <b-button
+          type="button"
+          :disabled="onRequest || row_limit < 20"
+          @click="decreaseRowLimit"
+          variant="info"
+        >Mostrar menos</b-button>
+        <b-button
+          type="button"
+          :disabled="onRequest"
+          class="ml-2"
+          @click="increaseRowLimit"
+          variant="info"
+        >Mostrar mais</b-button>
+      </b-col>
+    </transition>
   </b-row>
 </template>
 
 <script>
 import LastExecutionDetails from "./LastExecution/LastExecutionDetails";
 import ExecutionHistory from "./ExecutionList";
+import NothingToShow from "../../../components/NothingToShow/NothingToShow";
 import io from "socket.io-client";
 export default {
   name: "PageBody",
   components: {
     LastExecutionDetails,
     ExecutionHistory,
+    NothingToShow,
   },
   data() {
     return {
@@ -43,12 +50,12 @@ export default {
       history: [],
       row_limit: 10,
       onRequest: false,
-      curProcess: null
+      curProcess: null,
     };
   },
   methods: {
-    handleSelect: function(process) {
-      this.curProcess = process
+    handleSelect: function (process) {
+      this.curProcess = process;
     },
     increaseRowLimit: function () {
       this.onRequest = true;

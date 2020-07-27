@@ -48,8 +48,8 @@ export default {
   font-size: 1.3em;
 }
 .yoobot-logo img {
-  max-width: 100%;
-  margin-top: 20px;
+  max-width: 70%;
+  margin-top: 10px;
 }
 .nav-item {
   cursor: pointer;

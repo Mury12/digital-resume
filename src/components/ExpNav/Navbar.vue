@@ -10,7 +10,7 @@
         <transition mode="out-in" name="slide">
           <img
             src="../../assets/logo.png"
-            width="80%"
+            width="60%"
           />
           <!-- <img src="../../assets/logobot.png" width=100% v-else /> -->
         </transition>
@@ -37,10 +37,10 @@
     </div>
     <div id="sidebar-logout" class="text-white default-transition">
       <b-row class="justify-content-left text-left pl-3 py-2">
-        <b-col cols="1">
+        <b-col cols="1" @click="logout" >
           <fas icon="power-off" />
         </b-col>
-        <b-col cols="10" @click="logout" v-show="navbar.isOpen">Sair</b-col>
+        <b-col cols="10" v-show="navbar.isOpen">Sair</b-col>
       </b-row>
     </div>
   </div>

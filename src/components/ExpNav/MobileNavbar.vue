@@ -8,12 +8,20 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-row class="justify-content-between">
-            <b-col cols=6 class="_mob-menu-item my-2" v-for="(item,idx) in items" :key="idx">
+            <b-col cols="6" class="_mob-menu-item my-2" v-for="(item,idx) in items" :key="idx">
               <router-link class="no-decoration text-black" :to="item.uri">
                 <b-card class="text-black">
                   <fas :icon="item.icon" />
                   <br />
                   {{item.name}}
+                </b-card>
+              </router-link>
+            </b-col>
+            <b-col cols="6" class="_mob-menu-item my-2" @click="logout">
+              <router-link class="no-decoration text-black" to="#">
+                <b-card class="text-black">
+                  <fas icon="power-off" />
+                  <br />Sair
                 </b-card>
               </router-link>
             </b-col>
@@ -25,16 +33,25 @@
 </template>
 
 <script>
+import LoginService from "../../_pages/Login/controller/LoginService";
+
 export default {
   data() {
     return {};
   },
-  props: ["items"]
+  props: ["items"],
+  methods: {
+    logout: function () {
+      if (LoginService.done()) {
+        this.$emit("logout");
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-._mob-menu-item .card{
+._mob-menu-item .card {
   height: 100px;
 }
 </style>

@@ -30,10 +30,10 @@
         </b-col>
 
         <b-col xs="12" md="4">
-          <label class="w-100" v-if="!self">
+          <label class="w-100" v-if="!isCurrentUser && $hasRole('YOOBOT')">
             Grupo:
             <br />
-            <b-select class type="text" :required="createUser" v-model="form.role">
+            <b-select class type="text" :required="createUser" v-model="form.role" >
               <option disabled value="none">Selecione um grupo</option>
               <option v-for="(role, idx) in userRoles" :key="idx" :value="role.value">{{role.name}}</option>
             </b-select>
@@ -229,8 +229,16 @@ export default {
         this.mapReports();
       }else{
         this.clearForm();
+        if(!this.$hasRole('YOOBOT')){
+          this.form.role = 'CRAFT';
+        }
       }
     });
+  },
+  computed: {
+    isCurrentUser(){
+      return this.self || this.$profile().id === this.user.id
+    }
   },
   watch: {
     user: {

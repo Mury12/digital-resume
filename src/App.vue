@@ -113,7 +113,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0;
-  background-color:rgba(222, 231, 255, 0.2)
+  background-color:rgba(222, 231, 255, 0.2);
 }
 #app.hide {
   transition: ease-in-out 200ms;
@@ -122,6 +122,9 @@ export default {
 #main {
   min-height: 70vh;
   margin-top: 25px;
+}
+input::placeholder{
+  color: rgba(189, 69, 202, 0.3) !important
 }
 @media screen and (min-width: 761.99px) {
   .navbar-is-open {

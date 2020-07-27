@@ -36,8 +36,8 @@
       <fas icon="caret-left" class="fa-2x text-white" :class="{'rotate': !navbar.isOpen}" />
     </div>
     <div id="sidebar-logout" class="text-white default-transition">
-      <b-row class="justify-content-left text-left pl-3 py-2">
-        <b-col cols="1" @click="logout" >
+      <b-row class="justify-content-left text-left pl-3 py-2" @click="logout">
+        <b-col cols="1"  >
           <fas icon="power-off" />
         </b-col>
         <b-col cols="10" v-show="navbar.isOpen">Sair</b-col>

@@ -156,7 +156,7 @@ export default {
             this.request.onRequest = false;
           });
       } else {
-        UserService.save(this.form)
+        UserService.save(this.form, this.self)
           .then((res) => {
             if (res) {
               this.request.success = res.success;
@@ -169,7 +169,6 @@ export default {
                 if (this.self) {
                   this.form.password = "";
                   this.form.confirm = "";
-                  sessionStorage.setItem("user", JSON.stringify(this.form));
                 }
 
                 this.$bvToast.toast(res.msg, {

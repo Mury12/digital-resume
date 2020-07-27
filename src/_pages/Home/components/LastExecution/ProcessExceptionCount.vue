@@ -3,7 +3,11 @@
     <detail-card height="h-45" title="Exceções de Negócio">
       <template v-slot:body>
         <div class="number-lg-showcase sm-flex pt-2 justify-content-center">
-          <p class="text-success pointer" @click="showExceptions">{{exceptions.length}}</p>
+          <p
+            class="text-success"
+            :class="{'pointer': exceptions.length}"
+            @click="showExceptions"
+          >{{exceptions.length}}</p>
         </div>
       </template>
     </detail-card>
@@ -29,7 +33,7 @@
 </template>
 
 <script>
-import ExceptionsModal from '../../../../components/ExceptionsModal/ExceptionsModal';
+import ExceptionsModal from "../../../../components/ExceptionsModal/ExceptionsModal";
 
 export default {
   data() {
@@ -43,7 +47,6 @@ export default {
     };
   },
   props: {
-
     logcomex: {
       type: Number,
       default: 0,
@@ -51,7 +54,7 @@ export default {
     exceptions: Array,
   },
   components: {
-    ExceptionsModal
+    ExceptionsModal,
   },
   computed: {
     exceptionBadgeColor() {
@@ -96,9 +99,9 @@ export default {
       }
       this.registers += this.goal % grow;
     },
-    showExceptions: function() {
-      this.$bvModal.show('last-process')
-    }
+    showExceptions: function () {
+      if (this.exceptions.length) this.$bvModal.show("last-process");
+    },
   },
   mounted() {
     this.$nextTick(() => {

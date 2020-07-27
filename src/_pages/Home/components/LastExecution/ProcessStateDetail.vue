@@ -2,7 +2,7 @@
   <div class="h-100 d-block d-flex align-items-between flex-column justify-content-between">
     <detail-card height="h-45" title="Estado">
       <template v-slot:body>
-        <div class="fa-2x sm-flex pt-3 justify-content-center">
+        <div class="text-lg sm-flex pt-3 justify-content-center">
           <status-text :status="status" />
         </div>
       </template>

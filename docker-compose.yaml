@@ -1,14 +1,14 @@
-version: '3'
+version: '3.7'
+
 services:
-  app:
-    container_name: dockerized-vue-app
+
+  craft-vue:
+    container_name: craft-dashboard
     build:
-        context: .
-        dockerfile: Dockerfile
+      context: .
+      dockerfile: ./Dockerfile
     volumes:
-        - '.:/app'
-        - '/app/node_modules'
+      - '.:/app'
+      - '/app/node_modules'
     ports:
-        - '80:80'
-    environment:
-        - NODE_ENV=production 
+      - '80:80'

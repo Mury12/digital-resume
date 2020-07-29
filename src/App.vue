@@ -53,7 +53,7 @@ export default {
           name: "Administração",
           uri: "/painel-administrativo",
           icon: "cog",
-          protected: true
+          protected: true,
         },
       ],
       navbarIsOpen: true,
@@ -72,9 +72,8 @@ export default {
     },
     closePage: function () {
       this.hide = true;
-        window.location = '/'
-      setTimeout(() => {
-      }, 200);
+      window.location = "/";
+      setTimeout(() => {}, 200);
       setTimeout(() => {
         this.hide = false;
       }, 1000);
@@ -84,19 +83,20 @@ export default {
   watch: {
     $route: {
       handler: function () {
-        document.title = this.$route.meta.title + " | Dashboard Yoobot";
+        document.title =
+          (this.$route.meta.title || "") + " | " + "Dashboard Yoobot";
       },
     },
   },
   beforeCreate() {
-    document.title = this.$route.meta.title + " | Dashboard Yoobot";
+    document.title = (this.$route.meta.title || "") + " | " + "Dashboard Yoobot";
 
     if (
       (!this.$authenticated() && this.$route.meta.protected) ||
       (this.$route.name == "Other" && !this.$authenticated())
     )
       this.$router.push("/entrar");
-    else if (this.$authenticated() && !this.$route.name.match('Dashboard')) {
+    else if (this.$authenticated() && !this.$route.name.match("Dashboard")) {
       this.$router.push("/dashboard");
     }
   },
@@ -113,7 +113,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0;
-  background-color:rgba(222, 231, 255, 0.2);
+  background-color: rgba(222, 231, 255, 0.2);
 }
 #app.hide {
   transition: ease-in-out 200ms;
@@ -123,8 +123,8 @@ export default {
   min-height: 70vh;
   margin-top: 25px;
 }
-input::placeholder{
-  color: rgba(189, 69, 202, 0.3) !important
+input::placeholder {
+  color: rgba(189, 69, 202, 0.3) !important;
 }
 @media screen and (min-width: 761.99px) {
   .navbar-is-open {
@@ -220,7 +220,7 @@ input::placeholder{
   --def-brand-lighter: #40a4e3;
   --def-brand: #3b9bd5;
   --def-brand-dark: #2a6d96;
-  --def-brand-darkmid: #14435F;
+  --def-brand-darkmid: #14435f;
   --def-brand-darker: #183f57;
   --def-darker-alpha: #183f5752;
   --def-lightblue: #6b579b;
@@ -231,7 +231,7 @@ input::placeholder{
 .spin {
   animation: spin 1s forwards;
 }
-.custom-control-label{
+.custom-control-label {
   cursor: pointer !important;
 }
 @keyframes circle-wave {

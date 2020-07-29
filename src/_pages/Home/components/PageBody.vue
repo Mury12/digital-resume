@@ -1,12 +1,13 @@
 <template>
   <b-row>
-    <overlayer :show="onRequest" />
+    <!-- <overlayer :show="onRequest" /> -->
     <transition mode="out-in" name="shrink-fade">
 
-      <b-col cols="12" v-if="!onRequest && (!history || !history.length)">
-        <nothing-to-show />
+      <b-col cols="12" v-if="(!onRequest && !history.length) || onRequest" key="nothing">
+        <nothing-to-show :title="onRequest ? 'Quase lá': 'Nada para exibir'" :starting="onRequest"/>
       </b-col>
-      <b-col cols="12" v-else>
+
+      <b-col cols="12" v-else key="fullfilledbody">
         <page-title id="details-title" title="Detalhes do Processo" divisorWidth="25" class="mt-5" />
         <p class="mb-3">Estes são os detalhes do processo selecionado.</p>
         <last-execution-details :data="curProcess ? curProcess : history.length ? history[0] : {}" />

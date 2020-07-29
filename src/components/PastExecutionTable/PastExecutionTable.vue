@@ -6,6 +6,7 @@
     <b-col cols="12">
       <b-table
         show-empty
+        empty-text="Não encontramos nada para exibir aqui.."
         :items="filtered"
         :fields="fields"
         striped

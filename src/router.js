@@ -40,7 +40,10 @@ let routes = [
         {
             path: '*',
             component: Login,
-            name: 'Other'
+            name: 'Other',
+            meta: {
+                title: 'Login'
+            }
         }
     ],
 

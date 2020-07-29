@@ -20,6 +20,7 @@
           ref="usertable"
           class
           show-empty
+          empty-text="Não encontramos nada para exibir aqui.."
           :items="tableData"
           :fields="fields"
           striped

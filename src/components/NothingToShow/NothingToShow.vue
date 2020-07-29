@@ -6,7 +6,7 @@
         <p
           class="nothing-thoughs default-transition"
           :class="{'switching' : switching}"
-        >{{randomThought}}</p>
+        >{{starting ? randomThought : 'Também estou ansiosa pelas novidades!'}}</p>
         <img src="../../assets/logobot.png" class="fa-4x" />
       </div>
       <fas :icon="icon" class="fa-4x nothing-icon" v-else />
@@ -21,12 +21,12 @@ export default {
         "Volte mais tarde, talvez eu tenha encontrado alguma coisa..",
         "Não encontrei nada dessa vez.. Quem sabe na próxima?",
         "Sempre que houver alguma oportunidade, eu trarei novidades.",
-        "Estou aguardado novidades, em alguns instantes tudo pode mudar.",
+        "Estou aguardando novidades, em alguns instantes tudo pode mudar.",
         "Quando você menos esperar, esta lista estará cheia!",
         "Olá, eu sou a Yoobi. Como posso lhe ajudar?",
         "Também estou ansiosa pelas novidades!",
       ],
-      randomThought: "Volte mais tarde, talvez eu tenha encontrado alguma coisa..",
+      randomThought: "Também estou ansiosa pelas novidades!",
       shuffle: null,
       switching: false,
     };
@@ -44,6 +44,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    starting: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     switch: function () {

@@ -77,7 +77,7 @@ export default {
         lcl: 0,
         database: 0,
       },
-      perPage: 100,
+      perPage: 25,
       fields: [
         {
           key: "itemKey",

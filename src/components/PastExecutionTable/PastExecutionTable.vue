@@ -7,7 +7,7 @@
       <b-table
         show-empty
         empty-text="Não encontramos nada para exibir aqui.."
-        :items="filtered"
+        :items="filtered.length ? filtered : data"
         :fields="fields"
         striped
         hover
@@ -18,6 +18,7 @@
         sort-by.sync="start_date"
         @row-clicked="selectRow"
         tbody-tr-class="pointer"
+        ref="executionTable"
       >
         <template v-slot:cell(statusID)="row">
           <status-text :status="row.item.statusID" />
@@ -121,6 +122,7 @@ export default {
   watch: {
     data() {
       this.filtered = this.data;
+      this.$refs.executionTable.refresh();
     },
   },
 };

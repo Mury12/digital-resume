@@ -1,8 +1,8 @@
-const user = {
+export const user = {
   name: "Garry",
   username: "Garry",
   password: "123",
-  roleName: "Admin",
+  role: "Admin",
   domain: "MMWS"
 }
 

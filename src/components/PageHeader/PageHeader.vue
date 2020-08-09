@@ -23,19 +23,16 @@
         </b-col>
       </b-row>
     </div>
-    <alter-user self name="self-update" />
   </b-row>
 </template>
 
 <script>
-import AlterUser from '@/components/AlterUser/AlterOrCreateUser'
 export default {
   name: "PageHeader",
   data() {
     return {};
   },
   components:{
-    AlterUser
   },
   methods: {
     alterSelfData: function() {

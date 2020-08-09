@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import Navbar from "./components/ExpNav/Navbar";
-import NavItems from "./nav-items";
-import MobileNavbar from "./components/ExpNav/MobileNavbar";
+import Navbar from "./components/Navbar/Navbar";
+import { NavItems } from "./nav-items.js";
+import MobileNavbar from "./components/Navbar/MobileNavbar";
 import PageHeader from "./components/PageHeader/PageHeader";
 import PageFooter from "./components/Footer/Footer";
 export default {
@@ -72,12 +72,12 @@ export default {
   watch: {
     $route: {
       handler: function () {
-        document.title =
-          (this.$route.meta.title || "") + " | " + "Vue Start";
+        document.title = (this.$route.meta.title || "") + " | " + "Vue Start";
       },
     },
   },
   beforeCreate() {
+    this.$session.start();
     document.title = (this.$route.meta.title || "") + " | " + "Vue Start";
 
     if (
@@ -85,8 +85,8 @@ export default {
       (this.$route.name == "Other" && !this.$authenticated())
     )
       this.$router.push("/entrar");
-    else if (this.$authenticated() && !this.$route.name.match("Dashboard")) {
-      this.$router.push("/dashboard");
+    else if (this.$authenticated() && !this.$route.name.match("Home")) {
+      this.$router.push("/home");
     }
   },
 };

@@ -7,7 +7,7 @@
           class="nothing-thoughs default-transition"
           :class="{'switching' : switching}"
         >{{starting ? randomThought : 'Também estou ansiosa pelas novidades!'}}</p>
-        <img src="../../assets/logobot.png" class="fa-4x" />
+        <img src="../../assets/logobot.png" class="fa-4x" width=100 />
       </div>
       <fas :icon="icon" class="fa-4x nothing-icon" v-else />
     </b-col>
@@ -109,7 +109,7 @@ export default {
   width: 1px;
   transform: scale(100);
   top: 63.1%;
-  left: 49.8%;
+  left: 50.8%;
   opacity: 1;
   z-index: 0;
   animation: pulse 5s infinite;

@@ -2,9 +2,8 @@
   <div id="auth-page">
     <b-row class="justify-content-center align-items-center h-100">
       <b-col cols="12">
-        <div class="yoobot-logo mb-5">
-          <img src="../../../assets/logo.png" />
-          <img src="../../../assets/logobot.png"  class="ml-3 mb-3" width=50/>
+        <div class="brand-logo mb-5">
+          <img src="../../../assets/logo.png"  class="ml-3 mb-3" width=100/>
         </div>
         <login-form />
       </b-col>

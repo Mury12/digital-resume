@@ -7,13 +7,6 @@
       </b-col>
 
       <b-col cols="12" v-else key="fullfilledbody">
-        <page-title id="details-title" title="Detalhes do Processo" divisorWidth="25" class="mt-5" />
-        <p class="mb-3">Estes são os detalhes do processo selecionado.</p>
-        <last-execution-details :data="curProcess ? curProcess : history.length ? history[0] : {}" />
-
-        <page-title title="Histórico" divisorWidth="25" class="mt-5" />
-        <p class="mb-3">Esta é a lista dos processos já executados.</p>
-        <execution-history @select="handleSelect" :data="history.length ? history : []" />
         <b-button
           type="button"
           :disabled="onRequest || row_limit < 20"
@@ -33,15 +26,11 @@
 </template>
 
 <script>
-import LastExecutionDetails from "./LastExecution/LastExecutionDetails";
-import ExecutionHistory from "./ExecutionList";
 import NothingToShow from "../../../components/NothingToShow/NothingToShow";
 import io from "socket.io-client";
 export default {
   name: "PageBody",
   components: {
-    LastExecutionDetails,
-    ExecutionHistory,
     NothingToShow,
   },
   data() {
@@ -86,7 +75,7 @@ export default {
         if (data.sessions) {
           this.$session.set(
             "processHistory",
-            data.sessions ? data.sessions : []
+            JSON.stringify(data.sessions ? data.sessions : [])
           ) || [];
           this.history = data.sessions ? data.sessions : [];
           if (this.onRequest) this.onRequest = false;
@@ -96,7 +85,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.history = this.$session.getI("@app:processHistory") || [];
+      this.history = JSON.parse(this.$session.get("@app:processHistory") || "[]");
       this.row_limit = this.history.length >= 10 ? this.history.length : 10;
       this.restartSocket();
     });

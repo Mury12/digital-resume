@@ -1,7 +1,7 @@
 export const NavItems = [
     {
         name: "Início",
-        uri: "/dashboard",
+        uri: "/home",
         icon: "home",
     },
     {

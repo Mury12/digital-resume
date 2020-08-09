@@ -13,10 +13,10 @@ const LoginService = new Vue({
           password,
         });
 
-        if ("token" in res.data) {
-          this.$setSessionToken(res.data.token);
-          this.$session.set('@app:user', res.data);
-          this.$session.set('@app:token', res.data.token);
+        if ("token" in result.data) {
+          this.$setSessionToken(result.data.token);
+          this.$session.set('@app:user', result.data);
+          this.$session.set('@app:token', result.data.token);
           return {
             success: true,
             msg: "Você entrou. Estamos carregando seus dados."
@@ -30,14 +30,13 @@ const LoginService = new Vue({
 
 
       }
+    },
+    done: function () {
+      this.$setSessionToken('');
+      this.$session.clear().destroy();
+      return true;
     }
   },
+});
 
-  done: function () {
-    this.$setSessionToken('');
-    this.$session.clear().destroy();
-    return true;
-  }
-}
-})
 export default LoginService;

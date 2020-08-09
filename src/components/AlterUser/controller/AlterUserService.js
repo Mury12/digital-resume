@@ -9,7 +9,7 @@ const AlterUserService = new Vue({
             return await this.$patch(this.$getWsUrl("USER", "UPDATE"), form)
                 .then((res) => {
                     if (res && res.data && res.data.res) {
-                        if(self) sessionStorage.setItem('user', JSON.stringify(form))
+                        if (self) this.$session.set('@app:user', form)
                         return {
                             success: true,
                             msg: res.data.msg

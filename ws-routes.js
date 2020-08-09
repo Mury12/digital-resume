@@ -1,18 +1,14 @@
 const env = {
   NODE_ENV: "production",
-  VERSION: "v0.01",
-  NAME: "Multilevel Network System",
+  VERSION: "v0.0.1-alpha",
+  NAME: "Vue Start",
   VUE_SESSION_TIMEOUT: 60,
 
   WS: {
-    URL: "http://yoobot.eastus.cloudapp.azure.com:4200/",
+    URL: "http://localhost/fake-api/login.js",
     USER: {
-      ALL: 'user/',
+      BASE: 'user/',
       LOGIN: 'login',
-      LOGOUT: 'user/logout/',
-      UPDATE: 'user/update/',
-      CREATE: 'user/create/',
-      DELETE: 'user/delete/',
     },
     BP: {
       SESSIONS: 'sessions/'

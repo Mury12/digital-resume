@@ -2,9 +2,8 @@
   <b-row>
     <!-- <overlayer :show="onRequest" /> -->
     <transition mode="out-in" name="shrink-fade">
-
       <b-col cols="12" v-if="(!onRequest && !history.length) || onRequest" key="nothing">
-        <nothing-to-show :title="onRequest ? 'Quase lá': 'Nada para exibir'" :starting="onRequest"/>
+        <nothing-to-show :title="onRequest ? 'Quase lá': 'Nada para exibir'" :starting="onRequest" />
       </b-col>
 
       <b-col cols="12" v-else key="fullfilledbody">
@@ -85,9 +84,9 @@ export default {
       });
       this.socket.on("latest_sessions", (data) => {
         if (data.sessions) {
-          sessionStorage.setItem(
+          this.$session.set(
             "processHistory",
-            JSON.stringify(data.sessions ? data.sessions : [])
+            data.sessions ? data.sessions : []
           ) || [];
           this.history = data.sessions ? data.sessions : [];
           if (this.onRequest) this.onRequest = false;
@@ -97,7 +96,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.history = JSON.parse(sessionStorage.getItem("processHistory")) || [];
+      this.history = this.$session.getI("@app:processHistory") || [];
       this.row_limit = this.history.length >= 10 ? this.history.length : 10;
       this.restartSocket();
     });

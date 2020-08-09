@@ -25,7 +25,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.users = JSON.parse(sessionStorage.getItem('users'));
+      this.users = this.$session.get('users');
       this.getUsers();
     });
   },

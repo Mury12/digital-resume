@@ -36,6 +36,7 @@
 
 <script>
 import Navbar from "./components/ExpNav/Navbar";
+import NavItems from "./nav-items";
 import MobileNavbar from "./components/ExpNav/MobileNavbar";
 import PageHeader from "./components/PageHeader/PageHeader";
 import PageFooter from "./components/Footer/Footer";
@@ -43,19 +44,7 @@ export default {
   name: "App",
   data() {
     return {
-      navbar: [
-        {
-          name: "Início",
-          uri: "/dashboard",
-          icon: "home",
-        },
-        {
-          name: "Administração",
-          uri: "/painel-administrativo",
-          icon: "cog",
-          protected: true,
-        },
-      ],
+      navbar: NavItems,
       navbarIsOpen: true,
       hide: false,
     };
@@ -84,12 +73,12 @@ export default {
     $route: {
       handler: function () {
         document.title =
-          (this.$route.meta.title || "") + " | " + "Dashboard Yoobot";
+          (this.$route.meta.title || "") + " | " + "Vue Start";
       },
     },
   },
   beforeCreate() {
-    document.title = (this.$route.meta.title || "") + " | " + "Dashboard Yoobot";
+    document.title = (this.$route.meta.title || "") + " | " + "Vue Start";
 
     if (
       (!this.$authenticated() && this.$route.meta.protected) ||

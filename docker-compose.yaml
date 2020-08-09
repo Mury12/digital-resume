@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   craft-vue:
-    container_name: craft-dashboard
+    container_name: vue-start
     build:
       context: .
       dockerfile: ./Dockerfile

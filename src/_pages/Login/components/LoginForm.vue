@@ -48,7 +48,7 @@ export default {
             this.request.success = res.success;
             this.request.msg = res.msg;
             if (res.success) {
-              this.$router.push("/dashboard");
+              this.$router.push("/home");
             }
           }
         })

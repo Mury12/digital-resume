@@ -9,7 +9,7 @@ import moment from 'moment'
 let wsr = require('../ws-routes.js').default;
 
 Vue
-  .use(VueSession)
+  .use(VueSession, { persist: true })
   .use(VueTheMask)
   .use(BootstrapVue)
   .use(VueScrollTo, {
@@ -227,16 +227,11 @@ Vue.prototype.$patch = (url, data) => {
 }
 
 Vue.prototype.$setSessionToken = (token) => {
-  Vue.prototype.$session.set('@app:token', token);
-  Vue.prototype.$sessionToken = token;
+  Vue.$sessionToken = token;
 }
 
 Vue.prototype.$getSessionToken = () => {
-  if (Vue.prototype.$session.get('@app:token')) {
-    Vue.prototype.$sessionToken = JSON.parse(Vue.prototype.$session.get('@app:token'));
-    Vue.prototype.$user = JSON.parse(Vue.prototype.$session.get('@app:user'));
-  }
-  return Vue.prototype.$sessionToken;
+  return Vue.$sessionToken;
 }
 
 Vue.prototype.$hasRole = (type) => {
@@ -263,6 +258,14 @@ Vue.prototype.$dateDiff = (start, end) => {
   return hours + ":" + minutes + ":" + seconds;
 }
 
+new Vue({
+  beforeCreate() {
+    if (this.$session.exists()) {
+      this.$setSessionToken(JSON.parse(this.$session.get('@app:token')));
+      this.$profile(JSON.parse(this.$session.get('@app:user')));
+    }
+  }
+})
 
 export default Vue;
 

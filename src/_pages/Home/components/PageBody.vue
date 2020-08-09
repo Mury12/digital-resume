@@ -75,7 +75,7 @@ export default {
         if (data.sessions) {
           this.$session.set(
             "processHistory",
-            data.sessions ? data.sessions : []
+            JSON.stringify(data.sessions ? data.sessions : [])
           ) || [];
           this.history = data.sessions ? data.sessions : [];
           if (this.onRequest) this.onRequest = false;
@@ -85,7 +85,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.history = this.$session.getI("@app:processHistory") || [];
+      this.history = JSON.parse(this.$session.get("@app:processHistory") || "[]");
       this.row_limit = this.history.length >= 10 ? this.history.length : 10;
       this.restartSocket();
     });

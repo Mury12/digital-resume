@@ -6,8 +6,8 @@ let routes = [
     /** Auth needed */
     ...[
         {
-            path: '/dashboard',
-            name: 'Dashboard',
+            path: '/home',
+            name: 'Home',
             component: Home,
             meta: {
                 protected: true,

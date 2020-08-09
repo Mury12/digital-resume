@@ -260,7 +260,7 @@ Vue.prototype.$dateDiff = (start, end) => {
 
 new Vue({
   beforeCreate() {
-    if (this.$session.exists()) {
+    if (this.$session.exists() && this.$session.get('@app:token')) {
       this.$setSessionToken(JSON.parse(this.$session.get('@app:token')));
       this.$profile(JSON.parse(this.$session.get('@app:user')));
     }

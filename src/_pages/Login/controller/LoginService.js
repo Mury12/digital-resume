@@ -44,7 +44,8 @@ const LoginService = new Vue({
     },
     done: function () {
       this.$setSessionToken('');
-      this.$session.clear().destroy();
+      this.$session.clear();
+      this.$session.destroy();
       return true;
     }
   },

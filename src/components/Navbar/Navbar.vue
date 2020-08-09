@@ -2,7 +2,7 @@
   <b-row id="navbar-left" class="text-white">
     <b-col lg="12">
       <b-row class="justify-content-center">
-        <b-col cols="10" class="yoobot-logo">
+        <b-col cols="10" class="brand-logo">
           <img src="../../assets/logo.png" />
         </b-col>
       </b-row>
@@ -47,7 +47,7 @@ export default {
   background-color: var(--def-brand-darker);
   font-size: 1.3em;
 }
-.yoobot-logo img {
+.brand-logo img {
   max-width: 70%;
   margin-top: 10px;
 }

@@ -36,7 +36,7 @@
 
 <script>
 import Navbar from "./components/ExpNav/Navbar";
-import NavItems from "./nav-items";
+import {NavItems} from "./nav-items.js";
 import MobileNavbar from "./components/ExpNav/MobileNavbar";
 import PageHeader from "./components/PageHeader/PageHeader";
 import PageFooter from "./components/Footer/Footer";

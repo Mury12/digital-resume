@@ -1,4 +1,4 @@
-# craft-vue
+# vue-start
 
 ## Project setup
 ```

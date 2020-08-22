@@ -258,6 +258,13 @@ Vue.prototype.$dateDiff = (start, end) => {
   return hours + ":" + minutes + ":" + seconds;
 }
 
+Vue.prototype.$respond = function (message, error = false) {
+  return {
+    success: !error,
+    data: message
+  }
+}
+
 new Vue({
   beforeCreate() {
     if (this.$session.exists() && this.$session.get('@app:token')) {

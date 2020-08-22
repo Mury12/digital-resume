@@ -1,5 +1,5 @@
 import Vue from '../../../prototype';
-import {user} from '../../../models/user'
+import { user } from '../../../models/user'
 const LoginService = new Vue({
   data: {
     vm: this
@@ -9,8 +9,8 @@ const LoginService = new Vue({
       /** Delete this when your webservice is set */
       this.$profile(user);
       this.$session.set('@app:user', JSON.stringify(user))
-      this.$setSessionToken(username+password);
-      this.$session.set('@app:token', JSON.stringify(username+password));
+      this.$setSessionToken(username + password);
+      this.$session.set('@app:token', JSON.stringify(username + password));
       return {
         success: true,
         msg: 'You\'re logged in. Loading..'
@@ -27,16 +27,11 @@ const LoginService = new Vue({
           this.$profile(result.data);
           this.$session.set('@app:user', JSON.stringify(result.data));
           this.$session.set('@app:token', JSON.stringify(result.data.token));
-          return {
-            success: true,
-            msg: "Você entrou. Estamos carregando seus dados."
-          }
+          
+          return this.$respond("Você entrou. Estamos carregando seus dados.")
         }
       } catch (err) {
-        return {
-          success: false,
-          msg: err.response.data.msg
-        }
+        return this.$respond(err.response.data, true)
 
 
       }
@@ -44,10 +39,10 @@ const LoginService = new Vue({
     },
     done: function () {
       this.$setSessionToken('');
-      this.$session.clear();
-      this.$session.destroy();
-      return true;
-    }
+      this.$session.clear().destroy();
+      return this.$respond("Saindo..");
+    },
+    
   },
 });
 

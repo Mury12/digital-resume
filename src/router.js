@@ -1,44 +1,25 @@
-import Vue from './prototype';
+import Vue from '@/setup.js';
 import VueRouter from 'vue-router'
 import Home from './_pages/Home/Home'
-import Login from './_pages/Login/Login'
 let routes = [
     /** Auth needed */
-    ...[
-        {
-            path: '/home',
-            name: 'Home',
-            component: Home,
-            meta: {
-                protected: true,
-                title: 'Início'
-            }
-        },
-
-
-    ],
-    /** Auth not needed */
-    ...[
-        {
-            path: '/entrar',
-            name: 'Realizar Login',
-            component: Login,
-            meta: {
-                protected: false,
-                title: 'Realizar Login'
-            }
-        },
-        {
-            path: '*',
-            component: Login,
-            name: 'Other',
-            meta: {
-                title: 'Login'
-            }
+    {
+        path: '/home',
+        name: 'André Mury, 27, full-stack developer, Brazil',
+        component: Home,
+        meta: {
+            protected: true,
+            title: 'Início'
         }
-    ],
-
-
+    },
+    {
+        path: '*',
+        component: Home,
+        name: 'Other',
+        meta: {
+            title: 'Home'
+        }
+    }
 ]
 
 Vue.use(VueRouter);

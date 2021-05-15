@@ -17,14 +17,6 @@
                 </b-card>
               </router-link>
             </b-col>
-            <b-col cols="6" class="_mob-menu-item my-2" @click="logout">
-              <router-link class="no-decoration text-black" to="#">
-                <b-card class="text-black">
-                  <fas icon="power-off" />
-                  <br />Sair
-                </b-card>
-              </router-link>
-            </b-col>
           </b-row>
         </b-navbar-nav>
       </b-collapse>
@@ -33,7 +25,6 @@
 </template>
 
 <script>
-import LoginService from "../../_pages/Login/controller/LoginService";
 
 export default {
   data() {
@@ -41,11 +32,7 @@ export default {
   },
   props: ["items"],
   methods: {
-    logout: function () {
-      if (LoginService.done()) {
-        this.$emit("logout");
-      }
-    },
+
   },
 };
 </script>

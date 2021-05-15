@@ -18,7 +18,6 @@
     <b-nav class="d-flex flex-column mt-5">
       <div class="nav-item px-0 py-2" v-for="(item, idx) in items" :key="idx">
         <router-link
-          v-if="((item.protected && $profile() && $profile().role.match('_ADM')) || !item.protected)"
           class="nav-link pl-0 text-white default-transition no-decoration"
           :to="item.uri"
         >
@@ -34,19 +33,10 @@
     <div class="shrink-icon d-flex align-items-center justify-content-center" @click="navbarShrink">
       <fas icon="caret-left" class="fa-2x text-white" :class="{'rotate': !navbar.isOpen}" />
     </div>
-    <div id="sidebar-logout" class="text-white default-transition">
-      <b-row class="justify-content-left text-left pl-3 py-2" @click="logout">
-        <b-col cols="1"  >
-          <fas icon="power-off" />
-        </b-col>
-        <b-col cols="10" v-show="navbar.isOpen">Sair</b-col>
-      </b-row>
-    </div>
   </div>
 </template>
 
 <script>
-import LoginService from "../../_pages/Login/controller/LoginService";
 export default {
   data() {
     return {
@@ -65,11 +55,6 @@ export default {
     navbarShrink: function () {
       this.navbar.isOpen = !this.navbar.isOpen;
       this.$emit("toggle", this.navbar.isOpen);
-    },
-    logout: function () {
-      if (LoginService.done()) {
-        this.$emit("logout");
-      }
     },
   },
 };
@@ -97,7 +82,7 @@ export default {
 .nav-brand-logo{
   border-radius: 0 0 30% 30%;
   transition: ease-in-out 200ms;
-  transition-delay: 400ms;
+  transition-delay: 100ms;
   max-width: 100px;
 }
 .navbar-closed .nav-brand-logo{
@@ -258,10 +243,7 @@ export default {
   0% {
     width: 232px;
   }
-  70% {
-    left: -232px;
-  }
-  75% {
+  50% {
     width: 50px;
   }
   80%,
@@ -273,9 +255,6 @@ export default {
 @keyframes navbar-closing {
   0% {
     width: 232px;
-  }
-  70% {
-    left: -232px;
   }
   75% {
     width: 50px;

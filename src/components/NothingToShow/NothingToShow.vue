@@ -1,13 +1,15 @@
 <template>
   <b-row class="mt-5 w-100 nothing-wrap align-items-center">
     <b-col cols="12" class="mt-5">
-      <h4 class="nothing-text">{{title}}</h4>
+      <h4 class="nothing-text">{{ title }}</h4>
       <div class="nothing-logo" v-if="!logo">
         <p
           class="nothing-thoughs default-transition"
-          :class="{'switching' : switching}"
-        >{{starting ? randomThought : 'Também estou ansiosa pelas novidades!'}}</p>
-        <img src="../../assets/logobot.png" class="fa-4x" width=100 />
+          :class="{ switching: switching }"
+        >
+          {{ randomThought }}
+        </p>
+        <img src="../../assets/logobot.png" class="fa-4x" width="100" />
       </div>
       <fas :icon="icon" class="fa-4x nothing-icon" v-else />
     </b-col>
@@ -23,10 +25,10 @@ export default {
         "Sempre que houver alguma oportunidade, eu trarei novidades.",
         "Estou aguardando novidades, em alguns instantes tudo pode mudar.",
         "Quando você menos esperar, esta lista estará cheia!",
-        "Olá, eu sou a Yoobi. Como posso lhe ajudar?",
-        "Também estou ansiosa pelas novidades!",
+        "Olá, eu sou André. Como posso lhe ajudar?",
+        "Também estou ansioso pelas novidades!",
       ],
-      randomThought: "Também estou ansiosa pelas novidades!",
+      randomThought: "Também estou ansioso pelas novidades!",
       shuffle: null,
       switching: false,
     };
@@ -46,19 +48,16 @@ export default {
     },
     starting: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     switch: function () {
       this.switching = true;
       setTimeout(() => {
-        let index = (
-          (Math.random() * this.thoughts.length) %
-          this.thoughts.length
-        ).toFixed(0);
+        let index = (Math.random() * this.thoughts.length - 1).toFixed(0);
         this.randomThought = this.thoughts[index] || this.thoughts[0];
-        this.switching = false
+        this.switching = false;
       }, 1000);
     },
   },
@@ -66,7 +65,7 @@ export default {
     this.$nextTick(() => {
       this.shuffle = setInterval(() => {
         this.switch();
-      }, 60000);
+      }, 6000);
     });
   },
   beforeDestroy() {
@@ -104,22 +103,15 @@ export default {
     rgba(138, 44, 226, 0.4),
     rgba(138, 43, 226, 0.1)
   );
-  border-radius: 50%;
+  border-radius: 100vh;
   height: 1px;
   width: 1px;
   transform: scale(100);
-  top: 63.1%;
-  left: 50.8%;
+  top: 50%;
+  left: 50%;
   opacity: 1;
-  z-index: 0;
+  z-index: 01;
   animation: pulse 5s infinite;
-}
-
-@media screen and (max-width: 576px){
-  .nothing-logo::before{
-    top: 69.8%;
-    left: 50%
-  }  
 }
 
 @keyframes pulse {
@@ -128,9 +120,6 @@ export default {
     opacity: 1;
   }
 
-  70% {
-    opacity: 0;
-  }
   100% {
     transform: scale(750);
     opacity: 0;

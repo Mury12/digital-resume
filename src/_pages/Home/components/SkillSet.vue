@@ -105,7 +105,6 @@ export default Vue.extend({
         const ch =
           this.$refs["scrollableContent"].clientHeight +
           this.$refs["scrollable"].offsetTop;
-        console.log(ch, this.skill.title);
         this.shouldShowButtons =
           ch > window.innerHeight && this.currentlySelected;
       }

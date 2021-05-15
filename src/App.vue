@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{ hide: hide }">
+  <div id="app" :class="{ hide: hide }" ref="app">
     <div
       class="background-mask"
       :style="{
@@ -29,6 +29,12 @@
         </transition>
       </div>
     </div>
+    <div class="scrollleft-icon">
+      <fas icon="chevron-left" @click="scroll('left')" />
+    </div>
+    <div class="scrollright-icon">
+      <fas icon="chevron-left" @click="scroll('right')" />
+    </div>
   </div>
 </template>
 
@@ -53,6 +59,9 @@ export default {
     PageHeader,
   },
   methods: {
+    scroll: function (side = "left") {
+      side
+    },
     toggler: function (e) {
       this.navbarIsOpen = e;
     },
@@ -115,5 +124,8 @@ export default {
 };
 </script>
 <style scoped>
+#app {
+  min-width: 1450px;
+}
 </style>
 

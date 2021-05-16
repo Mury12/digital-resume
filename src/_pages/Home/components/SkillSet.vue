@@ -7,6 +7,10 @@
       <transition mode="out-in" name="slide-fade">
         <div :key="title" v-html="title"></div>
       </transition>
+      <small class="text-secondary" v-if="selected === -1 && position === 0"
+        >Click to open</small
+      >
+
       <div
         class="skill-content"
         ref="scrollable"
@@ -16,7 +20,7 @@
           transitionDelay: transitionDelay,
         }"
       >
-        {{ skill.description }}
+        <div v-html="skill.description"></div>
         <div v-if="skill.abillities && skill.abillities.length">
           <h4 class="mt-5">Skills and levels</h4>
           <div class="w-100 text-left pl-2">
@@ -154,15 +158,27 @@ export default Vue.extend({
   transition: ease-in-out 450ms;
   overflow: hidden;
 }
+.scrolldown-icon,
+.scrollup-icon {
+  opacity: 0.7;
+}
+.scrolldown-icon:hover,
+.scrollup-icon:hover {
+  opacity: 1;
+}
 .scrolldown-icon {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0 10px;
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   left: calc(50% - 3em);
   cursor: pointer;
 }
 .scrollup-icon {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0 10px;
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   left: calc(50%);
   cursor: pointer;
 }

@@ -4,7 +4,7 @@ import Home from './_pages/Home/Home'
 let routes = [
     /** Auth needed */
     {
-        path: '/home',
+        path: '/',
         name: 'André Mury, 27, full-stack developer, Brazil',
         component: Home,
         meta: {

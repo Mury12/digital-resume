@@ -2,8 +2,12 @@ export default [
     {
         title: "Self Presentation",
         little: "I am ...",
-        description: `I'm Andre Mury, a software engineer graduated in Information Systems and currently Master's candidate by Federal University of Itajuba, Brazil. I have started 
-      in this industry around 2014 when I joined the graduation, and I'm working as a freelancer since then. `,
+        description: `<p>I'm Andre Mury, a software engineer graduated in Information Systems and currently Master's candidate by Federal University of Itajuba, Brazil. I have started 
+      in this industry around 2014 when I joined the graduation, and I'm working as a freelancer since then. In the meantime I have worked in some small companies and startups as a developer
+      and always brought something good.</p>
+      <p>I have developed this digital resumé in order to facilitate an overview of my professional abillities and I hope you feel good with this view :) Thank you for visiting.</p>
+      <mark>Note that page scrolls are disabled but if something is bigger than your screen, scroll arrows will appear either in the sides and the bottom of the window.</mark>
+      `,
         background: "atlantic-city.webp",
         abillities: [
             {
@@ -23,6 +27,14 @@ export default [
           As a team worker and team leader I have developed the ability to deliver knowledge and confidence to my co-workers.`,
             },
             {
+                name: "Dedicated",
+                image: "language.png",
+                imageFilter: "invert(1)",
+                level: 4.5,
+                description:
+                    "If I do believe in the cause, you can count on me till the end.",
+            },
+            {
                 name: "English",
                 image: "language.png",
                 imageFilter: "invert(1)",
@@ -38,31 +50,56 @@ export default [
                 description:
                     "Well, I'm a native speaker so I have no problem speaking portuguese.",
             },
+            {
+                name: "Sincerity",
+                image: "language.png",
+                imageFilter: "invert(1)",
+                level: 4.5,
+                description:
+                    "I'm very sincere..",
+            },
+            {
+                name: "Funny",
+                image: "language.png",
+                imageFilter: "invert(1)",
+                level: 4.5,
+                description:
+                    "And also very funny :D",
+            },
+            {
+                name: "Methodical",
+                image: "language.png",
+                imageFilter: "invert(1)",
+                level: 4.5,
+                description:
+                    "Step by step. If protocols exists why should we do the wrong way?",
+            },
+
         ],
     },
     {
         title: "Back-end Engineer",
-        little: "Backend",
+        little: "Back end",
         description: "",
         background: "backend.png",
         abillities: [
             {
                 name: "PHP",
                 image: "php.png",
-                description: `5+ years working with vanilla PHP, writting websites and back-end APIs from scratch. 
+                description: `<p>5+ years working with vanilla PHP, writting websites and back-end APIs from scratch. 
           I have created myself a tool to improve my work efficiency by abstracting most boiler plates needed in a project.
-          The reason I haven't really used a framework like Laravel, Slim, Laminas or Symfony is because I like to learn thinks from scratch.
-          I have used some of these frameworks for experimenting but never in a real project. You can check my MMWS api template <a target="_blank" href="http://github.com/mury12/mm-ws">here</a> on GitHub.`,
+          </p><p>The reason I haven't really used a framework like Laravel, Slim, Laminas or Symfony is because I like to learn thinks from scratch.
+          I have used some of these frameworks for experimenting but never in a big project. 
+          You can check a my api template tool <a target="_blank" href="http://github.com/mury12/mm-ws">here</a> on GitHub.</p>`,
                 libs: [],
                 level: 4.5,
             },
             {
                 name: "MariaDB/MySQL",
                 image: "database.png",
-                description: `5+ years working with vanilla PHP, writting websites and back-end APIs from scratch. 
-          I have created myself a tool to improve my work efficiency by abstracting most boiler plates needed in a project.
-          The reason I haven't really used a framework like Laravel, Slim, Laminas or Symfony is because I like to learn thinks from scratch.
-          I have used some of these frameworks for experimenting but never in a real project. You can check my MMWS api template <a target="_blank" href="http://github.com/mury12/mm-ws">here</a> on GitHub.`,
+                description: `Relational databases are something that I particularly like. It seems like a totally different part of the project that involves a lot of effort.
+                I'm experienced since the database modeling to the administration and optimization. My best knowledge is about MariaDB/MySQL but I also have had a few
+                experiences with SQL Server and HannaDB (SAP).`,
                 libs: [],
                 level: 4,
             },
@@ -85,10 +122,11 @@ export default [
             },
             {
                 name: "MongoDB",
-                image: "database.png",
-                description: ``,
+                image: "mongodb.png",
+                description: `MongoDB is my main activity-log database. I really only use it as a giant notepad but I still know how to handle it.
+                Normally I like to use NodeJS backend to comunicate because it is easier but I have also developed PHP backends alongside MongoDB.`,
                 libs: [],
-                level: 4,
+                level: 2,
             },
             {
                 name: "Docker",
@@ -102,7 +140,7 @@ export default [
     },
     {
         title: "Front-end Engineer",
-        little: "Frontend",
+        little: "Front end",
         description: "",
         background: "frontend.png",
         abillities: [
@@ -110,7 +148,10 @@ export default [
                 name: "VueJS",
                 image: "logo.png",
                 description:
-                    "3 year working with VueJS",
+                    `<p>I have been working with VueJS since 2018 and I fell in love as soon as I met this framework, and since then I'm learning and using Vue in most projects as I can.
+                Currently, I use Vue 2 but I'm starting a new path to get in touch with Vue 3. </p>
+                <p>I usually use the most common VueJS packages such as BootstrapVue, VueTheMask, VueRouter, VueSession, and others that comes as it is needed. I also have
+                a basic knowledge about Vuex and NuxtJs</p>`,
                 libs: [],
                 level: 4,
             },
@@ -118,7 +159,8 @@ export default [
                 name: "Bootstrap",
                 image: "bootstrap.png",
                 description:
-                    "3 year working with VueJS",
+                    `The Bootstrap Framework is the most overused framework for web development. I've chosen this framework since version 2 instead of Material or any other because of its flexibility. 
+                    It is really easy to create and modify components. Altough, Bootstrap classes are very useful over all the project.`,
                 libs: [],
                 level: 4.5,
             },
@@ -126,94 +168,163 @@ export default [
                 name: "JavaScript",
                 image: "js.png",
                 description:
-                    "1 year working with docker. I have got it a little later but I'm learning a lot and almost getting in touch with Swarm.",
+                    `I have started using JavaScript a little after PHP, around 6 years ago. In the beginning I wasn't really sure to be a front-end developer and only used JS for those thing
+                    I couldn't do with css. But time passes and I have developed a passion for front-end development so I started to learn JavaScript and, of course the father of all jQuery.
+                    Today, JavaScript is part of my all-day development for both front-end and backend.`,
                 libs: [],
                 level: 4,
             },
             {
                 name: "jQuery",
-                image: "js.png",
+                image: "jquery.png",
                 description:
-                    "1 year working with docker. I have got it a little later but I'm learning a lot and almost getting in touch with Swarm.",
+                    `jQuery was the first JS lib I have ever used and it was very, very useful. In early 2010's, there weren't much more than the hyped jQuery and its Ajax requests. It was beautiful.
+                    But then, another frameworks came and jQuery is being ignored :/. I still consider to use it for non-reactive development.`,
                 libs: [],
-                level: 3.5,
+                level: 3,
             },
             {
                 name: "HTML5",
                 image: "html5.png",
-                description:
-                    "1 year working with docker. I have got it a little later but I'm learning a lot and almost getting in touch with Swarm.",
                 libs: [],
                 level: 3.5,
             },
             {
                 name: "CSS3",
                 image: "css3.png",
-                description:
-                    "1 year working with docker. I have got it a little later but I'm learning a lot and almost getting in touch with Swarm.",
+                libs: [],
+                level: 3.5,
+            },
+            {
+                name: "Sass",
+                image: "sass.png",
                 libs: [],
                 level: 3.5,
             },
             {
                 name: "React",
-                image: "js.png",
+                image: "react.svg",
                 description:
-                    "1 year working with docker. I have got it a little later but I'm learning a lot and almost getting in touch with Swarm.",
+                    "I have used React for a few projects in one of the companies I've worked and I should say that this is not my favorite, but still counts.",
                 libs: [],
                 level: 2,
             },
         ],
     },
     {
-        title: "Other Tools",
+        title: "General Tools and Frameworks",
         little: "Other tools",
         description: "",
         background: "database.png",
         abillities: [
             {
+                name: "Linux",
+                image: "linux.png",
+                libs: [],
+                level: 3.5,
+            },
+            {
                 name: "Wordpress",
                 image: "wordpress.png",
-                description: `I would consider my Typescript skills very much like JavaScript.
-           I have been working with this technology since 2020 and have discovered a new life to the NodeJS platform that 
-           I was very disappointed to use. MVC and other OOP implementations are possible with no difficulties and it makes me feel very trust about NodeJS Framework 😁`,
                 libs: [],
                 level: 4,
             },
             {
                 name: "Woocommerce",
                 image: "woocom.png",
-                description: `I would consider my Typescript skills very much like JavaScript.
-           I have been working with this technology since 2020 and have discovered a new life to the NodeJS platform that 
-           I was very disappointed to use. MVC and other OOP implementations are possible with no difficulties and it makes me feel very trust about NodeJS Framework 😁`,
                 libs: [],
-                level: 4,
+                level: 3.5,
             },
             {
                 name: "Botpress",
                 image: "botpress.png",
-                description: `I would consider my Typescript skills very much like JavaScript.
-           I have been working with this technology since 2020 and have discovered a new life to the NodeJS platform that 
-           I was very disappointed to use. MVC and other OOP implementations are possible with no difficulties and it makes me feel very trust about NodeJS Framework 😁`,
                 libs: [],
                 level: 2,
             },
             {
                 name: "Solidity",
-                image: "botpress.png",
-                description: `I would consider my Typescript skills very much like JavaScript.
-           I have been working with this technology since 2020 and have discovered a new life to the NodeJS platform that 
-           I was very disappointed to use. MVC and other OOP implementations are possible with no difficulties and it makes me feel very trust about NodeJS Framework 😁`,
+                image: "solidity.png",
+                imageFilter: "invert(1)",
                 libs: [],
                 level: 2,
             },
             {
-                name: "Linux",
-                image: "botpress.png",
-                description: `I would consider my Typescript skills very much like JavaScript.
-           I have been working with this technology since 2020 and have discovered a new life to the NodeJS platform that 
-           I was very disappointed to use. MVC and other OOP implementations are possible with no difficulties and it makes me feel very trust about NodeJS Framework 😁`,
+                name: "Java",
+                image: "java.webp",
                 libs: [],
-                level: 3.5,
+                level: 3,
+            },
+            {
+                name: "Arduino",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "C",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "C#",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "Python",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "Unity3d",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "Ms Office",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "Open Office",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "Photoshop",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "After FX",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "Premiere",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "Trello",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
+            },
+            {
+                name: "Scrum",
+                image: "arduino.png",
+                libs: [],
+                level: 2,
             },
         ],
     },
@@ -227,7 +338,20 @@ export default [
     {
         title: "Where you can find me",
         little: "Find me",
-        description: "",
+        description: `
+        <p>You can find me in:</p>
+        <ul class="m-0 p-0" style="list-style-type: none">
+        <li><a target="_blank" href="https://www.linkedin.com/in/andremury">Linkedin</a></li>
+        <li><a target="_blank" href="https://github.com/mury12">Github</a></li>
+        <li><a target="_blank" href="https://github.com/mury12">Gitlab</a></li>
+        <li><a target="_blank" href="https://instagram.com/andmury.music">Instagram</a></li>
+        <li><a target="_blank" href="https://open.spotify.com/artist/5aw5ZuQB4ElCVsrPkSvtLn?si=d747c21cd41b463b">Spotify</a></li>
+        <li><a target="_blank" href="http://barbdebode.com">Barba de Bode</a></li>
+        <li><a target="_blank" href="https://soundcloud.com/andremury">Soundcloud</a></li>
+        </ul>
+        And you can also <a href ="mailto:mury63@gmail.com">mail me</a><br/>
+        Thanks for your visit.
+        `,
         background: "music.jpg",
         abillities: [],
     },

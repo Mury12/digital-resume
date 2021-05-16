@@ -66,7 +66,7 @@ export default {
       return "";
     },
     select: function (direction = "next") {
-      if (direction === "next" && this.selected < this.skills.length - 2) {
+      if (direction === "next" && this.selected < this.skills.length - 1) {
         this.selected++;
       } else if (direction === "prev" && this.selected > -1) {
         this.selected--;
@@ -92,7 +92,7 @@ export default {
       });
     });
     setTimeout(() => {
-      this.selected = 0;
+      // this.selected = 0;
     }, 500);
   },
 };

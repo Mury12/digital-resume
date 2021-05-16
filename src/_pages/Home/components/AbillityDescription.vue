@@ -2,7 +2,7 @@
   <b-col md="6" lg="4" class="abillity-wrapper p-3">
     <b-row class="abillity-content m-2 h-100 pt-2 rounded">
       <b-col cols="12">
-        <p class="h2">{{ abillity.name }}</p>
+        <p class="h4">{{ abillity.name }}</p>
       </b-col>
       <b-col class="text-center" style="height: 120px">
         <div
@@ -28,7 +28,7 @@
             type="button"
             variant="link"
             @click="openDescription"
-            v-if="abillity.description.length > 50"
+            v-if="abillity.description && abillity.description.length > 50"
           >
             See more
           </b-button>
@@ -46,10 +46,12 @@ export default Vue.extend({
   props: ["abillity"],
   methods: {
     openDescription: function () {
-      this.$emit("modal", {
-        title: this.abillity.name,
-        content: this.abillity.description,
-      });
+      if (this.abillity.description) {
+        this.$emit("modal", {
+          title: this.abillity.name,
+          content: this.abillity.description,
+        });
+      }
     },
   },
   computed: {
@@ -60,12 +62,14 @@ export default Vue.extend({
       return "";
     },
     abstract() {
-      if (this.abillity.description) {
+      if (this.abillity.description && this.abillity.description.length > 30) {
         return (
-          String(this.abillity.description.substring(0, 30)).trim() + "..."
+          String(
+            this.abillity.description.replace(/<.+>/gim, "").substring(0, 30)
+          ).trim() + "..."
         );
       }
-      return "";
+      return this.abillity.description || "";
     },
     imageFilter() {
       return this.abillity.imageFilter || "";
@@ -76,6 +80,6 @@ export default Vue.extend({
 <style scoped>
 .abillity-content {
   border: 1px solid rgba(255, 255, 255, 0.325);
+  background-color: rgba(255, 255, 255, 0.05);
 }
-
 </style>

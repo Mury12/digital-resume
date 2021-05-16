@@ -21,7 +21,7 @@
         }"
       >
         <div v-html="skill.description"></div>
-        <div v-if="skill.abillities && skill.abillities.length">
+        <div v-if="skill.abilities && skill.abilities.length">
           <h4 class="mt-5">Skills and levels</h4>
           <div class="w-100 text-left pl-2">
             <b-button type="button" @click="order" variant="info" class="mt-4">
@@ -30,11 +30,11 @@
           </div>
           <transition mode="out-in" name="slide-fade">
             <b-row class="mt-1" ref="scrollableContent" :key="orderBy">
-              <abillity-description
+              <ability-description
                 @modal="$emit('modal', $event)"
-                v-for="(abillity, index) in abillities"
+                v-for="(ability, index) in abilities"
                 :key="index"
-                :abillity="abillity"
+                :ability="ability"
               />
             </b-row>
           </transition>
@@ -56,9 +56,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import AbillityDescription from "./AbillityDescription.vue";
+import AbilityDescription from "./AbilityDescription.vue";
 export default Vue.extend({
-  components: { AbillityDescription },
+  components: { AbilityDescription },
   name: "SkillSet",
   data() {
     return {
@@ -69,22 +69,22 @@ export default Vue.extend({
       offset: 85,
       orderBy: 0,
       original: [],
-      abillities: [],
+      abilities: [],
     };
   },
   props: ["skill", "selected", "position"],
   methods: {
     order: function () {
       if (this.orderBy === 0) {
-        this.original = JSON.parse(JSON.stringify(this.abillities));
-        const abillities = this.abillities.sort((a, b) =>
+        this.original = JSON.parse(JSON.stringify(this.abilities));
+        const abilities = this.abilities.sort((a, b) =>
           a.level > b.level ? -1 : 1
         );
         this.orderBy = 1;
-        this.abillities = abillities;
+        this.abilities = abilities;
       } else {
         this.orderBy = 0;
-        this.abillities = JSON.parse(JSON.stringify(this.original));
+        this.abilities = JSON.parse(JSON.stringify(this.original));
       }
     },
     scroll(direction = "down") {
@@ -149,7 +149,7 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.abillities = this.skill.abillities;
+    this.abilities = this.skill.abilities;
   },
 });
 </script>

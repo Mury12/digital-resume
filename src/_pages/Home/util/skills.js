@@ -9,7 +9,7 @@ export default [
       <mark>Note that page scrolls are disabled but if something is bigger than your screen, scroll arrows will appear either in the sides and the bottom of the window.</mark>
       `,
         background: "atlantic-city.webp",
-        abillities: [
+        abilities: [
             {
                 name: "Team work",
                 image: "teamwork.png",
@@ -82,7 +82,7 @@ export default [
         little: "Back end",
         description: "",
         background: "backend.png",
-        abillities: [
+        abilities: [
             {
                 name: "PHP",
                 image: "php.png",
@@ -143,7 +143,7 @@ export default [
         little: "Front end",
         description: "",
         background: "frontend.png",
-        abillities: [
+        abilities: [
             {
                 name: "VueJS",
                 image: "logo.png",
@@ -216,7 +216,7 @@ export default [
         little: "Other tools",
         description: "",
         background: "database.png",
-        abillities: [
+        abilities: [
             {
                 name: "Linux",
                 image: "linux.png",
@@ -333,7 +333,7 @@ export default [
         little: "Music",
         description: "",
         background: "findme.jpg",
-        abillities: [],
+        abilities: [],
     },
     {
         title: "Where you can find me",
@@ -353,6 +353,6 @@ export default [
         Thanks for your visit.
         `,
         background: "music.jpg",
-        abillities: [],
+        abilities: [],
     },
 ];

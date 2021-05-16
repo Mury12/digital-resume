@@ -1,8 +1,8 @@
 <template>
-  <b-col md="6" lg="4" class="abillity-wrapper p-3">
-    <b-row class="abillity-content m-2 h-100 pt-2 rounded">
+  <b-col md="6" lg="4" class="ability-wrapper p-3">
+    <b-row class="ability-content m-2 h-100 pt-2 rounded">
       <b-col cols="12">
-        <p class="h4">{{ abillity.name }}</p>
+        <p class="h4">{{ ability.name }}</p>
       </b-col>
       <b-col class="text-center" style="height: 120px">
         <div
@@ -19,7 +19,7 @@
       </b-col>
       <b-col cols="12">
         Proefficiency
-        <abillity-chart :level="abillity.level || 0" />
+        <ability-chart :level="ability.level || 0" />
       </b-col>
       <b-col cols="12" class="text-center">
         <p class="description pt-3">
@@ -28,7 +28,7 @@
             type="button"
             variant="link"
             @click="openDescription"
-            v-if="abillity.description && abillity.description.length > 50"
+            v-if="ability.description && ability.description.length > 50"
           >
             See more
           </b-button>
@@ -39,46 +39,46 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import AbillityChart from "./AbillityChart.vue";
+import AbilityChart from "./AbilityChart";
 export default Vue.extend({
-  name: "AbillityDescription",
-  components: { AbillityChart },
-  props: ["abillity"],
+  name: "AbilityDescription",
+  components: { AbilityChart },
+  props: ["ability"],
   methods: {
     openDescription: function () {
-      if (this.abillity.description) {
+      if (this.ability.description) {
         this.$emit("modal", {
-          title: this.abillity.name,
-          content: this.abillity.description,
+          title: this.ability.name,
+          content: this.ability.description,
         });
       }
     },
   },
   computed: {
     picture() {
-      if (this.abillity.image.length) {
-        return require(`@/assets/images/${this.abillity.image}`);
+      if (this.ability.image.length) {
+        return require(`@/assets/images/${this.ability.image}`);
       }
       return "";
     },
     abstract() {
-      if (this.abillity.description && this.abillity.description.length > 30) {
+      if (this.ability.description && this.ability.description.length > 30) {
         return (
           String(
-            this.abillity.description.replace(/<.+>/gim, "").substring(0, 30)
+            this.ability.description.replace(/<.+>/gim, "").substring(0, 30)
           ).trim() + "..."
         );
       }
-      return this.abillity.description || "";
+      return this.ability.description || "";
     },
     imageFilter() {
-      return this.abillity.imageFilter || "";
+      return this.ability.imageFilter || "";
     },
   },
 });
 </script>
 <style scoped>
-.abillity-content {
+.ability-content {
   border: 1px solid rgba(255, 255, 255, 0.325);
   background-color: rgba(255, 255, 255, 0.05);
 }

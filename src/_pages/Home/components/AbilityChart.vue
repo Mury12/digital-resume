@@ -13,7 +13,7 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  name: "AbillityChart",
+  name: "AbilityChart",
   props: ["level"],
   methods: {
     bindColor: function (level) {

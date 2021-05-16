@@ -41,16 +41,6 @@
         </div>
       </div>
     </b-container>
-    <transition mode="out-in" name="fade">
-      <div v-if="shouldShowButtons && this.currentlySelected">
-        <div class="scrolldown-icon" @click="scroll('down')">
-          <fas icon="chevron-down" class="fa-2x"></fas>
-        </div>
-        <div class="scrollup-icon" @click="scroll('up')">
-          <fas icon="chevron-up" class="fa-2x"></fas>
-        </div>
-      </div>
-    </transition>
   </div>
 </template>
 
@@ -63,9 +53,6 @@ export default Vue.extend({
   data() {
     return {
       transitionDelay: "0ms",
-      shouldShowButtonDown: false,
-      shouldShowButtonUp: false,
-      shouldShowButtons: false,
       offset: 85,
       orderBy: 0,
       original: [],
@@ -88,29 +75,11 @@ export default Vue.extend({
       }
     },
     scroll(direction = "down") {
-      if (direction === "down") {
-        for (let i = 0; i < 200; i++) {
-          setTimeout(() => {
-            this.$refs["scrollable"].scrollTop += 1;
-          }, 50 + i * 2);
-          this.shouldShowButtonUp = true;
-        }
-      } else {
-        for (let i = 0; i < 200; i++) {
-          setTimeout(() => {
-            this.$refs["scrollable"].scrollTop -= 1;
-          }, 50 + i * 2);
-          this.shouldShowButtonDown = true;
-        }
-      }
-    },
-    shouldShowScrollButtons() {
-      if (this.$refs["scrollableContent"]) {
-        const ch =
-          this.$refs["scrollableContent"].clientHeight +
-          this.$refs["scrollable"].offsetTop;
-        this.shouldShowButtons =
-          ch > window.innerHeight && this.currentlySelected;
+      const variant = direction === "down" ? 1 : -1;
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          this.$refs["scrollable"].scrollTop += variant;
+        }, 50 + i * 2);
       }
     },
   },
@@ -119,9 +88,6 @@ export default Vue.extend({
       if (o === this.position) {
         this.transitionDelay = "0ms";
       } else {
-        setTimeout(() => {
-          this.shouldShowScrollButtons();
-        }, 700);
         this.transitionDelay = "650ms";
       }
     },
@@ -134,7 +100,7 @@ export default Vue.extend({
       return this.selected === this.position;
     },
     contentHeight() {
-      return this.currentlySelected ? "80vh" : "0";
+      return this.currentlySelected ? "86.5vh" : "0";
     },
     opacity() {
       return this.currentlySelected ? 1 : 0;
@@ -150,6 +116,12 @@ export default Vue.extend({
   },
   mounted() {
     this.abilities = this.skill.abilities;
+    if (this.$refs["scrollable"]) {
+      this.$refs["scrollable"].addEventListener("wheel", ($e) => {
+        if ($e.deltaY > 0) this.scroll("down");
+        else this.scroll("up");
+      });
+    }
   },
 });
 </script>

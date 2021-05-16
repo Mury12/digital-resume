@@ -151,14 +151,14 @@ export default {
 @keyframes bg-vary {
   0%,
   100% {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(14, 0, 145);
   }
   25%,
   75% {
-    background-color: rgb(100, 36, 200);
+    background-color: rgb(60, 14, 134);
   }
   50% {
-    background-color: rgb(70, 54, 114);
+    background-color: rgb(52, 38, 88);
   }
 }
 @keyframes arrow-pulse-right {

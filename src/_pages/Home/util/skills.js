@@ -6,7 +6,7 @@ export default [
       in this industry around 2014 when I joined the graduation, and I'm working as a freelancer since then. In the meantime I have worked in some small companies and startups as a developer
       and always brought something good.</p>
       <p>I have developed this digital resumé in order to facilitate an overview of my professional abilities and I hope you feel good with this view :) Thank you for visiting.</p>
-      <mark>Note that page scrolls are disabled but if something is bigger than your screen, scroll arrows will appear either in the sides and the bottom of the window.</mark>
+      <mark>Note that page scrolls are disabled but if something is bigger than your screen, scroll arrows will appear in the sides of the window.</mark>
       `,
         background: "atlantic-city.webp",
         abilities: [
@@ -80,7 +80,10 @@ export default [
     {
         title: "Back-end Engineer",
         little: "Back end",
-        description: "",
+        description: `I have made my choices about back-end development a long time ago. PHP inserted me into this world and I've dedicated time learning it, and doing my best to keep the good pratices.
+        As the time passes, I have learned other technologies such as NodeJS and Docker to improve my skills. In the PHP case, I always preferred to work with the vanilla version, without a huge
+        framework behind the project and I ended creating my own API environment model that helped me in almost all my small and medium size projects. Now I have decided to learn a framework
+        and made my choice for Symfony. I have tried Laravel but it is too big for most projects and Zend/Laminas are in my TODO list. For now, let's focus on Symfony.`,
         background: "backend.png",
         abilities: [
             {

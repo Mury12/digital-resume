@@ -5,7 +5,7 @@ export default [
         description: `<p>I'm Andre Mury, a software engineer graduated in Information Systems and currently Master's candidate by Federal University of Itajuba, Brazil. I have started 
       in this industry around 2014 when I joined the graduation, and I'm working as a freelancer since then. In the meantime I have worked in some small companies and startups as a developer
       and always brought something good.</p>
-      <p>I have developed this digital resumé in order to facilitate an overview of my professional abillities and I hope you feel good with this view :) Thank you for visiting.</p>
+      <p>I have developed this digital resumé in order to facilitate an overview of my professional abilities and I hope you feel good with this view :) Thank you for visiting.</p>
       <mark>Note that page scrolls are disabled but if something is bigger than your screen, scroll arrows will appear either in the sides and the bottom of the window.</mark>
       `,
         background: "atlantic-city.webp",
@@ -15,16 +15,16 @@ export default [
                 image: "teamwork.png",
                 imageFilter: "invert(1)",
                 level: 4,
-                description: `I love teamworking. This is the best way to achieve our goals inside any workspace and either in life. it’s no coincidence that parrots have lifelong partners and wolves flock!
-            To avoid being pretentious, the only issue I have about teams lives where members of it doesn't strive like everyone and the team becomes unbalanced.`,
+                description: `I love teamwork. This is the best way to achieve our goals inside any workspace and either in life. it’s no coincidence that parrots have lifelong partners and wolves flock!
+            To avoid being pretentious, the only issue I have about teams lives where members of it don't strive like everyone and the team becomes unbalanced.`,
             },
             {
                 name: "Communication",
                 image: "communication.png",
                 level: 4,
-                description: `Communication is one of the most important skills you can ever have. Peopole comunicate to each other in order to accomplish something and it is
+                description: `Communication is one of the most important skills you can ever have. People communicate with each other in order to accomplish something and it is
           the only way we can move the world on. As a professional musician 🎸, I have learned very well how to communicate to others in order to deliver some mood or feeling.
-          As a team worker and team leader I have developed the ability to deliver knowledge and confidence to my co-workers.`,
+          As a team worker and team leader, I have developed the ability to deliver knowledge and confidence to my co-workers.`,
             },
             {
                 name: "Dedicated",
@@ -87,8 +87,8 @@ export default [
                 name: "PHP",
                 image: "php.png",
                 description: `<p>5+ years working with vanilla PHP, writting websites and back-end APIs from scratch. 
-          I have created myself a tool to improve my work efficiency by abstracting most boiler plates needed in a project.
-          </p><p>The reason I haven't really used a framework like Laravel, Slim, Laminas or Symfony is because I like to learn thinks from scratch.
+          I have created myself a tool to improve my work efficiency by abstracting most boilerplates needed in a project.
+          </p><p>The reason I haven't really used a framework like Laravel, Slim, Laminas, or Symfony is that I like to learn things from scratch.
           I have used some of these frameworks for experimenting but never in a big project. 
           You can check a my api template tool <a target="_blank" href="http://github.com/mury12/mm-ws">here</a> on GitHub.</p>`,
                 libs: [],
@@ -98,8 +98,8 @@ export default [
                 name: "MariaDB/MySQL",
                 image: "database.png",
                 description: `Relational databases are something that I particularly like. It seems like a totally different part of the project that involves a lot of effort.
-                I'm experienced since the database modeling to the administration and optimization. My best knowledge is about MariaDB/MySQL but I also have had a few
-                experiences with SQL Server and HannaDB (SAP).`,
+                 I'm experienced from database modeling to administration and optimization.
+                 My best knowledge is about MariaDB/MySQL but I also have had a few experiences with SQL Server and HannaDB (SAP).`,
                 libs: [],
                 level: 4,
             },
@@ -107,16 +107,16 @@ export default [
                 name: "NodeJS",
                 image: "nodejs.png",
                 description:
-                    "2 Years of experience working with NodeJS including more common back-end frameworks such as Express, Fastify and Sequelize.",
+                    "2 years of experience working with NodeJS including more common back-end frameworks such as Express, Fastify, and Sequelize.",
                 libs: [],
-                level: 3.5,
+                level: 3,
             },
             {
                 name: "Typescript",
                 image: "typescript.png",
                 description: `I would consider my Typescript skills very much like JavaScript.
            I have been working with this technology since 2020 and have discovered a new life to the NodeJS platform that 
-           I was very disappointed to use. MVC and other OOP implementations are possible with no difficulties and it makes me feel very trust about NodeJS Framework 😁`,
+           I was very disappointed using it. MVC and other OOP implementations are possible with no difficulties and it makes me feel very trust about NodeJS Framework 😁`,
                 libs: [],
                 level: 3.5,
             },
@@ -124,7 +124,7 @@ export default [
                 name: "MongoDB",
                 image: "mongodb.png",
                 description: `MongoDB is my main activity-log database. I really only use it as a giant notepad but I still know how to handle it.
-                Normally I like to use NodeJS backend to comunicate because it is easier but I have also developed PHP backends alongside MongoDB.`,
+                Normally I like to use NodeJS backend to communicate because it is easier but I have also developed PHP backends alongside MongoDB.`,
                 libs: [],
                 level: 2,
             },
@@ -150,8 +150,8 @@ export default [
                 description:
                     `<p>I have been working with VueJS since 2018 and I fell in love as soon as I met this framework, and since then I'm learning and using Vue in most projects as I can.
                 Currently, I use Vue 2 but I'm starting a new path to get in touch with Vue 3. </p>
-                <p>I usually use the most common VueJS packages such as BootstrapVue, VueTheMask, VueRouter, VueSession, and others that comes as it is needed. I also have
-                a basic knowledge about Vuex and NuxtJs</p>`,
+                <p>I usually use the most common VueJS packages such as BootstrapVue, VueTheMask, VueRouter, VueSession, and others that come as it is needed. 
+                I also have basic knowledge about Vuex and NuxtJs</p>`,
                 libs: [],
                 level: 4,
             },
@@ -160,7 +160,7 @@ export default [
                 image: "bootstrap.png",
                 description:
                     `The Bootstrap Framework is the most overused framework for web development. I've chosen this framework since version 2 instead of Material or any other because of its flexibility. 
-                    It is really easy to create and modify components. Altough, Bootstrap classes are very useful over all the project.`,
+                    It is really easy to create and modify components. Although, Bootstrap classes are very useful overall the project.`,
                 libs: [],
                 level: 4.5,
             },
@@ -168,8 +168,8 @@ export default [
                 name: "JavaScript",
                 image: "js.png",
                 description:
-                    `I have started using JavaScript a little after PHP, around 6 years ago. In the beginning I wasn't really sure to be a front-end developer and only used JS for those thing
-                    I couldn't do with css. But time passes and I have developed a passion for front-end development so I started to learn JavaScript and, of course the father of all jQuery.
+                    `I have started using JavaScript a little after PHP, around 6 years ago. In the beginning, I wasn't really sure to be a front-end developer and only used JS for those things
+                    I couldn't do with css. But time passes and I have developed a passion for front-end development so I started to learn JavaScript and, of course, the father of all jQuery.
                     Today, JavaScript is part of my all-day development for both front-end and backend.`,
                 libs: [],
                 level: 4,

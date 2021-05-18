@@ -24,11 +24,17 @@ export default {
 </script>
 
 <style scoped>
+@media screen and(min-width:962px) {
+  #page-header{
+    background-color: rgba(255,255,255,0.05);
+  }  
+}
 #page-header {
   position: fixed;
   height: 85px;
-  background-color: rgba(255,255,255,0.05);
   color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2
 }
 .user-info:hover {
   cursor: default;

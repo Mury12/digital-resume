@@ -3,6 +3,7 @@
     <b-col
       class="skill-set-wrapper h-100"
       v-for="(skill, index) in skills"
+      cols="12"
       :lg="selected === index ? '7' : colSize"
       :key="index"
       @click="!selected !== index ? (selected = index) : null"
@@ -12,7 +13,7 @@
         class="skill-set-background-mask"
         :class="{ hoverable: selected !== index }"
         :style="{
-          background: `url(${getBackground(skill.background)})`,
+          background: `url(${getBackground(skill.background)})`
         }"
       ></div>
       <skill-set
@@ -49,9 +50,9 @@ export default {
       selected: -1,
       modal: {
         content: "",
-        title: "",
+        title: ""
       },
-      skills,
+      skills
     };
   },
   methods: {
@@ -59,19 +60,19 @@ export default {
       this.modal = $e;
       this.$bvModal.show("description-modal");
     },
-    getBackground: function (img) {
+    getBackground: function(img) {
       if (img) {
         return require(`@/assets/images/${img}`);
       }
       return "";
     },
-    select: function (direction = "next") {
+    select: function(direction = "next") {
       if (direction === "next" && this.selected < this.skills.length - 1) {
         this.selected++;
       } else if (direction === "prev" && this.selected > -1) {
         this.selected--;
       }
-    },
+    }
   },
   computed: {
     colSize() {
@@ -79,11 +80,11 @@ export default {
         return Number.parseInt(12 / this.skills.length);
       }
       return Number.parseInt((12 - 7) / (this.skills.length - 1));
-    },
+    }
   },
   mounted() {
     this.$nextTick(() => {
-      document.body.addEventListener("keyup", (e) => {
+      document.body.addEventListener("keyup", e => {
         if (e.key === "ArrowRight") {
           this.select("next");
         } else if (e.key === "ArrowLeft") {
@@ -94,24 +95,33 @@ export default {
     setTimeout(() => {
       // this.selected = 0;
     }, 500);
-  },
+  }
 };
 </script>
 <style scoped>
-.skills-wrapper {
-  height: 100vh;
+@media screen and (min-width: 992px) {
+  .skills-wrapper {
+    height: 100vh;
+    padding-top: 0 !important;
+  }
+  .skill-set-wrapper {
+    transform: skew(-5deg);
+    border-right: 5px solid rgba(76, 76, 219, 0.425);
+  }
+  .skill-set-wrapper .skill-set {
+    transform: skew(5deg);
+  }
+  .skill-set-wrapper:hover .hoverable {
+    opacity: 0.3;
+  }
 }
 .skill-set-wrapper {
-  transform: skew(-5deg);
   transition: ease-in-out 600ms;
   box-sizing: border-box;
-  border-right: 5px solid rgba(76, 76, 219, 0.425);
+  border-bottom: 5px solid rgba(76, 76, 219, 0.425);
 }
-.skill-set-wrapper .skill-set {
-  transform: skew(5deg);
-}
-.skill-set-wrapper:hover .hoverable {
-  opacity: 0.3;
+.skills-wrapper {
+  padding-top: 90px;
 }
 .skill-set-background-mask {
   position: absolute;

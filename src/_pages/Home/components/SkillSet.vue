@@ -2,8 +2,12 @@
   <div
     class="skill-set d-flex align-items-center justify-content-center h-100 w-100"
     style="padding-top: 85px"
+    :style="{
+      height: currentElementHeight,
+      minHeight: selected === position ? '90vh' : 'auto'
+    }"
   >
-    <b-container>
+    <b-container :id="`container__${position}`">
       <transition mode="out-in" name="slide-fade">
         <div :key="title" v-html="title"></div>
       </transition>
@@ -17,7 +21,7 @@
         :style="{
           height: contentHeight,
           opacity: opacity,
-          transitionDelay: transitionDelay,
+          transitionDelay: transitionDelay
         }"
       >
         <div v-html="skill.description"></div>
@@ -56,12 +60,12 @@ export default Vue.extend({
       offset: 85,
       orderBy: 0,
       original: [],
-      abilities: [],
+      abilities: []
     };
   },
   props: ["skill", "selected", "position"],
   methods: {
-    order: function () {
+    order: function() {
       if (this.orderBy === 0) {
         this.original = JSON.parse(JSON.stringify(this.abilities));
         const abilities = this.abilities.sort((a, b) =>
@@ -82,15 +86,34 @@ export default Vue.extend({
         }, 50 + i * 2);
       }
     },
+    currentElementHeight() {
+      if (this.$root.isMobile && this.$refs["scrollable"]) {
+        const children = this.$refs["scrollable"].childNodes;
+        if (Array.isArray(children)) {
+          let height = 0;
+          children.forEach(item => {
+            height += item.clientHeight + 10;
+          });
+          return height + "px";
+        }
+      }
+      return "100%";
+    }
   },
   watch: {
     selected(n, o) {
       if (o === this.position) {
         this.transitionDelay = "0ms";
       } else {
+        if (n === this.position && this.$root.isMobile) {
+          setTimeout(() => {
+            this.$scrollTo(`#container__${this.position}`,);
+            console.log(`#container__${this.position}`);
+          }, 700);
+        }
         this.transitionDelay = "650ms";
       }
-    },
+    }
   },
   computed: {
     minimumOffsetToMove() {
@@ -100,7 +123,11 @@ export default Vue.extend({
       return this.selected === this.position;
     },
     contentHeight() {
-      return this.currentlySelected ? "86.5vh" : "0";
+      if (!this.$root.isMobile) {
+        return this.currentlySelected ? "86.5vh" : "0";
+      } else {
+        return this.currentlySelected ? this.currentElementHeight() : "0";
+      }
     },
     opacity() {
       return this.currentlySelected ? 1 : 0;
@@ -112,17 +139,17 @@ export default Vue.extend({
           : `<h2>${this.skill.title}</h2>`;
       }
       return "";
-    },
+    }
   },
   mounted() {
     this.abilities = this.skill.abilities;
     if (this.$refs["scrollable"]) {
-      this.$refs["scrollable"].addEventListener("wheel", ($e) => {
+      this.$refs["scrollable"].addEventListener("wheel", $e => {
         if ($e.deltaY > 0) this.scroll("down");
         else this.scroll("up");
       });
     }
-  },
+  }
 });
 </script>
 <style scoped>

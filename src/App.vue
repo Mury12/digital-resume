@@ -9,7 +9,7 @@
           id="main"
           :style="{
             minWidth: minAppWidth + 'px',
-            transform: `translate(${translated}px)`,
+            transform: `translate(${translated}px)`
           }"
         >
           <transition mode="out-in" name="shrink-fade">
@@ -35,20 +35,20 @@ export default {
     return {
       navbarIsOpen: false,
       hide: false,
-      minAppWidth: 1450,
+      minAppWidth: 0,
       windowWidth: window.innerWidth,
       translated: 0,
       buttons: {
         right: false,
-        left: false,
-      },
+        left: false
+      }
     };
   },
   components: {
-    PageHeader,
+    PageHeader
   },
   methods: {
-    scroll: function (side = "right") {
+    scroll: function(side = "right") {
       const maxTranslation = -(this.minAppWidth - this.windowWidth);
       const amountToTranslate = 2;
       if (side === "left") {
@@ -79,28 +79,25 @@ export default {
         }
       }
     },
-    toggler: function (e) {
+    toggler: function(e) {
       this.navbarIsOpen = e;
     },
-    closePage: function () {
+    closePage: function() {
       this.hide = true;
       window.location = "/";
       setTimeout(() => {}, 200);
       setTimeout(() => {
         this.hide = false;
       }, 1000);
-    },
+    }
   },
 
   watch: {
     $route: {
-      handler: function () {
+      handler: function() {
         document.title = (this.$route.meta.title || "") + " | " + "Andre Mury";
-      },
-    },
-    windowWidth: {
-      handler() {},
-    },
+      }
+    }
   },
   beforeCreate() {
     clearInterval(this.iv);
@@ -109,19 +106,33 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      window.onresize = ($e) => {
+      if (window.innerWidth < 992) {
+        this.minAppWidth = window.innerWidth;
+        this.$root.isMobile = true;
+      } else {
+        this.minAppWidth = 1450;
+        this.$root.isMobile = false;
+      }
+      window.onresize = $e => {
         this.windowWidth = $e.target.innerWidth;
+        if (this.windowWidth < 992) {
+          this.minAppWidth = this.windowWidth;
+          this.$root.isMobile = true;
+        } else {
+          this.minAppWidth = 1450;
+          this.$root.isMobile = false;
+        }
         this.buttons = {
           right: this.windowWidth < this.minAppWidth,
-          left: this.translated > 0,
+          left: this.translated > 0
         };
       };
       this.buttons = {
         right: this.windowWidth < this.minAppWidth,
-        left: this.translated > 0,
+        left: this.translated > 0
       };
     });
-  },
+  }
 };
 </script>
 <style scoped>

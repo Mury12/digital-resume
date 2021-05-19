@@ -107,12 +107,16 @@ export default {
   .skill-set-wrapper {
     transform: skew(-5deg);
     border-right: 5px solid rgba(76, 76, 219, 0.425);
+    border-bottom: none !important;
   }
   .skill-set-wrapper .skill-set {
     transform: skew(5deg);
   }
   .skill-set-wrapper:hover .hoverable {
     opacity: 0.3;
+  }
+  .skill-set-background-mask {
+    filter: blur(6px);
   }
 }
 .skill-set-wrapper {
@@ -127,10 +131,10 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 110%;
   width: 100%;
+  z-index: -1;
   opacity: 0.1;
-  filter: blur(6px);
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: top !important;

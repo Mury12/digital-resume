@@ -1,51 +1,71 @@
 <template>
-  <div
-    class="skill-set d-flex align-items-center justify-content-center h-100 w-100"
-    style="padding-top: 85px"
-    :style="{
-      height: currentElementHeight,
-      minHeight: selected === position ? '90vh' : 'auto'
-    }"
-  >
-    <b-container :id="`container__${position}`">
-      <transition mode="out-in" name="slide-fade">
-        <div :key="title" v-html="title"></div>
-      </transition>
-      <small class="text-secondary" v-if="selected === -1 && position === 0"
-        >Click to open</small
-      >
+  <keep-alive>
+    <div
+      class="skill-set d-flex align-items-center justify-content-center h-100 w-100"
+      style="padding-top: 85px"
+      :style="{
+        height: currentElementHeight,
+        minHeight: selected === position ? '90vh' : 'auto'
+      }"
+    >
+      <b-container :id="`container__${position}`">
+        <transition mode="out-in" name="slide-fade">
+          <div
+            :key="title"
+            v-html="title"
+            :style="{
+              marginLeft: selected !== position ? '-10px' : 0
+            }"
+          ></div>
+        </transition>
+        <small class="text-secondary" v-if="selected === -1 && position === 0"
+          >Click to open</small
+        >
 
-      <div
-        class="skill-content"
-        ref="scrollable"
-        :style="{
-          height: contentHeight,
-          opacity: opacity,
-          transitionDelay: transitionDelay
-        }"
-      >
-        <div v-html="skill.description"></div>
-        <div v-if="skill.abilities && skill.abilities.length">
-          <h4 class="mt-5">Skills and levels</h4>
-          <div class="w-100 text-left pl-2">
-            <b-button type="button" @click="order" variant="info" class="mt-4">
-              Order by {{ orderBy === 0 ? "Proefficiency" : "Prefference" }}
-            </b-button>
-          </div>
-          <transition mode="out-in" name="slide-fade">
-            <b-row class="mt-1" ref="scrollableContent" :key="orderBy">
-              <ability-description
-                @modal="$emit('modal', $event)"
-                v-for="(ability, index) in abilities"
-                :key="index"
-                :ability="ability"
-              />
-            </b-row>
+        <div
+          class="skill-content"
+          ref="scrollable"
+          :style="{
+            height: contentHeight,
+            opacity: opacity,
+            transitionDelay: transitionDelay
+          }"
+        >
+          <transition name="fade" mode="out-in">
+            <div v-if="selected === position">
+              <div v-html="skill.description"></div>
+              <div v-if="skill.abilities && skill.abilities.length">
+                <h4 class="mt-5">Skills and levels</h4>
+                <div class="w-100 text-left pl-2">
+                  <b-button
+                    type="button"
+                    @click="order"
+                    variant="info"
+                    class="mt-4"
+                  >
+                    Order by
+                    {{ orderBy === 0 ? "Proefficiency" : "Prefference" }}
+                  </b-button>
+                </div>
+                  <b-row
+                    class="mt-1 pb-4"
+                    ref="scrollableContent"
+                    :key="orderBy"
+                  >
+                    <ability-description
+                      @modal="$emit('modal', $event)"
+                      v-for="(ability, index) in abilities"
+                      :key="index"
+                      :ability="ability"
+                    />
+                  </b-row>
+              </div>
+            </div>
           </transition>
         </div>
-      </div>
-    </b-container>
-  </div>
+      </b-container>
+    </div>
+  </keep-alive>
 </template>
 
 <script lang="ts">
@@ -107,9 +127,9 @@ export default Vue.extend({
       } else {
         if (n === this.position && this.$root.isMobile) {
           setTimeout(() => {
-            this.$scrollTo(`#container__${this.position}`,);
+            this.$scrollTo(`#container__${this.position}`);
             console.log(`#container__${this.position}`);
-          }, 700);
+          }, 1000);
         }
         this.transitionDelay = "650ms";
       }

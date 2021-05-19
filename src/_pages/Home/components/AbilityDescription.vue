@@ -1,6 +1,10 @@
 <template>
   <b-col md="6" lg="4" class="ability-wrapper p-3">
-    <b-row class="ability-content m-2 h-100 pt-2 rounded">
+    <b-row
+      class="ability-content default-transition m-2 h-100 pt-2 rounded"
+      :class="{ pointer: extendDescription }"
+      @click="openDescription"
+    >
       <b-col cols="12">
         <p class="h4">{{ ability.name }}</p>
       </b-col>
@@ -28,7 +32,7 @@
             type="button"
             variant="link"
             @click="openDescription"
-            v-if="ability.description && ability.description.length > 50"
+            v-if="extendDescription"
           >
             See more
           </b-button>
@@ -45,16 +49,19 @@ export default Vue.extend({
   components: { AbilityChart },
   props: ["ability"],
   methods: {
-    openDescription: function () {
-      if (this.ability.description) {
+    openDescription: function() {
+      if (this.ability.description && this.extendDescription) {
         this.$emit("modal", {
           title: this.ability.name,
-          content: this.ability.description,
+          content: this.ability.description
         });
       }
-    },
+    }
   },
   computed: {
+    extendDescription() {
+      return this.ability.description && this.ability.description.length >= 30;
+    },
     picture() {
       if (this.ability.image.length) {
         return require(`@/assets/images/${this.ability.image}`);
@@ -73,13 +80,21 @@ export default Vue.extend({
     },
     imageFilter() {
       return this.ability.imageFilter || "";
-    },
-  },
+    }
+  }
 });
 </script>
 <style scoped>
 .ability-content {
   border: 1px solid rgba(255, 255, 255, 0.325);
   background-color: rgba(255, 255, 255, 0.05);
+}
+.ability-content:hover {
+  background-color: rgba(0, 0, 0, 0.199);
+  transform: translateY(-10px) translateX(5px) scale(1.01);
+  box-shadow: -5px 10px 1em rgba(255, 255, 255, 0.162);
+}
+.description {
+  min-height: 105px;
 }
 </style>

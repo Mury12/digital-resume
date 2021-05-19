@@ -5,7 +5,7 @@
       <div class="page-body">
         <page-header />
         <div
-          class="px-5"
+          class="px-3 px-md-5"
           id="main"
           :style="{
             minWidth: minAppWidth + 'px',

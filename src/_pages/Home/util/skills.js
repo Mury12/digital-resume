@@ -7,6 +7,7 @@ export default [
       and always brought something good.</p>
       <p>I have developed this digital resumé in order to facilitate an overview of my professional abilities and I hope you feel good with this view :) Thank you for visiting.</p>
       <mark>Note that page scrolls are disabled but if something is bigger than your screen, scroll arrows will appear in the sides of the window.</mark>
+      <h5 class="mt-4">Please check <a target="_blank" href="https://linkedin.com/in/andremury">Linkedin</a> for professional information.</h5>
       `,
         background: "atlantic-city.webp",
         abilities: [
@@ -28,7 +29,7 @@ export default [
             },
             {
                 name: "Dedicated",
-                image: "language.png",
+                image: "dedication.png",
                 imageFilter: "invert(1)",
                 level: 4.5,
                 description:
@@ -52,7 +53,7 @@ export default [
             },
             {
                 name: "Sincerity",
-                image: "language.png",
+                image: "sincerity.png",
                 imageFilter: "invert(1)",
                 level: 4.5,
                 description:
@@ -60,7 +61,7 @@ export default [
             },
             {
                 name: "Funny",
-                image: "language.png",
+                image: "funny.png",
                 imageFilter: "invert(1)",
                 level: 4.5,
                 description:
@@ -68,8 +69,8 @@ export default [
             },
             {
                 name: "Methodical",
-                image: "language.png",
-                imageFilter: "invert(1)",
+                image: "methodical.png",
+                imageFilter: "invert(1) brightness(2)",
                 level: 4.5,
                 description:
                     "Step by step. If protocols exists why should we do the wrong way?",
@@ -235,8 +236,9 @@ export default [
             {
                 name: "Woocommerce",
                 image: "woocom.png",
+                imageFilter: "",
                 libs: [],
-                level: 3.5,
+                level: 3,
             },
             {
                 name: "Botpress",
@@ -258,6 +260,18 @@ export default [
                 level: 3,
             },
             {
+                name: "Trello",
+                image: "trello.png",
+                libs: [],
+                level: 3.5,
+            },
+            {
+                name: "Scrum",
+                image: "scrum.png",
+                libs: [],
+                level: 2.5,
+            },
+            {
                 name: "Arduino",
                 image: "arduino.png",
                 libs: [],
@@ -265,70 +279,59 @@ export default [
             },
             {
                 name: "C",
-                image: "arduino.png",
+                image: "c.png",
                 libs: [],
-                level: 2,
+                level: 2.5,
             },
             {
                 name: "C#",
-                image: "arduino.png",
+                image: "csharp.png",
                 libs: [],
                 level: 2,
             },
             {
                 name: "Python",
-                image: "arduino.png",
+                image: "python.png",
                 libs: [],
                 level: 2,
             },
             {
                 name: "Unity3d",
-                image: "arduino.png",
+                image: "unity.webp",
                 libs: [],
                 level: 2,
             },
             {
                 name: "Ms Office",
-                image: "arduino.png",
+                image: "msoffice.png",
                 libs: [],
-                level: 2,
+                level: 4,
             },
             {
                 name: "Open Office",
-                image: "arduino.png",
+                image: "openoffice.png",
                 libs: [],
-                level: 2,
+                level: 4,
             },
             {
                 name: "Photoshop",
-                image: "arduino.png",
+                image: "photoshop.png",
                 libs: [],
-                level: 2,
+                level: 3.5,
             },
             {
                 name: "After FX",
-                image: "arduino.png",
+                image: "afterfx.png",
                 libs: [],
-                level: 2,
+                level: 2.5,
             },
             {
                 name: "Premiere",
-                image: "arduino.png",
+                image: "premiere.png",
                 libs: [],
-                level: 2,
+                level: 3,
             },
-            {
-                name: "Trello",
-                image: "arduino.png",
-                libs: [],
-                level: 2,
-            },
-            {
-                name: "Scrum",
-                image: "arduino.png",
-                libs: [],
-                level: 2,
-            },
+
         ],
     },
     {

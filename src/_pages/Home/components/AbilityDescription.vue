@@ -91,8 +91,8 @@ export default Vue.extend({
 }
 .ability-content:hover {
   background-color: rgba(0, 0, 0, 0.199);
-  transform: translateY(-10px) translateX(5px) scale(1.01);
-  box-shadow: -5px 10px 1em rgba(255, 255, 255, 0.162);
+  transform: translateY(-10px) translateX(5px) scale(1.02);
+  box-shadow: -5px 10px 0.3em rgba(255, 255, 255, 0.1);
 }
 .description {
   min-height: 105px;

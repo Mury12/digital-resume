@@ -352,7 +352,7 @@ export default [
         <li><a target="_blank" href="https://github.com/mury12">Gitlab</a></li>
         <li><a target="_blank" href="https://instagram.com/andmury.music">Instagram</a></li>
         <li><a target="_blank" href="https://open.spotify.com/artist/5aw5ZuQB4ElCVsrPkSvtLn?si=d747c21cd41b463b">Spotify</a></li>
-        <li><a target="_blank" href="http://barbdebode.com">Barba de Bode</a></li>
+        <li><a target="_blank" href="http://barbadebode.com">Barba de Bode</a></li>
         <li><a target="_blank" href="https://soundcloud.com/andremury">Soundcloud</a></li>
         </ul>
         And you can also <a href ="mailto:mury63@gmail.com">mail me</a><br/>

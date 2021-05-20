@@ -166,10 +166,14 @@ export default Vue.extend({
   mounted() {
     this.abilities = this.skill.abilities;
     if (this.$refs["scrollable"]) {
-      this.$refs["scrollable"].addEventListener("wheel", $e => {
-        if ($e.deltaY > 0) this.scroll("down");
-        else this.scroll("up");
-      });
+      this.$refs["scrollable"].addEventListener(
+        "wheel",
+        $e => {
+          if ($e.deltaY > 0) this.scroll("down");
+          else this.scroll("up");
+        },
+        { passive: true }
+      );
     }
   }
 });

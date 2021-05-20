@@ -136,6 +136,9 @@ export default {
 };
 </script>
 <style scoped>
+.background-mask {
+    background-color: rgb(93, 10, 176);
+}
 .scrollleft-icon {
   left: 10px;
   animation: arrow-pulse-left 10s infinite;
@@ -155,23 +158,7 @@ export default {
   right: 10px;
   animation: arrow-pulse-right 10s infinite;
 }
-.background-mask {
-  animation: bg-vary 20s infinite;
-}
 
-@keyframes bg-vary {
-  0%,
-  100% {
-    background-color: rgb(14, 0, 145);
-  }
-  25%,
-  75% {
-    background-color: rgb(60, 14, 134);
-  }
-  50% {
-    background-color: rgb(52, 38, 88);
-  }
-}
 @keyframes arrow-pulse-right {
   20% {
     transform: translateX(0);

@@ -47,6 +47,7 @@
                     {{ orderBy === 0 ? "Proefficiency" : "Prefference" }}
                   </b-button>
                 </div>
+                <transition mode="out-in" name="slide-fade">
                   <b-row
                     class="mt-1 pb-4"
                     ref="scrollableContent"
@@ -59,6 +60,7 @@
                       :ability="ability"
                     />
                   </b-row>
+                </transition>
               </div>
             </div>
           </transition>

@@ -1,29 +1,54 @@
 <template>
-  <div>
-    <div id="app" :class="{ hide: hide }" ref="app">
-      <div class="background-mask"></div>
-      <div class="page-body">
-        <page-header />
-        <div
-          class="px-3 px-md-5"
-          id="main"
-          :style="{
-            minWidth: minAppWidth + 'px',
-            transform: `translate(${translated}px)`
-          }"
-        >
-          <transition mode="out-in" name="shrink-fade">
-            <router-view :key="$route.name"></router-view>
-          </transition>
+  <div id="app" :class="{ hide: hide }" ref="app">
+    <transition mode="out-in" name="slide-fade">
+      <div :key="lang">
+        <div v-if="!lang">
+          <div
+            class="position-absolute w-100 h-100 d-flex flex-column justify-content-center"
+          >
+            <h2>Please, select a language</h2>
+            <div class=" mt-3 d-flex justify-content-center">
+              <div
+                ref="lang-en"
+                class="pointer langselector-btn d-flex align-items-center justify-content-center"
+                @click="select('en')"
+              >
+                English
+              </div>
+              <div
+                ref="lang-pt"
+                class="pointer langselector-btn d-flex align-items-center justify-content-center"
+                @click="select('pt')"
+              >
+                Português
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <div class="background-mask"></div>
+          <div class="page-body">
+            <page-header @lang="lang = $event" :lang="lang" />
+            <div
+              class="px-3 px-md-5"
+              id="main"
+              :style="{
+                minWidth: minAppWidth + 'px',
+                transform: `translate(${translated}px)`
+              }"
+            >
+              <router-view :key="$route.name" :skills="skills"></router-view>
+            </div>
+          </div>
+          <div class="scrollleft-icon pointer" v-if="buttons.left">
+            <fas icon="chevron-left" class="fa-3x" @click="scroll('right')" />
+          </div>
+          <div class="scrollright-icon pointer" v-if="buttons.right">
+            <fas icon="chevron-right" class="fa-3x" @click="scroll('left')" />
+          </div>
         </div>
       </div>
-      <div class="scrollleft-icon pointer" v-if="buttons.left">
-        <fas icon="chevron-left" class="fa-3x" @click="scroll('right')" />
-      </div>
-      <div class="scrollright-icon pointer" v-if="buttons.right">
-        <fas icon="chevron-right" class="fa-3x" @click="scroll('left')" />
-      </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -41,13 +66,27 @@ export default {
       buttons: {
         right: false,
         left: false
-      }
+      },
+      lang: null,
+      skills: []
     };
   },
   components: {
     PageHeader
   },
   methods: {
+    select: function(lang) {
+      if (lang === "en") {
+        this.$refs["lang-en"].className += " selected ";
+        this.$refs["lang-pt"].className += " unselected ";
+      } else if (lang === "pt") {
+        this.$refs["lang-en"].className += " unselected ";
+        this.$refs["lang-pt"].className += " selected ";
+      }
+      setTimeout(() => {
+        this.lang = lang
+      }, 3000)
+    },
     scroll: function(side = "right") {
       const maxTranslation = -(this.minAppWidth - this.windowWidth);
       const amountToTranslate = 2;
@@ -89,6 +128,10 @@ export default {
       setTimeout(() => {
         this.hide = false;
       }, 1000);
+    },
+    mountSkills: function($lang) {
+      this.lang = $lang;
+      this.skills = require(`@/assets/skills-${$lang}.js`).default;
     }
   },
 
@@ -96,6 +139,12 @@ export default {
     $route: {
       handler: function() {
         document.title = (this.$route.meta.title || "") + " | " + "Andre Mury";
+      }
+    },
+    lang(n, o) {
+      if (n != o) {
+        this.mountSkills(n);
+        this.$root.lang = n;
       }
     }
   },
@@ -136,8 +185,39 @@ export default {
 };
 </script>
 <style scoped>
+.langselector-btn {
+  height: 300px;
+  width: 300px;
+  margin: 0 15px;
+  font-size: 3em;
+  border: 1px solid rgba(255, 255, 255, 0.418);
+  position: relative;
+  transition: ease-in-out 150ms;
+}
+.langselector-btn::before {
+  content: " ";
+  height: 100%;
+  width: 100%;
+  border: 1px solid white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: ease-in-out 150ms;
+}
+
+.langselector-btn:hover:not(.selected) {
+  border-color: rgba(255, 255, 255, 0.493);
+}
+.langselector-btn:nth-of-type(2n):not(.selected):hover::before {
+  transform: translateX(20px) translateY(-20px);
+  border-width: 3px;
+}
+.langselector-btn:nth-of-type(2n + 1):not(.selected):hover::before {
+  transform: translateX(-20px) translateY(20px);
+  border-width: 3px;
+}
 .background-mask {
-    background-color: rgb(93, 10, 176);
+  background-color: rgba(93, 10, 176, 0.192);
 }
 .scrollleft-icon {
   left: 10px;
@@ -158,7 +238,18 @@ export default {
   right: 10px;
   animation: arrow-pulse-right 10s infinite;
 }
-
+.unselected {
+  transition: 1s;
+  opacity: 0;
+  transform: rotate(-20deg);
+  margin-left: -315px;
+}
+.selected {
+  transition: 1s;
+  transition-delay: 0.8s;
+  transform: scale(2);
+  background-color: black;
+}
 @keyframes arrow-pulse-right {
   20% {
     transform: translateX(0);

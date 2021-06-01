@@ -1,5 +1,5 @@
 <template>
-  <b-row class="skills-wrapper">
+  <b-row class="skills-wrapper" >
     <b-col
       class="skill-set-wrapper h-100"
       v-for="(skill, index) in skills"
@@ -13,7 +13,7 @@
         class="skill-set-background-mask"
         :class="{ hoverable: selected !== index }"
         :style="{
-          background: `url(${getBackground(skill.background)})`
+          background: `black`
         }"
       ></div>
       <skill-set
@@ -41,7 +41,7 @@
 
 <script>
 import SkillSet from "./components/SkillSet.vue";
-import skills from "./util/skills.js";
+
 export default {
   name: "Home",
   components: { SkillSet },
@@ -52,8 +52,13 @@ export default {
         content: "",
         title: ""
       },
-      skills
     };
+  },
+  props: {
+    skills: {
+      type: Array,
+      default: () => [],
+    }
   },
   methods: {
     openModal($e) {
@@ -72,7 +77,7 @@ export default {
       } else if (direction === "prev" && this.selected > -1) {
         this.selected--;
       }
-    }
+    },
   },
   computed: {
     colSize() {
@@ -92,9 +97,6 @@ export default {
         }
       });
     });
-    setTimeout(() => {
-      // this.selected = 0;
-    }, 500);
   }
 };
 </script>
@@ -113,11 +115,11 @@ export default {
     transform: skew(5deg);
   }
   .skill-set-wrapper:hover .hoverable {
-    opacity: 0.3;
+    opacity: 1;
   }
-  .skill-set-background-mask {
+  /* .skill-set-background-mask {
     filter: blur(6px);
-  }
+  } */
 }
 .skill-set-wrapper {
   transition: ease-in-out 600ms;

@@ -1,73 +1,71 @@
 <template>
-  <keep-alive>
-    <div
-      class="skill-set d-flex align-items-center justify-content-center h-100 w-100"
-      style="padding-top: 85px"
-      :style="{
-        height: currentElementHeight,
-        minHeight: selected === position ? '90vh' : 'auto'
-      }"
-    >
-      <b-container :id="`container__${position}`">
-        <transition mode="out-in" name="slide-fade">
-          <div
-            :key="title"
-            v-html="title"
-            :style="{
-              marginLeft: selected !== position ? '-10px' : 0
-            }"
-          ></div>
-        </transition>
-        <small class="text-secondary" v-if="selected === -1 && position === 0"
-          >Click to open</small
-        >
-
+  <div
+    class="skill-set d-flex align-items-center justify-content-center h-100 w-100"
+    style="padding-top: 85px"
+    :style="{
+      height: currentElementHeight,
+      minHeight: selected === position ? '90vh' : 'auto'
+    }"
+  >
+    <b-container :id="`container__${position}`">
+      <transition mode="out-in" name="slide-fade">
         <div
-          class="skill-content"
-          ref="scrollable"
+          :key="title"
+          v-html="title"
           :style="{
-            height: contentHeight,
-            opacity: opacity,
-            transitionDelay: transitionDelay
+            marginLeft: selected !== position ? '-10px' : 0
           }"
-        >
-          <transition name="fade" mode="out-in">
-            <div v-if="selected === position">
-              <div v-html="skill.description"></div>
-              <div v-if="skill.abilities && skill.abilities.length">
-                <h4 class="mt-5">Skills and levels</h4>
-                <div class="w-100 text-left pl-2">
-                  <b-button
-                    type="button"
-                    @click="order"
-                    variant="info"
-                    class="mt-4"
-                  >
-                    Order by
-                    {{ orderBy === 0 ? "Proefficiency" : "Prefference" }}
-                  </b-button>
-                </div>
-                <transition mode="out-in" name="slide-fade">
-                  <b-row
-                    class="mt-1 pb-4"
-                    ref="scrollableContent"
-                    :key="orderBy"
-                  >
-                    <ability-description
-                      @modal="$emit('modal', $event)"
-                      v-for="(ability, index) in abilities"
-                      :key="index"
-                      :ability="ability"
-                    />
-                  </b-row>
-                </transition>
+        ></div>
+      </transition>
+      <small class="text-secondary" v-if="selected === -1 && position === 0">{{
+        $t(lang, "Click to Open")
+      }}</small>
+
+      <div
+        class="skill-content"
+        ref="scrollable"
+        :style="{
+          height: contentHeight,
+          opacity: opacity,
+          transitionDelay: transitionDelay
+        }"
+      >
+        <transition name="fade" mode="out-in">
+          <div v-if="selected === position">
+            <div v-html="skill.description"></div>
+            <div v-if="skill.abilities && skill.abilities.length">
+              <h4 class="mt-5">{{ $t(lang, "Skills and levels") }}</h4>
+              <div class="w-100 text-left pl-2">
+                <b-button
+                  type="button"
+                  @click="order"
+                  variant="info"
+                  class="mt-4"
+                >
+                  {{ $t(lang, "Order by") }}
+                  {{
+                    orderBy === 0
+                      ? $t(lang, "Proefficiency")
+                      : $t(lang, "Prefference")
+                  }}
+                </b-button>
               </div>
+              <transition mode="out-in" name="slide-fade">
+                <b-row class="mt-1 pb-4" ref="scrollableContent" :key="orderBy">
+                  <ability-description
+                    @modal="$emit('modal', $event)"
+                    v-for="(ability, index) in abilities"
+                    :key="index"
+                    :ability="ability"
+                  />
+                </b-row>
+              </transition>
             </div>
-          </transition>
-        </div>
-      </b-container>
-    </div>
-  </keep-alive>
+          </div>
+        </transition>
+      </div>
+    </b-container>
+  </div>
 </template>
 
 <script lang="ts">
@@ -102,11 +100,7 @@ export default Vue.extend({
     },
     scroll(direction = "down") {
       const variant = direction === "down" ? 1 : -1;
-      for (let i = 0; i < 100; i++) {
-        setTimeout(() => {
-          this.$refs["scrollable"].scrollTop += variant;
-        }, 50 + i * 2);
-      }
+      this.$refs["scrollable"].scrollTop += variant * 50;
     },
     currentElementHeight() {
       if (this.$root.isMobile && this.$refs["scrollable"]) {
@@ -120,6 +114,10 @@ export default Vue.extend({
         }
       }
       return "100%";
+    },
+    listener: function($e) {
+      if ($e.deltaY > 0) this.scroll("down");
+      else this.scroll("up");
     }
   },
   watch: {
@@ -138,6 +136,9 @@ export default Vue.extend({
     }
   },
   computed: {
+    lang() {
+      return this.$root.lang;
+    },
     minimumOffsetToMove() {
       return window.innerHeight - (window.innerHeight - 85) / 3;
     },
@@ -166,14 +167,14 @@ export default Vue.extend({
   mounted() {
     this.abilities = this.skill.abilities;
     if (this.$refs["scrollable"]) {
-      this.$refs["scrollable"].addEventListener(
-        "wheel",
-        $e => {
-          if ($e.deltaY > 0) this.scroll("down");
-          else this.scroll("up");
-        },
-        { passive: true }
-      );
+      this.$refs["scrollable"].addEventListener("wheel", this.listener, {
+        passive: true
+      });
+    }
+  },
+  beforeDestroy() {
+    if (this.$refs["scrollable"]) {
+      this.$refs["scrollable"].removeEventListener("wheel", this.listener);
     }
   }
 });

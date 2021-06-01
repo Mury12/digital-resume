@@ -22,7 +22,7 @@
         </div>
       </b-col>
       <b-col cols="12">
-        Proefficiency
+        {{ $t(lang, "Proefficiency") }}
         <ability-chart :level="ability.level || 0" />
       </b-col>
       <b-col cols="12" class="text-center">
@@ -34,7 +34,7 @@
             @click="openDescription"
             v-if="extendDescription"
           >
-            See more
+            {{$t(lang, "See more")}}
           </b-button>
         </p>
       </b-col>
@@ -59,6 +59,9 @@ export default Vue.extend({
     }
   },
   computed: {
+    lang() {
+      return this.$root.lang;
+    },
     extendDescription() {
       return this.ability.description && this.ability.description.length >= 30;
     },

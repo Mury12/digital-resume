@@ -4,6 +4,7 @@ import VueTheMask from 'vue-the-mask';
 import VueSession from 'vue-session';
 import VueScrollTo from 'vue-scrollto';
 import VueHttp from './plugin/http';
+import VueTranslator from './plugin/translation';
 import PageTitle from './components/PageTitle/PageTitle.vue';
 import Overlayer from './components/Overlayer/Overlayer';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -16,6 +17,7 @@ import './assets/css/theme.css'
 Vue
     .use(VueSession, { persist: true })
     .use(VueHttp)
+    .use(VueTranslator)
     .use(VueTheMask)
     .use(BootstrapVue)
     .use(VueScrollTo, {

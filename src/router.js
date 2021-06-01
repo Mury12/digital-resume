@@ -5,7 +5,7 @@ let routes = [
     /** Auth needed */
     {
         path: '/',
-        name: 'André Mury, 27, full-stack developer, Brazil',
+        name: 'André Mury',
         component: Home,
         meta: {
             protected: true,

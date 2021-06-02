@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="{ hide: hide }" ref="app">
     <transition mode="out-in" name="slide-fade">
-      <div :key="lang" class="d-none d-md-flex">
+      <div :key="lang" class="d-none d-md-block">
         <div v-if="!lang">
           <div
             class="position-absolute w-100 h-100 d-flex flex-column justify-content-center"
@@ -189,9 +189,6 @@ export default {
 </script>
 <style scoped>
 
-.background-mask {
-  background-color: rgba(93, 10, 176, 0.192);
-}
 .scrollleft-icon {
   left: 10px;
   animation: arrow-pulse-left 10s infinite;

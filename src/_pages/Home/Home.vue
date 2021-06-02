@@ -132,7 +132,7 @@ export default {
   } */
 .box-selected {
   position: fixed !important;
-  height: calc(100% - 90px);
+  height: calc(100% - 85px);
   width: 100%;
   top: 0;
   left: 0;

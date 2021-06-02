@@ -6,7 +6,7 @@
           <div
             class="position-absolute w-100 h-100 d-flex flex-column justify-content-center"
           >
-            <h2>Please, select a language</h2>
+            <h2>Welcome! Please, select a language</h2>
             <div class=" mt-3 d-flex justify-content-center">
               <div
                 ref="lang-en"
@@ -29,16 +29,15 @@
           <div class="background-mask"></div>
           <div class="page-body">
             <page-header @lang="lang = $event" :lang="lang" />
-            <div
+            <b-container
               class="px-3 px-md-5"
               id="main"
               :style="{
-                minWidth: minAppWidth + 'px',
                 transform: `translate(${translated}px)`
               }"
             >
               <router-view :key="$route.name" :skills="skills"></router-view>
-            </div>
+            </b-container>
           </div>
           <div class="scrollleft-icon pointer" v-if="buttons.left">
             <fas icon="chevron-left" class="fa-3x" @click="scroll('right')" />
@@ -155,27 +154,27 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      if (window.innerWidth < 992) {
-        this.minAppWidth = window.innerWidth;
-        this.$root.isMobile = true;
-      } else {
-        this.minAppWidth = 1450;
-        this.$root.isMobile = false;
-      }
-      window.onresize = $e => {
-        this.windowWidth = $e.target.innerWidth;
-        if (this.windowWidth < 992) {
-          this.minAppWidth = this.windowWidth;
-          this.$root.isMobile = true;
-        } else {
-          this.minAppWidth = 1450;
-          this.$root.isMobile = false;
-        }
-        this.buttons = {
-          right: this.windowWidth < this.minAppWidth,
-          left: this.translated > 0
-        };
-      };
+      // if (window.innerWidth < 992) {
+      //   this.minAppWidth = window.innerWidth;
+      //   this.$root.isMobile = true;
+      // } else {
+      //   this.minAppWidth = 1450;
+      //   this.$root.isMobile = false;
+      // }
+      // window.onresize = $e => {
+      //   this.windowWidth = $e.target.innerWidth;
+      //   if (this.windowWidth < 992) {
+      //     this.minAppWidth = this.windowWidth;
+      //     this.$root.isMobile = true;
+      //   } else {
+      //     this.minAppWidth = 1450;
+      //     this.$root.isMobile = false;
+      //   }
+      //   this.buttons = {
+      //     right: this.windowWidth < this.minAppWidth,
+      //     left: this.translated > 0
+      //   };
+      // };
       this.buttons = {
         right: this.windowWidth < this.minAppWidth,
         left: this.translated > 0
@@ -185,37 +184,7 @@ export default {
 };
 </script>
 <style scoped>
-.langselector-btn {
-  height: 300px;
-  width: 300px;
-  margin: 0 15px;
-  font-size: 3em;
-  border: 1px solid rgba(255, 255, 255, 0.418);
-  position: relative;
-  transition: ease-in-out 150ms;
-}
-.langselector-btn::before {
-  content: " ";
-  height: 100%;
-  width: 100%;
-  border: 1px solid white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: ease-in-out 150ms;
-}
 
-.langselector-btn:hover:not(.selected) {
-  border-color: rgba(255, 255, 255, 0.493);
-}
-.langselector-btn:nth-of-type(2n):not(.selected):hover::before {
-  transform: translateX(20px) translateY(-20px);
-  border-width: 3px;
-}
-.langselector-btn:nth-of-type(2n + 1):not(.selected):hover::before {
-  transform: translateX(-20px) translateY(20px);
-  border-width: 3px;
-}
 .background-mask {
   background-color: rgba(93, 10, 176, 0.192);
 }
@@ -238,18 +207,26 @@ export default {
   right: 10px;
   animation: arrow-pulse-right 10s infinite;
 }
-.unselected {
+.langselector-btn:nth-of-type(2n + 1).unselected {
   transition: 1s;
   opacity: 0;
   transform: rotate(-20deg);
   margin-left: -315px;
 }
-.selected {
+.langselector-btn:nth-of-type(2n).unselected {
+  transition: 1s;
+  opacity: 0;
+  transform: rotate(20deg);
+  margin-right: -315px;
+}
+
+.langselector-btn.selected {
   transition: 1s;
   transition-delay: 0.8s;
   transform: scale(2);
   background-color: black;
 }
+
 @keyframes arrow-pulse-right {
   20% {
     transform: translateX(0);

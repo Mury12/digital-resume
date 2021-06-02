@@ -1,28 +1,41 @@
 <template>
-  <b-row class="skills-wrapper" >
+  <b-row
+    class="skills-wrapper w-100 justify-content-around align-content-center h-100"
+    style="padding-top: 85px"
+  >
+    <span
+      class="box-selected-close pointer position-absolute"
+      @click="selected = -1"
+      :class="selected >= 0 ? 'fade-in' : 'fade-out'"
+    >
+      <fas icon="times" class="fa-2x"></fas>
+    </span>
     <b-col
-      class="skill-set-wrapper h-100"
-      v-for="(skill, index) in skills"
       cols="12"
-      :lg="selected === index ? '7' : colSize"
+      md="3"
+      v-for="(skill, index) in skills"
       :key="index"
-      @click="!selected !== index ? (selected = index) : null"
-      :class="{ pointer: selected !== index }"
+      class="p-3 m-3"
     >
       <div
-        class="skill-set-background-mask"
-        :class="{ hoverable: selected !== index }"
-        :style="{
-          background: `black`
+        class="skill-set-wrapper"
+        @click="!selected !== index && skill.title.length ? (selected = index) : null"
+        :class="{
+          pointer: selected !== index,
+          'box-selected': selected === index
         }"
-      ></div>
-      <skill-set
-        :skill="skill"
-        :selected="selected"
-        :position="index"
-        @select="selected = index"
-        @modal="openModal"
-      ></skill-set>
+        :style="{
+          backgroundImage: `url(@/assets/images/${skill.background})`
+        }"
+      >
+        <skill-set
+          :skill="skill"
+          :selected="selected"
+          :position="index"
+          @select="selected = index"
+          @modal="openModal"
+        ></skill-set>
+      </div>
     </b-col>
     <b-col class="position-relative" hidden>
       <b-modal
@@ -51,13 +64,13 @@ export default {
       modal: {
         content: "",
         title: ""
-      },
+      }
     };
   },
   props: {
     skills: {
       type: Array,
-      default: () => [],
+      default: () => []
     }
   },
   methods: {
@@ -77,16 +90,9 @@ export default {
       } else if (direction === "prev" && this.selected > -1) {
         this.selected--;
       }
-    },
-  },
-  computed: {
-    colSize() {
-      if (this.selected === -1) {
-        return Number.parseInt(12 / this.skills.length);
-      }
-      return Number.parseInt((12 - 7) / (this.skills.length - 1));
     }
   },
+
   mounted() {
     this.$nextTick(() => {
       document.body.addEventListener("keyup", e => {
@@ -103,16 +109,18 @@ export default {
 <style scoped>
 @media screen and (min-width: 992px) {
   .skills-wrapper {
-    height: 100vh;
     padding-top: 0 !important;
   }
   .skill-set-wrapper {
-    transform: skew(-5deg);
-    border-right: 5px solid rgba(76, 76, 219, 0.425);
-    border-bottom: none !important;
+    height: 300px;
+    width: 300px;
+    border: 2px solid rgb(255, 255, 255);
   }
-  .skill-set-wrapper .skill-set {
-    transform: skew(5deg);
+  .fade-in {
+    opacity: 1 !important;
+  }
+  .fade-out {
+    opacity: 0 !important;
   }
   .skill-set-wrapper:hover .hoverable {
     opacity: 1;
@@ -121,10 +129,33 @@ export default {
     filter: blur(6px);
   } */
 }
+.box-selected {
+  position: fixed;
+  height: calc(100% - 90px);
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: black;
+  z-index: 1;
+  margin-top: 90px;
+  border: none;
+}
+
+.box-selected-close {
+  z-index: 999;
+  top: 90px;
+  right: 25px;
+  opacity: 0.3;
+  transition: ease-in-out 200ms;
+}
+.box-selected-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
 .skill-set-wrapper {
   transition: ease-in-out 600ms;
   box-sizing: border-box;
-  border-bottom: 5px solid rgba(76, 76, 219, 0.425);
 }
 .skills-wrapper {
   padding-top: 90px;

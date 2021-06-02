@@ -1,10 +1,9 @@
 <template>
   <div
-    class="skill-set d-flex align-items-center justify-content-center h-100 w-100"
-    style="padding-top: 85px"
+    class="skill-set d-flex align-items-center justify-content-center"
     :style="{
       height: currentElementHeight,
-      minHeight: selected === position ? '90vh' : 'auto'
+      minHeight: '100%'
     }"
   >
     <b-container :id="`container__${position}`">
@@ -12,12 +11,9 @@
         <div
           :key="title"
           v-html="title"
-          :style="{
-            marginLeft: selected !== position ? '-10px' : 0
-          }"
         ></div>
       </transition>
-      <small class="text-secondary" v-if="selected === -1 && position === 0">{{
+      <small class="text-secondary" v-if="selected === -1 && title.length ">{{
         $t(lang, "Click to Open")
       }}</small>
 
@@ -157,7 +153,7 @@ export default Vue.extend({
     },
     title() {
       if (this.skill.title) {
-        return this.selected !== -1 && this.selected !== this.position
+        return this.selected !== this.position
           ? `<h5>${this.skill.little}</h5>`
           : `<h2>${this.skill.title}</h2>`;
       }

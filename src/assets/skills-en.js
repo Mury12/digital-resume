@@ -6,7 +6,6 @@ export default [
       in this industry around 2014 when I joined the graduation, and I'm working as a freelancer since then. In the meantime I have worked in some small companies and startups as a developer
       and always brought something good.</p>
       <p>I have developed this digital resumé in order to facilitate an overview of my professional abilities and I hope you feel good with this view :) Thank you for visiting.</p>
-      <mark>Note that page scrolls are disabled but if something is bigger than your screen, scroll arrows will appear in the sides of the window.</mark>
       <h5 class="mt-4">Please check <a target="_blank" href="https://linkedin.com/in/andremury">Linkedin</a> for professional information.</h5>
       `,
         background: "atlantic-city.webp",
@@ -77,6 +76,13 @@ export default [
             },
 
         ],
+    },
+    {
+        title: "",
+        little: "",
+        description: "",
+        background: "findme.jpg",
+        abilities: [],
     },
     {
         title: "Back-end Engineer",
@@ -333,13 +339,6 @@ export default [
             },
 
         ],
-    },
-    {
-        title: "Musician",
-        little: "Music",
-        description: "",
-        background: "findme.jpg",
-        abilities: [],
     },
     {
         title: "Where you can find me",

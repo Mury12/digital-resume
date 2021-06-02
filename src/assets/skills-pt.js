@@ -6,7 +6,6 @@ export default [
       <p>Eu iniciei nessa indústria de desenvolvimento de software por volta de 2014, ano em que iniciei a universidade. Embora já tivesse construido alguns sites e sistemas simples desde 2007,
       considero que iniciei em 2014. Em 2015 eu comecei a trabalhar como desenvolvedor freelancer, área a qual atuo até os dias de hoje e, no meio tempo, trabalhei em algumas pequenas empresas
       e startups.</p>
-      <mark>Por favor, note que esta página pode ser maior que a largura de seu monitor. Caso isso ocorra, aparecerão setas indicando 😄.</mark>
       <h5 class="mt-4">Visite meu <fas icon="linkedin-in" /><a target="_blank" href="https://linkedin.com/in/andremury">Linkedin</a> para mais informações.</h5>
       `,
         background: "atlantic-city.webp",
@@ -77,6 +76,13 @@ export default [
             },
 
         ],
+    },
+    {
+        title: "",
+        little: "",
+        description: "",
+        background: "findme.jpg",
+        abilities: [],
     },
     {
         title: "Back-end Engineer",
@@ -333,13 +339,6 @@ export default [
             },
 
         ],
-    },
-    {
-        title: "Musician",
-        little: "Music",
-        description: "",
-        background: "findme.jpg",
-        abilities: [],
     },
     {
         title: "Where you can find me",

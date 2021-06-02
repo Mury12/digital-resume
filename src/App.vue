@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="{ hide: hide }" ref="app">
     <transition mode="out-in" name="slide-fade">
-      <div :key="lang">
+      <div :key="lang" class="d-none d-md-flex">
         <div v-if="!lang">
           <div
             class="position-absolute w-100 h-100 d-flex flex-column justify-content-center"
@@ -48,6 +48,10 @@
         </div>
       </div>
     </transition>
+    <div class="under-construction w-100 d-flex align-items-center bg-dark d-flex d-md-none">
+      <h3 class="">Sorry, we're under construction.</h3>
+      <h3> Please check computer version :) </h3>
+    </div>
   </div>
 </template>
 
@@ -225,6 +229,10 @@ export default {
   transition-delay: 0.8s;
   transform: scale(2);
   background-color: black;
+}
+
+.under-construction {
+  height: 100vh;
 }
 
 @keyframes arrow-pulse-right {

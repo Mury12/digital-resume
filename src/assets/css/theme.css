@@ -70,12 +70,12 @@ body {
   border-width: 3px;
 }
 
-.skill-set-wrapper:nth-of-type(2n):not(.selected):hover::before {
-  transform: translateX(17px) translateY(-17px);
+.skill-set-wrapper::before  {
+  transform: translateX(-17px) translateY(-17px);
 }
 
-.skill-set-wrapper:nth-of-type(2n+1):not(.selected):hover::before {
-  transform: translateX(17px) translateY(17px);
+.skill-set-wrapper:not(.selected):hover::before {
+  transform: translateX(5px) translateY(5px);
 }
 
 .background-mask {

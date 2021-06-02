@@ -12,20 +12,23 @@
     </span>
     <b-col
       cols="12"
-      md="3"
+      md="4"
+      lg="3"
       v-for="(skill, index) in skills"
       :key="index"
       class="p-3 m-3"
     >
       <div
-        class="skill-set-wrapper"
-        @click="!selected !== index && skill.title.length ? (selected = index) : null"
+        class="skill-set-wrapper position-relative"
+        @click="
+          !selected !== index && skill.title.length ? (selected = index) : null
+        "
         :class="{
-          pointer: selected !== index,
+          pointer: selected !== index && skill.title.length,
           'box-selected': selected === index
         }"
         :style="{
-          backgroundImage: `url(@/assets/images/${skill.background})`
+          background: `url(${getBackground(skill.background)})`
         }"
       >
         <skill-set
@@ -107,30 +110,28 @@ export default {
 };
 </script>
 <style scoped>
-@media screen and (min-width: 992px) {
-  .skills-wrapper {
-    padding-top: 0 !important;
-  }
-  .skill-set-wrapper {
-    height: 300px;
-    width: 300px;
-    border: 2px solid rgb(255, 255, 255);
-  }
-  .fade-in {
-    opacity: 1 !important;
-  }
-  .fade-out {
-    opacity: 0 !important;
-  }
-  .skill-set-wrapper:hover .hoverable {
-    opacity: 1;
-  }
-  /* .skill-set-background-mask {
+.skills-wrapper {
+  padding-top: 0 !important;
+}
+.skill-set-wrapper {
+  height: 300px;
+  width: 300px;
+  border: 2px solid rgb(255, 255, 255);
+}
+.fade-in {
+  opacity: 1 !important;
+}
+.fade-out {
+  opacity: 0 !important;
+}
+.skill-set-wrapper:hover .hoverable {
+  opacity: 1;
+}
+/* .skill-set-background-mask {
     filter: blur(6px);
   } */
-}
 .box-selected {
-  position: fixed;
+  position: fixed !important;
   height: calc(100% - 90px);
   width: 100%;
   top: 0;
@@ -154,8 +155,12 @@ export default {
 }
 
 .skill-set-wrapper {
+  background-color: black !important;
   transition: ease-in-out 600ms;
   box-sizing: border-box;
+  background-position: top !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 .skills-wrapper {
   padding-top: 90px;

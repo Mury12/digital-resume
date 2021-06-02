@@ -8,7 +8,7 @@ export default [
       e startups.</p>
       <h5 class="mt-4">Visite meu <fas icon="linkedin-in" /><a target="_blank" href="https://linkedin.com/in/andremury">Linkedin</a> para mais informações.</h5>
       `,
-        background: "atlantic-city.webp",
+        background: "",
         abilities: [
             {
                 name: "Team work",
@@ -91,7 +91,7 @@ export default [
         As the time passes, I have learned other technologies such as NodeJS and Docker to improve my skills. In the PHP case, I always preferred to work with the vanilla version, without a huge
         framework behind the project and I ended creating my own API environment model that helped me in almost all my small and medium size projects. Now I have decided to learn a framework
         and made my choice for Symfony. I have tried Laravel but it is too big for most projects and Zend/Laminas are in my TODO list. For now, let's focus on Symfony.`,
-        background: "backend.png",
+        background: "",
         abilities: [
             {
                 name: "PHP",
@@ -152,7 +152,7 @@ export default [
         title: "Front-end Engineer",
         little: "Front end",
         description: "",
-        background: "frontend.png",
+        background: "",
         abilities: [
             {
                 name: "VueJS",
@@ -225,7 +225,7 @@ export default [
         title: "General Tools and Frameworks",
         little: "Other tools",
         description: "",
-        background: "database.png",
+        background: "",
         abilities: [
             {
                 name: "Linux",
@@ -357,7 +357,7 @@ export default [
         And you can also <a href ="mailto:mury63@gmail.com">mail me</a><br/>
         Thanks for your visit.
         `,
-        background: "music.jpg",
+        background: "",
         abilities: [],
     },
 ];

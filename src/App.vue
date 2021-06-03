@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="{ hide: hide }" ref="app">
     <transition mode="out-in" name="slide-fade">
-      <div :key="lang" class="d-none d-md-block">
+      <div :key="lang" class="">
         <div v-if="!lang">
           <div
             class="position-absolute w-100 h-100 d-flex flex-column justify-content-center"
@@ -29,15 +29,9 @@
           <div class="background-mask"></div>
           <div class="page-body">
             <page-header @lang="lang = $event" :lang="lang" />
-            <b-container
-              class="px-3 px-md-5"
-              id="main"
-              :style="{
-                transform: `translate(${translated}px)`
-              }"
-            >
+            <div class="" id="main">
               <router-view :key="$route.name" :skills="skills"></router-view>
-            </b-container>
+            </div>
           </div>
           <div class="scrollleft-icon pointer" v-if="buttons.left">
             <fas icon="chevron-left" class="fa-3x" @click="scroll('right')" />
@@ -48,10 +42,12 @@
         </div>
       </div>
     </transition>
-    <div class="under-construction w-100 d-flex align-items-center bg-dark d-flex d-md-none">
+    <!-- <div
+      class="under-construction w-100 d-flex align-items-center bg-dark d-flex d-md-none"
+    >
       <h3 class="">Sorry, we're under construction.</h3>
-      <h3> Please check computer version :) </h3>
-    </div>
+      <h3>Please check computer version :)</h3>
+    </div> -->
   </div>
 </template>
 
@@ -87,8 +83,8 @@ export default {
         this.$refs["lang-pt"].className += " selected ";
       }
       setTimeout(() => {
-        this.lang = lang
-      }, 3000)
+        this.lang = lang;
+      }, 3000);
     },
     scroll: function(side = "right") {
       const maxTranslation = -(this.minAppWidth - this.windowWidth);
@@ -188,7 +184,6 @@ export default {
 };
 </script>
 <style scoped>
-
 .scrollleft-icon {
   left: 10px;
   animation: arrow-pulse-left 10s infinite;

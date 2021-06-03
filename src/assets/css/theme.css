@@ -2,10 +2,6 @@
 @media screen and (min-width: 992px) {
   body {
     overflow: hidden;
-    background-color: black;
-  }
-  #app {
-    overflow: hidden;
   }
   /* .background-mask, .background-mask::before, body {
     position: absolute !important;
@@ -15,13 +11,12 @@
   /* .background-mask {
     filter: blur(5px);
   } */
-  #main {
+  .body-container {
     height: 100vh;
   }
 }
-
-body {
-  overflow-x: hidden;
+.body-container{
+  padding-top: 85px
 }
 
 .langselector-btn {
@@ -34,15 +29,8 @@ body {
   transition: ease-in-out 150ms;
 }
 
-.skill-set-wrapper:not(.box-selected)::before {
-  content: " ";
-  height: 300px;
-  width: 300px;
-  border: 1px solid white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: ease-in-out 150ms;
+body {
+  background-color: black;
 }
 
 .langselector-btn::before {
@@ -56,7 +44,7 @@ body {
   transition: ease-in-out 150ms;
 }
 
-.langselector-btn:hover:not(.selected), .skill-set-wrapper:hover:not(.selected) {
+.langselector-btn:hover:not(.selected), .skill-set-square-btn:hover:not(.selected) {
   border-color: rgba(255, 255, 255, 0.493);
 }
 
@@ -70,11 +58,11 @@ body {
   border-width: 3px;
 }
 
-.skill-set-wrapper::before  {
+.skill-set-square-btn::before {
   transform: translateX(-17px) translateY(-17px);
 }
 
-.skill-set-wrapper:not(.selected):hover::before {
+.skill-set-square-btn:not(.selected):hover::before {
   transform: translateX(5px) translateY(5px);
 }
 
@@ -100,7 +88,7 @@ body {
   top: 0;
   left: 0;
   z-index: inherit;
-  background-color: rgba(0, 0, 0, 0.825);
+  background-color: rgba(0, 0, 0, 1);
 }
 
 #app {
@@ -162,6 +150,25 @@ input::placeholder {
 
 .slide-fade-enter {
   transform: translateX(5px);
+  opacity: 0;
+}
+
+.cluster-in-enter-active {
+  transition: 1s ease-in-out;
+  transition-delay: 1s;
+}
+
+.cluster-in-leave-active {
+  transition: 1s ease-in-out;
+}
+
+.cluster-in-leave-to {
+  transform: scale(1.5);
+  opacity: 0;
+}
+
+.cluster-in-enter {
+  transform: scale(1.5);
   opacity: 0;
 }
 

@@ -6,14 +6,9 @@
       minHeight: '100%'
     }"
   >
-    <b-container :id="`container__${position}`">
-      <transition mode="out-in" name="slide-fade">
-        <div
-          :key="title"
-          v-html="title"
-        ></div>
-      </transition>
-      <small class="text-secondary" v-if="selected === -1 && title.length ">{{
+    <b-container :id="`container__${title.length + getTime()}`">
+      <div :key="title" v-html="title"></div>
+      <small class="text-secondary" v-if="selected === -1 && title.length">{{
         $t(lang, "Click to Open")
       }}</small>
 
@@ -114,6 +109,9 @@ export default Vue.extend({
     listener: function($e) {
       if ($e.deltaY > 0) this.scroll("down");
       else this.scroll("up");
+    },
+    getTime: function() {
+      return new Date().getUTCMilliseconds().toString();
     }
   },
   watch: {
@@ -176,10 +174,16 @@ export default Vue.extend({
 });
 </script>
 <style scoped>
-.skill-content {
-  transition: ease-in-out 450ms;
-  overflow: hidden;
+@media screen and (min-width: 992px) {
+  .skill-content {
+    transition: ease-in-out 450ms;
+    overflow: hidden;
+  }
 }
+  .skill-content {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 .scrolldown-icon,
 .scrollup-icon {
   opacity: 0.7;

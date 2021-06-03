@@ -11,10 +11,13 @@ export default {
     "Prefference": {
         pt: 'Preferência'
     },
-    "Order by" :{
+    "Order by": {
         pt: 'Ordernar por'
     },
     "See more": {
         pt: 'Veja mais'
+    },
+    "Close": {
+        pt: 'Fechar'
     }
 }

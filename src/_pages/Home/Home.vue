@@ -2,14 +2,13 @@
   <div>
     <b-container class="body-container">
       <b-row
-        class="skills-wrapper w-100 justify-content-around align-content-center h-100"
+        class="skills-wrapper justify-content-around align-content-center h-100"
         style="padding-top: 85px"
       >
         <span
           class="box-selected-close pointer "
           @click="selected = -1"
           :class="selected >= 0 ? '' : 'fade-out'"
-          v-b-tooltip.left="$t(lang, 'Close')"
         >
           <fas icon="times" class="fa-2x"></fas>
         </span>

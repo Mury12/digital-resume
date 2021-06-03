@@ -1,23 +1,23 @@
 <template>
   <div id="app" :class="{ hide: hide }" ref="app">
-    <transition mode="out-in" name="slide-fade">
+    <transition mode="out-in" name="fade">
       <div :key="lang" class="">
         <div v-if="!lang">
           <div
             class="position-absolute w-100 h-100 d-flex flex-column justify-content-center"
           >
             <h2>Welcome! Please, select a language</h2>
-            <div class=" mt-3 d-flex justify-content-center">
+            <div class="mt-3 d-md-flex m-auto m-md-0 justify-content-center">
               <div
                 ref="lang-en"
-                class="pointer langselector-btn d-flex align-items-center justify-content-center"
+                class="pointer langselector-btn d-flex align-items-center my-2 justify-content-center"
                 @click="select('en')"
               >
                 English
               </div>
               <div
                 ref="lang-pt"
-                class="pointer langselector-btn d-flex align-items-center justify-content-center"
+                class="pointer langselector-btn d-flex align-items-center my-2 justify-content-center"
                 @click="select('pt')"
               >
                 Português

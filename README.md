@@ -1,4 +1,4 @@
-# vue-start
+# Digital resume
 
 ## Project setup
 ```

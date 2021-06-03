@@ -177,7 +177,8 @@ export default Vue.extend({
 @media screen and (min-width: 992px) {
   .skill-content {
     transition: ease-in-out 450ms;
-    overflow: hidden;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
   }
 }
   .skill-content {

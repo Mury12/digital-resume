@@ -82,6 +82,7 @@ export default {
         this.$refs["lang-en"].className += " unselected ";
         this.$refs["lang-pt"].className += " selected ";
       }
+      document.removeEventListener("keyup", this.listener);
       setTimeout(() => {
         this.lang = lang;
       }, 3000);
@@ -131,6 +132,13 @@ export default {
     mountSkills: function($lang) {
       this.lang = $lang;
       this.skills = require(`@/assets/skills-${$lang}.js`).default;
+    },
+    listener: function(e) {
+      if (e.key === "1") {
+        this.select("en");
+      } else if (e.key === "2") {
+        this.select("pt");
+      }
     }
   },
 
@@ -154,31 +162,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      // if (window.innerWidth < 992) {
-      //   this.minAppWidth = window.innerWidth;
-      //   this.$root.isMobile = true;
-      // } else {
-      //   this.minAppWidth = 1450;
-      //   this.$root.isMobile = false;
-      // }
-      // window.onresize = $e => {
-      //   this.windowWidth = $e.target.innerWidth;
-      //   if (this.windowWidth < 992) {
-      //     this.minAppWidth = this.windowWidth;
-      //     this.$root.isMobile = true;
-      //   } else {
-      //     this.minAppWidth = 1450;
-      //     this.$root.isMobile = false;
-      //   }
-      //   this.buttons = {
-      //     right: this.windowWidth < this.minAppWidth,
-      //     left: this.translated > 0
-      //   };
-      // };
-      this.buttons = {
-        right: this.windowWidth < this.minAppWidth,
-        left: this.translated > 0
-      };
+      document.addEventListener("keyup", this.listener);
     });
   }
 };

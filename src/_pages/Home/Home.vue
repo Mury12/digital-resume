@@ -10,7 +10,7 @@
           @click="selected = -1"
           :class="selected >= 0 ? '' : 'fade-out'"
         >
-          <fas icon="times" class="fa-2x"></fas>
+          <fas icon="times" class="fa-3x"></fas>
         </span>
         <b-col
           cols="12"
@@ -56,8 +56,13 @@
         </b-col>
       </b-row>
     </b-container>
+
     <transition mode="out-in" name="cluster-in">
-      <div class="box-selected position-fixed" v-if="selected !== -1">
+      <div
+        class="box-selected position-fixed"
+        v-if="selected !== -1"
+        :key="selected"
+      >
         <skill-set :skill="skills[selected]" @modal="openModal"></skill-set>
       </div>
     </transition>
@@ -101,6 +106,13 @@ export default {
         this.selected++;
       } else if (direction === "prev" && this.selected > -1) {
         this.selected--;
+      } else if (this.selected === -1) {
+        this.selected = this.skills.length - 1;
+      } else {
+        this.selected = -1;
+      }
+      if (this.selected > -1 && !this.skills[this.selected].title.length) {
+        this.select(direction);
       }
     }
   },
@@ -116,6 +128,8 @@ export default {
           this.select("next");
         } else if (e.key === "ArrowLeft") {
           this.select("prev");
+        } else if (e.key === "Escape") {
+          this.selected = -1;
         }
       });
     });

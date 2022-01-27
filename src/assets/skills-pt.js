@@ -2,12 +2,13 @@ export default [
     {
         title: "Apresentação",
         little: "Eu sou ...",
-        description: `<p>Olá, eu sou André Mury, Engenheiro de Software graduado em Sistemas de Informação e atualmente cantidato a Mestre, ambos pela Universidade Federal de Itajubá.</p>
-      <p>Eu iniciei nessa indústria de desenvolvimento de software por volta de 2014, ano em que iniciei a universidade. Embora já tivesse construido alguns sites e sistemas simples desde 2007,
-      considero que iniciei em 2014. Em 2015 eu comecei a trabalhar como desenvolvedor freelancer, área a qual atuo até os dias de hoje e, no meio tempo, trabalhei em algumas pequenas empresas
-      e startups.</p>
-      <h5 class="mt-4">Visite meu <fas icon="linkedin-in" /><a target="_blank" href="https://linkedin.com/in/andremury">Linkedin</a> para mais informações.</h5>
-      `,
+        description: `<p>Olá, eu sou André Mury, Engenheiro de Software graduado em Sistemas de Informação pela Universidade Federal de Itajubá e, atualmente, Engenheiro de Software na 
+        <a href="https://pollum.io target="_blank">Pollum</a>.</p> 
+        <p>Eu iniciei nessa indústria de desenvolvimento de software por volta de 2014, ano em ingressei na universidade. Embora já tivesse construido alguns sites e sistemas simples desde 2007,
+        considero 2014 meu headstart. Em 2015 eu comecei a trabalhar como desenvolvedor freelancer, área a qual atuo até os dias de hoje e, no meio tempo, trabalhei em algumas pequenas empresas
+        e startups.</p>
+        <h5 class="mt-4">Visite meu <fas icon="linkedin-in" /><a target="_blank" href="https://linkedin.com/in/andremury">Linkedin</a> para mais informações.</h5>
+        `,
         background: "",
         abilities: [
             {
@@ -33,7 +34,7 @@ export default [
                 imageFilter: "invert(1)",
                 level: 4.5,
                 description:
-                    "Se eu acredotar na causa, com certeza irei até ao final.",
+                    "Se eu acreditar na causa, com certeza irei até ao final.",
             },
             {
                 name: "Inglês",
@@ -41,7 +42,7 @@ export default [
                 imageFilter: "invert(1)",
                 level: 3,
                 description:
-                    "Boa audição e escrita, mas a fala ainda deixa a desejar. Estou tentando melhorar esta habilidade sempre que possível.",
+                    "Mantenho uma conversa técnica ou informal sem muitos problemas.",
             },
             {
                 name: "Português",
@@ -130,7 +131,7 @@ export default [
                 e descobri uma nova vida para o NodeJS, uma plataforma que eu me decepcionei bastante no passado pela falta de estrutura e o resultado bagunçado.
                 Com TypeScript, o MVC torna-se possível junto ao JS e acabei por ficar bem confiante com o framework 😁`,
                 libs: [],
-                level: 3.5,
+                level: 4,
             },
             {
                 name: "MongoDB",
@@ -139,7 +140,7 @@ export default [
                 entendo um um pouco do seu funcionamento. Normalmente, eu utilizo NodeJS como microserviço de comunicação por ser mais simples, mas também já
                 implementei aplicações com PHP e MongoDB.`,
                 libs: [],
-                level: 2,
+                level: 3,
             },
             {
                 name: "Docker",
@@ -163,10 +164,9 @@ export default [
                 description:
                     `<p>Eu tenho trabalhado com VueJS desde 2018, quando o conheci. Admito que me apaixonei por esse framework e desde então, eu tenho estudado e utilizado em praticamente
                     todos os projetos. Atualmente ainda uso o Vue 2, mas assim que possível, vou migrar para o Vue 3.</p>
-                    <p>Tenho autonomia nas mais comuns bibliotecas VueJS, como BootstrapVue, VueTheMask, VueSession, VueRouter e outras que vêm com a necessidade. Apesar de não utilizar
-                        muito, também tenho conhecimento básicos de Vuex e NuxtJS</p>`,
+                    <p>Tenho autonomia nas mais comuns bibliotecas VueJS, como BootstrapVue, VueTheMask, VueSession, VueRouter, VueX, Nuxt e outras que vêm com a necessidade.</p>`,
                 libs: [],
-                level: 4,
+                level: 4.5,
             },
             {
                 name: "Bootstrap",
@@ -218,9 +218,9 @@ export default [
                 name: "React",
                 image: "react.svg",
                 description:
-                    "Eu trabalhei com React por cerca de um ano. Devo dizer que não é dos meus favoritos.",
+                    "Tenho trabalhado com ReactJS como opção de mercado desde 2020. Apesar de não ser meu framework favorito, tenho uma boa autonomia e conhecimentos para realizar as tarefas necessárias.",
                 libs: [],
-                level: 2,
+                level: 3.5,
             },
         ],
     },
@@ -351,14 +351,14 @@ export default [
         <ul class="m-0 p-0" style="list-style-type: none">
         <li><a target="_blank" href="https://www.linkedin.com/in/andremury">Linkedin</a></li>
         <li><a target="_blank" href="https://github.com/mury12">Github</a></li>
-        <li><a target="_blank" href="https://github.com/mury12">Gitlab</a></li>
+        <li><a target="_blank" href="https://gitlab.com/mury12">Gitlab</a></li>
         <li><a target="_blank" href="https://instagram.com/andmury.music">Instagram</a></li>
         <li><a target="_blank" href="https://open.spotify.com/artist/5aw5ZuQB4ElCVsrPkSvtLn?si=d747c21cd41b463b">Spotify</a></li>
         <li><a target="_blank" href="http://barbadebode.com">Barba de Bode</a></li>
         <li><a target="_blank" href="https://soundcloud.com/andremury">Soundcloud</a></li>
         </ul>
-        And you can also <a href ="mailto:mury63@gmail.com">mail me</a><br/>
-        Thanks for your visit.
+        Você também pode me <a href ="mailto:mury63@gmail.com">enviar um e-mail</a><br/>
+        Obrigado pela sua visita!
         `,
         background: "",
         abilities: [],

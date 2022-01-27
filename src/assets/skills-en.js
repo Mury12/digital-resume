@@ -2,7 +2,7 @@ export default [
     {
         title: "Self Presentation",
         little: "I am ...",
-        description: `<p>I'm Andre Mury, a software engineer graduated in Information Systems and currently Master's candidate by Federal University of Itajuba, Brazil. I have started 
+        description: `<p>I'm Andre Mury, a software engineer graduated in Information Systems by Federal University of Itajuba, Brazil, and currently a Software Engineer at <a href="https://pollum.io target="_blank">Pollum</a>. I have started 
       in this industry around 2014 when I joined the graduation, and I'm working as a freelancer since then. In the meantime I have worked in some small companies and startups as a developer
       and always brought something good.</p>
       <p>I have developed this digital resumé in order to facilitate an overview of my professional abilities and I hope you feel good with this view :) Thank you for visiting.</p>
@@ -160,10 +160,9 @@ export default [
                 description:
                     `<p>I have been working with VueJS since 2018 and I fell in love as soon as I met this framework, and since then I'm learning and using Vue in most projects as I can.
                 Currently, I use Vue 2 but I'm starting a new path to get in touch with Vue 3. </p>
-                <p>I usually use the most common VueJS packages such as BootstrapVue, VueTheMask, VueRouter, VueSession, and others that come as it is needed. 
-                I also have basic knowledge about Vuex and NuxtJs</p>`,
+                <p>I usually use the most common VueJS packages such as BootstrapVue, VueTheMask, VueRouter, VueSession, VueX, Nuxt and others that come as it is needed.</p>`,
                 libs: [],
-                level: 4,
+                level: 4.5,
             },
             {
                 name: "Bootstrap",
@@ -215,9 +214,9 @@ export default [
                 name: "React",
                 image: "react.svg",
                 description:
-                    "I have used React for a few projects in one of the companies I've worked and I should say that this is not my favorite, but still counts.",
+                    "I have been using react as a market-option since 2020. I should say that this is not my favorite, but I have a good knowledge and autonomy in this framework.",
                 libs: [],
-                level: 2,
+                level: 3.5,
             },
         ],
     },
@@ -348,10 +347,10 @@ export default [
         <ul class="m-0 p-0" style="list-style-type: none">
         <li><a target="_blank" href="https://www.linkedin.com/in/andremury">Linkedin</a></li>
         <li><a target="_blank" href="https://github.com/mury12">Github</a></li>
-        <li><a target="_blank" href="https://github.com/mury12">Gitlab</a></li>
+        <li><a target="_blank" href="https://gitlab.com/mury12">Gitlab</a></li>
         <li><a target="_blank" href="https://instagram.com/andmury.music">Instagram</a></li>
         <li><a target="_blank" href="https://open.spotify.com/artist/5aw5ZuQB4ElCVsrPkSvtLn?si=d747c21cd41b463b">Spotify</a></li>
-        <li><a target="_blank" href="http://barbadebode.com">Barba de Bode</a></li>
+        // <li><a target="_blank" href="http://barbadebode.com">Barba de Bode</a></li>
         <li><a target="_blank" href="https://soundcloud.com/andremury">Soundcloud</a></li>
         </ul>
         And you can also <a href ="mailto:mury63@gmail.com">mail me</a><br/>

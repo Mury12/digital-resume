@@ -2,7 +2,7 @@ export default [
     {
         title: "Self Presentation",
         little: "I am ...",
-        description: `<p>I'm Andre Mury, a software engineer graduated in Information Systems by Federal University of Itajuba, Brazil, and currently a Software Engineer at <a href="https://pollum.io target="_blank">Pollum</a>. I have started 
+        description: `<p>I'm Andre Mury, a software engineer graduated in Information Systems by Federal University of Itajuba, Brazil, and currently a Software Engineer at <a href="https://pollum.io" target="_blank">Pollum</a>. I have started 
       in this industry around 2014 when I joined the graduation, and I'm working as a freelancer since then. In the meantime I have worked in some small companies and startups as a developer
       and always brought something good.</p>
       <p>I have developed this digital resumé in order to facilitate an overview of my professional abilities and I hope you feel good with this view :) Thank you for visiting.</p>

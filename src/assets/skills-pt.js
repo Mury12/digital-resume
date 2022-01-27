@@ -120,7 +120,7 @@ export default [
                 name: "NodeJS",
                 image: "nodejs.png",
                 description:
-                    "2 anos de experiência trabalhando com NodeJS, incluindo as bibliotecas mais comuns como ExpressJS, Fastify e Sequelize.",
+                    "Trabalho com NodeJS desde 2020, incluindo as bibliotecas mais comuns, como ExpressJS, Fastify, CryptoJS, JWT e Sequelize.",
                 libs: [],
                 level: 3,
             },

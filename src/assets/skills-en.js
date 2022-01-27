@@ -117,7 +117,7 @@ export default [
                 name: "NodeJS",
                 image: "nodejs.png",
                 description:
-                    "2 years of experience working with NodeJS including more common back-end frameworks such as Express, Fastify, and Sequelize.",
+                    "I Work with NodeJS since 2020, including more common back-end frameworks such as Express, Fastify, CryptoJS and Sequelize.",
                 libs: [],
                 level: 3,
             },

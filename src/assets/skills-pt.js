@@ -2,7 +2,7 @@ export default [
     {
         title: "Apresentação",
         little: "Eu sou ...",
-        description: `<p>Olá, eu sou André Mury, Engenheiro de Software graduado em Sistemas de Informação pela Universidade Federal de Itajubá e, atualmente, Engenheiro de Software na 
+        description: `<p>Olá, eu sou André Mury, Analista de Sistemas graduado em Sistemas de Informação pela Universidade Federal de Itajubá e, atualmente, Engenheiro de Software na 
         <a href="https://pollum.io" target="_blank">Pollum</a>.</p> 
         <p>Eu iniciei nessa indústria de desenvolvimento de software por volta de 2014, ano em ingressei na universidade. Embora já tivesse construido alguns sites e sistemas simples desde 2007,
         considero 2014 meu headstart. Em 2015 eu comecei a trabalhar como desenvolvedor freelancer, área a qual atuo até os dias de hoje e, no meio tempo, trabalhei em algumas pequenas empresas

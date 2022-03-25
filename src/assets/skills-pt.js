@@ -23,9 +23,9 @@ export default [
                 name: "Comunicação",
                 image: "communication.png",
                 level: 4,
-                description: `Comunicação é uma das mais importantes habilidades que se deve ter. As pessoas comunicam-se umas com as outrar para que possam entrar em consenso e 
+                description: `Comunicação é uma das mais importantes habilidades que se deve ter. As pessoas comunicam-se umas com as outras para que possam entrar em consenso e 
                 atingir um objetivo, assim como a natureza também se comunica em suas caçadas e esta é a única forma que podemos utilizar para mover as coisas.
-                Como músico profissional 🎸, eu aprendi -- e venho aprendendo, como me comunicar com as pessoas para entregar um sentimento ou humor e como líder e participante de equips
+                Como músico profissional 🎸, eu aprendi -- e venho aprendendo, como me comunicar com as pessoas para entregar um sentimento ou humor e como líder e participante de equipes
                 eu aprendi a levar confiança e conhecimento para meus companheiros.`,
             },
             {
@@ -110,9 +110,8 @@ export default [
             {
                 name: "MariaDB/MySQL",
                 image: "database.png",
-                description: `Bancos de dados relacionais são uma coisa que eu particularmente gosto. Parece uma parte completamente diferente do projeto que envolve um grante esforço
-                Eu tenho experiência em modelagem de banco de dados, administração e otimização de consulta. Meu domínio é MySQL/MariaDB, mas também tenho alguma experiência com SQLServer e HannaDB(SAP).
-                Relational databases are something that I particularly like. It seems like a totally different part of the project that involves a lot of effort.`,
+                description: `Bancos de dados relacionais são uma coisa que eu particularmente gosto. Parece uma parte completamente diferente do projeto que envolve um grante esforço.
+                Tenho experiência em modelagem de banco de dados, administração e otimização de consulta. Meu domínio é MySQL/MariaDB, mas também tenho alguma experiência com SQLServer e HannaDB(SAP).`,
                 libs: [],
                 level: 4,
             },
@@ -127,7 +126,7 @@ export default [
             {
                 name: "Typescript",
                 image: "typescript.png",
-                description: `Eu considero minha experiência com typescript muito parecida com a de Javascript. Eu venho trabalhando com esta tecnologia desde 2020
+                description: `Eu considero minha experiência com Typescript muito parecida com a de Javascript. Eu venho trabalhando com esta tecnologia desde 2020
                 e descobri uma nova vida para o NodeJS, uma plataforma que eu me decepcionei bastante no passado pela falta de estrutura e o resultado bagunçado.
                 Com TypeScript, o MVC torna-se possível junto ao JS e acabei por ficar bem confiante com o framework 😁`,
                 libs: [],
@@ -136,7 +135,7 @@ export default [
             {
                 name: "MongoDB",
                 image: "mongodb.png",
-                description: `MongoDB é meu principal banco de dados para armazenamento de logs. Eu realmente o uso como um grande bloco de notas, msa ainda assim
+                description: `MongoDB é meu principal banco de dados para armazenamento de logs. Eu realmente o uso como um grande bloco de notas, mas ainda assim
                 entendo um um pouco do seu funcionamento. Normalmente, eu utilizo NodeJS como microserviço de comunicação por ser mais simples, mas também já
                 implementei aplicações com PHP e MongoDB.`,
                 libs: [],
@@ -352,9 +351,7 @@ export default [
         <li><a target="_blank" href="https://www.linkedin.com/in/andremury">Linkedin</a></li>
         <li><a target="_blank" href="https://github.com/mury12">Github</a></li>
         <li><a target="_blank" href="https://gitlab.com/mury12">Gitlab</a></li>
-        <li><a target="_blank" href="https://instagram.com/andmury.music">Instagram</a></li>
         <li><a target="_blank" href="https://open.spotify.com/artist/5aw5ZuQB4ElCVsrPkSvtLn?si=d747c21cd41b463b">Spotify</a></li>
-        <li><a target="_blank" href="http://barbadebode.com">Barba de Bode</a></li>
         <li><a target="_blank" href="https://soundcloud.com/andremury">Soundcloud</a></li>
         </ul>
         Você também pode me <a href ="mailto:mury63@gmail.com">enviar um e-mail</a><br/>

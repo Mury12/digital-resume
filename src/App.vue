@@ -4,20 +4,42 @@
       <div :key="lang" class="">
         <div v-if="!lang">
           <div
-            class="position-absolute w-100 h-100 d-flex flex-column justify-content-center"
+            class="
+              position-absolute
+              w-100
+              h-100
+              d-flex
+              flex-column
+              justify-content-center
+            "
           >
             <h2>Welcome! Please, select a language</h2>
+            <h5 class="text-secondary">Bem vindo! Por favor, selecione um idioma</h5>
             <div class="mt-3 d-md-flex m-auto m-md-0 justify-content-center">
               <div
                 ref="lang-en"
-                class="pointer langselector-btn d-flex align-items-center my-2 justify-content-center"
+                class="
+                  pointer
+                  langselector-btn
+                  d-flex
+                  align-items-center
+                  my-2
+                  justify-content-center
+                "
                 @click="select('en')"
               >
                 English
               </div>
               <div
                 ref="lang-pt"
-                class="pointer langselector-btn d-flex align-items-center my-2 justify-content-center"
+                class="
+                  pointer
+                  langselector-btn
+                  d-flex
+                  align-items-center
+                  my-2
+                  justify-content-center
+                "
                 @click="select('pt')"
               >
                 Português
@@ -33,21 +55,9 @@
               <router-view :key="$route.name" :skills="skills"></router-view>
             </div>
           </div>
-          <div class="scrollleft-icon pointer" v-if="buttons.left">
-            <fas icon="chevron-left" class="fa-3x" @click="scroll('right')" />
-          </div>
-          <div class="scrollright-icon pointer" v-if="buttons.right">
-            <fas icon="chevron-right" class="fa-3x" @click="scroll('left')" />
-          </div>
         </div>
       </div>
     </transition>
-    <!-- <div
-      class="under-construction w-100 d-flex align-items-center bg-dark d-flex d-md-none"
-    >
-      <h3 class="">Sorry, we're under construction.</h3>
-      <h3>Please check computer version :)</h3>
-    </div> -->
   </div>
 </template>
 
@@ -64,17 +74,17 @@ export default {
       translated: 0,
       buttons: {
         right: false,
-        left: false
+        left: false,
       },
       lang: null,
-      skills: []
+      skills: [],
     };
   },
   components: {
-    PageHeader
+    PageHeader,
   },
   methods: {
-    select: function(lang) {
+    select: function (lang) {
       if (lang === "en") {
         this.$refs["lang-en"].className += " selected ";
         this.$refs["lang-pt"].className += " unselected ";
@@ -87,41 +97,10 @@ export default {
         this.lang = lang;
       }, 3000);
     },
-    scroll: function(side = "right") {
-      const maxTranslation = -(this.minAppWidth - this.windowWidth);
-      const amountToTranslate = 2;
-      if (side === "left") {
-        for (let i = 0; i < 100; i++) {
-          this.buttons.left = true;
-          setTimeout(() => {
-            if (this.translated - amountToTranslate >= maxTranslation) {
-              this.translated -= amountToTranslate;
-            } else if (this.translated - 1 >= maxTranslation) {
-              this.translated -= 1;
-            } else {
-              this.buttons.right = false;
-            }
-          }, 50 + i);
-        }
-      } else if (side === "right") {
-        for (let i = 0; i < 100; i++) {
-          this.buttons.right = true;
-          setTimeout(() => {
-            if (this.translated + amountToTranslate <= 0) {
-              this.translated += amountToTranslate;
-            } else if (this.translated + 1 <= 0) {
-              this.translated += 1;
-            } else {
-              this.buttons.left = false;
-            }
-          }, 50 + i);
-        }
-      }
-    },
-    toggler: function(e) {
+    toggler: function (e) {
       this.navbarIsOpen = e;
     },
-    closePage: function() {
+    closePage: function () {
       this.hide = true;
       window.location = "/";
       setTimeout(() => {}, 200);
@@ -129,31 +108,31 @@ export default {
         this.hide = false;
       }, 1000);
     },
-    mountSkills: function($lang) {
+    mountSkills: function ($lang) {
       this.lang = $lang;
       this.skills = require(`@/assets/skills-${$lang}.js`).default;
     },
-    listener: function(e) {
+    listener: function (e) {
       if (e.key === "1") {
         this.select("en");
       } else if (e.key === "2") {
         this.select("pt");
       }
-    }
+    },
   },
 
   watch: {
     $route: {
-      handler: function() {
+      handler: function () {
         document.title = (this.$route.meta.title || "") + " | " + "Andre Mury";
-      }
+      },
     },
     lang(n, o) {
       if (n != o) {
         this.mountSkills(n);
         this.$root.lang = n;
       }
-    }
+    },
   },
   beforeCreate() {
     clearInterval(this.iv);
@@ -164,7 +143,7 @@ export default {
     this.$nextTick(() => {
       document.addEventListener("keyup", this.listener);
     });
-  }
+  },
 };
 </script>
 <style scoped>

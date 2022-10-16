@@ -99,7 +99,7 @@ export default [
             {
                 name: "PHP",
                 image: "php.png",
-                description: `<p>5 anos ou mais trabalhando com vanilla PHP, construindo websites e APIs do completo zero. Eu acabei criando por mim mesmo
+                description: `<p>Desde 2015 trabalhando com vanilla PHP, construindo websites e APIs do completo zero. Eu acabei criando por mim mesmo
                 uma ferramenta para aumentar a eficiência do meu trabalho, abstraindo a maioria das coisas repetitivas que precisamos fazer em um projeto, como por exemplo
                 criar CRUDs.</p><p>A razão de eu não ter utilizado um framework durante este tempo todo é pelo fato de que eu gosto de entender como as coisas funcionam
                 em seu núcleo e, para isso é preciso desenvolver desde o nível mais baixo. Você pode checar a minha ferramenta no 
@@ -217,7 +217,7 @@ export default [
                 name: "React",
                 image: "react.svg",
                 description:
-                    "Tenho trabalhado com ReactJS como opção de mercado desde 2020. Apesar de não ser meu framework favorito, tenho uma boa autonomia e conhecimentos para realizar as tarefas necessárias.",
+                    "Tenho trabalhado com ReactJS/Nextjs como opção de mercado desde 2020. Apesar de não ser meu framework favorito, tenho uma boa autonomia e conhecimentos para realizar as tarefas necessárias.",
                 libs: [],
                 level: 3.5,
             },

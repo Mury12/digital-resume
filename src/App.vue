@@ -1,60 +1,10 @@
 <template>
   <div id="app" :class="{ hide: hide }" ref="app">
     <transition mode="out-in" name="fade">
-      <div :key="lang" class="">
-        <div v-if="!lang">
-          <div
-            class="
-              position-absolute
-              w-100
-              h-100
-              d-flex
-              flex-column
-              justify-content-center
-            "
-          >
-            <h2>Welcome! Please, select a language</h2>
-            <h5 class="text-secondary">Bem vindo! Por favor, selecione um idioma</h5>
-            <div class="mt-3 d-md-flex m-auto m-md-0 justify-content-center">
-              <div
-                ref="lang-en"
-                class="
-                  pointer
-                  langselector-btn
-                  d-flex
-                  align-items-center
-                  my-2
-                  justify-content-center
-                "
-                @click="select('en')"
-              >
-                English
-              </div>
-              <div
-                ref="lang-pt"
-                class="
-                  pointer
-                  langselector-btn
-                  d-flex
-                  align-items-center
-                  my-2
-                  justify-content-center
-                "
-                @click="select('pt')"
-              >
-                Português
-              </div>
-            </div>
-          </div>
-        </div>
+      <div :key="$root.lang" class="">
+        <select-language v-if="!$root.lang" @select="setLanguage" />
         <div v-else>
-          <div class="background-mask"></div>
-          <div class="page-body">
-            <page-header @lang="lang = $event" :lang="lang" />
-            <div class="" id="main">
-              <router-view :key="$route.name" :skills="skills"></router-view>
-            </div>
-          </div>
+          <TheLayout @lang="setLanguage" />
         </div>
       </div>
     </transition>
@@ -62,9 +12,15 @@
 </template>
 
 <script>
-import PageHeader from "./components/PageHeader/PageHeader.vue";
+import SelectLanguage from "./components/SelectLanguage.vue";
+import TheLayout from "./components/TheLayout.vue";
+
 export default {
   name: "App",
+  components: {
+    TheLayout,
+    SelectLanguage,
+  },
   data() {
     return {
       navbarIsOpen: false,
@@ -76,26 +32,12 @@ export default {
         right: false,
         left: false,
       },
-      lang: null,
-      skills: [],
     };
   },
-  components: {
-    PageHeader,
-  },
   methods: {
-    select: function (lang) {
-      if (lang === "en") {
-        this.$refs["lang-en"].className += " selected ";
-        this.$refs["lang-pt"].className += " unselected ";
-      } else if (lang === "pt") {
-        this.$refs["lang-en"].className += " unselected ";
-        this.$refs["lang-pt"].className += " selected ";
-      }
-      document.removeEventListener("keyup", this.listener);
-      setTimeout(() => {
-        this.lang = lang;
-      }, 3000);
+    setLanguage: function (e) {
+      this.$root.lang = e;
+      this.$session.set("lang", e);
     },
     toggler: function (e) {
       this.navbarIsOpen = e;
@@ -108,17 +50,6 @@ export default {
         this.hide = false;
       }, 1000);
     },
-    mountSkills: function ($lang) {
-      this.lang = $lang;
-      this.skills = require(`@/assets/skills-${$lang}.js`).default;
-    },
-    listener: function (e) {
-      if (e.key === "1") {
-        this.select("en");
-      } else if (e.key === "2") {
-        this.select("pt");
-      }
-    },
   },
 
   watch: {
@@ -127,22 +58,10 @@ export default {
         document.title = (this.$route.meta.title || "") + " | " + "Andre Mury";
       },
     },
-    lang(n, o) {
-      if (n != o) {
-        this.mountSkills(n);
-        this.$root.lang = n;
-      }
-    },
   },
   beforeCreate() {
-    clearInterval(this.iv);
     this.$session.start();
     document.title = (this.$route.meta.title || "") + " | " + "Andre Mury";
-  },
-  mounted() {
-    this.$nextTick(() => {
-      document.addEventListener("keyup", this.listener);
-    });
   },
 };
 </script>
@@ -166,26 +85,6 @@ export default {
   right: 10px;
   animation: arrow-pulse-right 10s infinite;
 }
-.langselector-btn:nth-of-type(2n + 1).unselected {
-  transition: 1s;
-  opacity: 0;
-  transform: rotate(-20deg);
-  margin-left: -315px;
-}
-.langselector-btn:nth-of-type(2n).unselected {
-  transition: 1s;
-  opacity: 0;
-  transform: rotate(20deg);
-  margin-right: -315px;
-}
-
-.langselector-btn.selected {
-  transition: 1s;
-  transition-delay: 0.8s;
-  transform: scale(2);
-  background-color: black;
-}
-
 .under-construction {
   height: 100vh;
 }

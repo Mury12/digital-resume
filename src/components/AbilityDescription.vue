@@ -1,7 +1,7 @@
 <template>
   <b-col md="6" lg="4" class="ability-wrapper p-3">
     <b-row
-      class="ability-content default-transition m-2 h-100 pt-2 rounded"
+      class="ability-content default-transition m-2 h-100 pt-5 rounded"
       :class="{ pointer: extendDescription }"
       @click="openDescription"
     >
@@ -10,19 +10,26 @@
       </b-col>
       <b-col class="text-center" style="height: 120px">
         <div
-          class="round d-flex justify-content-center align-items-center w-100"
+          class="round w-100 d-flex justify-content-center align-items-center"
           style="height: 100%"
         >
-          <img
-            class="lazy"
-            :src="picture"
-            height="100"
-            :style="{ filter: imageFilter }"
-          />
+          <div
+            class="logo d-flex justify-content-center align-items-center"
+            :style="{
+              animationDelay,
+            }"
+          >
+            <img
+              class="lazy"
+              :src="picture"
+              height="100"
+              :style="{ filter: imageFilter }"
+            />
+          </div>
         </div>
       </b-col>
       <b-col cols="12">
-        {{ $t(lang, "Proefficiency") }}
+        {{ $t("Proefficiency") }}
         <ability-chart :level="ability.level || 0" />
       </b-col>
       <b-col cols="12" class="text-center">
@@ -34,7 +41,7 @@
             @click="openDescription"
             v-if="extendDescription"
           >
-            {{$t(lang, "See more")}}
+            {{ $t("See more") }}
           </b-button>
         </p>
       </b-col>
@@ -42,21 +49,31 @@
   </b-col>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import AbilityChart from "./AbilityChart";
-export default Vue.extend({
+import AbilityChart from "./AbilityChart.vue";
+
+export default {
   name: "AbilityDescription",
   components: { AbilityChart },
-  props: ["ability"],
+  props: {
+    ability: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  data() {
+    return {
+      animationDelay: Math.random() * 20 + "s",
+    };
+  },
   methods: {
-    openDescription: function() {
+    openDescription: function () {
       if (this.ability.description && this.extendDescription) {
         this.$emit("modal", {
           title: this.ability.name,
-          content: this.ability.description
+          content: this.ability.description,
         });
       }
-    }
+    },
   },
   computed: {
     lang() {
@@ -83,21 +100,68 @@ export default Vue.extend({
     },
     imageFilter() {
       return this.ability.imageFilter || "";
-    }
-  }
-});
+    },
+  },
+};
 </script>
 <style scoped>
+.logo {
+  width: 100px;
+  position: relative;
+}
+.logo::before {
+  transition: ease-in-out 200ms;
+  background: var(--alpha-white);
+  height: 110%;
+  width: 110%;
+  content: "";
+  position: absolute;
+  border-radius: 50px;
+}
 .ability-content {
-  border: 1px solid rgba(255, 255, 255, 0.325);
+  /* border: 1px solid rgba(255, 255, 255, 0.325); */
   background-color: rgba(255, 255, 255, 0.05);
+  user-select: none;
+  overflow: hidden;
 }
 .ability-content:hover {
   background-color: rgba(0, 0, 0, 0.199);
-  transform: translateY(-10px) translateX(5px) scale(1.02);
-  box-shadow: -5px 10px 0.3em rgba(255, 255, 255, 0.1);
+}
+.ability-content:hover .logo::before {
+  height: 145%;
+  width: 145%;
+  animation: geometry infinite 10s;
 }
 .description {
   min-height: 105px;
+}
+
+@keyframes geometry {
+  0%,
+  15% {
+    border-radius: 50px;
+  }
+
+  20%,
+  35% {
+    border-radius: 0px;
+  }
+
+  40%,
+  55% {
+    border-radius: 5px;
+    transform: rotateZ(45deg);
+  }
+
+  60%,
+  75% {
+    transform: rotateZ(90deg);
+    border-radius: 25px;
+  }
+  80%,
+  100% {
+    transform: rotateZ(0deg);
+    border-radius: 50px;
+  }
 }
 </style>

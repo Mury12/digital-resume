@@ -3,15 +3,19 @@
     <page-title :title="$route.name" :divisor="false" />
     <div class="user-info px-3 mr-3">
       <b-row class="h-100 align-items-center">
-        <fas icon="question-circle" class="text-info mr-3" v-b-tooltip="$t($root.lang, 'Controls')"/>
+        <fas
+          icon="question-circle"
+          class="text-info mr-3"
+          v-b-tooltip="$t($root.lang, 'Controls')"
+        />
         <b-button
           @click="$emit('lang', 'en')"
-          :variant="lang === 'en' ? 'info' : 'link'"
+          :variant="$root.lang === 'en' ? 'info' : 'link'"
           >EN</b-button
         >
         <b-button
           @click="$emit('lang', 'pt')"
-          :variant="lang === 'pt' ? 'info' : 'link'"
+          :variant="$root.lang === 'pt' ? 'info' : 'link'"
           >PT</b-button
         >
       </b-row>
@@ -27,7 +31,6 @@ export default {
   },
   components: {},
   methods: {},
-  props: ["lang"]
 };
 </script>
 

@@ -96,7 +96,7 @@ export default [
             {
                 name: "PHP",
                 image: "php.png",
-                description: `<p>5+ years working with vanilla PHP, writting websites and back-end APIs from scratch. 
+                description: `<p>Several years working with vanilla PHP, writting websites and back-end APIs from scratch. 
           I have created myself a tool to improve my work efficiency by abstracting most boilerplates needed in a project.
           </p><p>The reason I haven't really used a framework like Laravel, Slim, Laminas, or Symfony is that I like to learn things from scratch.
           I have used some of these frameworks for experimenting but never in a big project. 
@@ -214,7 +214,7 @@ export default [
                 name: "React",
                 image: "react.svg",
                 description:
-                    "I have been using react as a market-option since 2020. I should say that this is not my favorite, but I have a good knowledge and autonomy in this framework.",
+                    "I have been using react and NextJS as a market-option since 2020. I should say that this is not my favorite, but I have a good knowledge and autonomy in this framework.",
                 libs: [],
                 level: 3.5,
             },

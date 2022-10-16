@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in items"
       :key="index"
-      class="level-box border"
+      class="level-box"
       :style="{
         backgroundColor: item,
       }"
@@ -43,9 +43,20 @@ export default Vue.extend({
   },
 });
 </script>
+<style>
+:root {
+  --alpha-white: rgba(255, 255, 255, 0.125);
+}
+</style>
 <style scoped>
 .level-box {
   height: 10px;
   width: 15px;
+  border-top: 1px solid var(--alpha-white);
+  border-bottom: 1px solid var(--alpha-white);
+  border-left: 1px solid var(--alpha-white);
+}
+.level-box:last-of-type {
+  border-right: 1px solid var(--alpha-white);
 }
 </style>

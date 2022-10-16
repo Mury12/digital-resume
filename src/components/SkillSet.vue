@@ -3,13 +3,13 @@
     class="skill-set d-flex align-items-center justify-content-center"
     :style="{
       height: currentElementHeight,
-      minHeight: '100%'
+      minHeight: '100%',
     }"
   >
     <b-container :id="`container__${title.length + getTime()}`">
       <div :key="title" v-html="title"></div>
       <small class="text-secondary" v-if="selected === -1 && title.length">{{
-        $t(lang, "Click to Open")
+        $t("Click to Open")
       }}</small>
 
       <div
@@ -18,27 +18,23 @@
         :style="{
           height: contentHeight,
           opacity: opacity,
-          transitionDelay: transitionDelay
+          transitionDelay: transitionDelay,
         }"
       >
         <transition name="fade" mode="out-in">
           <div v-if="selected === position">
             <div v-html="skill.description"></div>
             <div v-if="skill.abilities && skill.abilities.length">
-              <h4 class="mt-5">{{ $t(lang, "Skills and levels") }}</h4>
+              <h4 class="mt-5">{{ $t("Skills and levels") }}</h4>
               <div class="w-100 text-left pl-2">
                 <b-button
                   type="button"
                   @click="order"
-                  variant="info"
-                  class="mt-4"
+                  variant="none"
+                  class="mt-4 text-white"
                 >
-                  {{ $t(lang, "Order by") }}
-                  {{
-                    orderBy === 0
-                      ? $t(lang, "Proefficiency")
-                      : $t(lang, "Prefference")
-                  }}
+                  {{ $t("Order by") }}
+                  {{ orderBy === 0 ? $t("Proefficiency") : $t("Prefference") }}
                 </b-button>
               </div>
               <transition mode="out-in" name="slide-fade">
@@ -62,6 +58,7 @@
 <script lang="ts">
 import Vue from "vue";
 import AbilityDescription from "./AbilityDescription.vue";
+
 export default Vue.extend({
   components: { AbilityDescription },
   name: "SkillSet",
@@ -71,12 +68,12 @@ export default Vue.extend({
       offset: 85,
       orderBy: 0,
       original: [],
-      abilities: []
+      abilities: [],
     };
   },
   props: ["skill", "selected", "position"],
   methods: {
-    order: function() {
+    order: function () {
       if (this.orderBy === 0) {
         this.original = JSON.parse(JSON.stringify(this.abilities));
         const abilities = this.abilities.sort((a, b) =>
@@ -98,7 +95,7 @@ export default Vue.extend({
         const children = this.$refs["scrollable"].childNodes;
         if (Array.isArray(children)) {
           let height = 0;
-          children.forEach(item => {
+          children.forEach((item) => {
             height += item.clientHeight + 10;
           });
           return height + "px";
@@ -106,13 +103,13 @@ export default Vue.extend({
       }
       return "100%";
     },
-    listener: function($e) {
+    listener: function ($e) {
       if ($e.deltaY > 0) this.scroll("down");
       else this.scroll("up");
     },
-    getTime: function() {
+    getTime: function () {
       return new Date().getUTCMilliseconds().toString();
-    }
+    },
   },
   watch: {
     selected(n, o) {
@@ -127,7 +124,7 @@ export default Vue.extend({
         }
         this.transitionDelay = "650ms";
       }
-    }
+    },
   },
   computed: {
     lang() {
@@ -156,13 +153,13 @@ export default Vue.extend({
           : `<h2>${this.skill.title}</h2>`;
       }
       return "";
-    }
+    },
   },
   mounted() {
     this.abilities = this.skill.abilities;
     if (this.$refs["scrollable"]) {
       this.$refs["scrollable"].addEventListener("wheel", this.listener, {
-        passive: true
+        passive: true,
       });
     }
   },
@@ -170,7 +167,7 @@ export default Vue.extend({
     if (this.$refs["scrollable"]) {
       this.$refs["scrollable"].removeEventListener("wheel", this.listener);
     }
-  }
+  },
 });
 </script>
 <style scoped>
@@ -181,10 +178,10 @@ export default Vue.extend({
     overflow-y: hidden !important;
   }
 }
-  .skill-content {
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
+.skill-content {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 .scrolldown-icon,
 .scrollup-icon {
   opacity: 0.7;

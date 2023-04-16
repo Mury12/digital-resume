@@ -1,30 +1,16 @@
 <template>
   <b-col md="6" lg="4" class="ability-wrapper p-3">
-    <b-row
-      class="ability-content default-transition m-2 h-100 pt-5 rounded"
-      :class="{ pointer: extendDescription }"
-      @click="openDescription"
-    >
+    <b-row class="ability-content default-transition m-2 h-100 pt-5 rounded" :class="{ pointer: extendDescription }"
+      @click="openDescription">
       <b-col cols="12">
         <p class="h4">{{ ability.name }}</p>
       </b-col>
       <b-col class="text-center" style="height: 120px">
-        <div
-          class="round w-100 d-flex justify-content-center align-items-center"
-          style="height: 100%"
-        >
-          <div
-            class="logo d-flex justify-content-center align-items-center"
-            :style="{
-              animationDelay,
-            }"
-          >
-            <img
-              class="lazy"
-              :src="picture"
-              height="100"
-              :style="{ filter: imageFilter }"
-            />
+        <div class="round w-100 d-flex justify-content-center align-items-center" style="height: 100%">
+          <div class="logo d-flex justify-content-center align-items-center" :style="{
+            animationDelay,
+          }">
+            <img class="lazy" :src="picture" height="100" :style="{ filter: imageFilter }" />
           </div>
         </div>
       </b-col>
@@ -35,12 +21,7 @@
       <b-col cols="12" class="text-center">
         <p class="description pt-3">
           {{ abstract }}
-          <b-button
-            type="button"
-            variant="link"
-            @click="openDescription"
-            v-if="extendDescription"
-          >
+          <b-button type="button" variant="link" @click="openDescription" v-if="extendDescription">
             {{ $t("See more") }}
           </b-button>
         </p>
@@ -57,7 +38,7 @@ export default {
   props: {
     ability: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
   },
   data() {
@@ -109,6 +90,7 @@ export default {
   width: 100px;
   position: relative;
 }
+
 .logo::before {
   transition: ease-in-out 200ms;
   background: var(--alpha-white);
@@ -118,25 +100,36 @@ export default {
   position: absolute;
   border-radius: 50px;
 }
+
+.logo img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
 .ability-content {
   /* border: 1px solid rgba(255, 255, 255, 0.325); */
   background-color: rgba(255, 255, 255, 0.05);
   user-select: none;
   overflow: hidden;
 }
+
 .ability-content:hover {
   background-color: rgba(0, 0, 0, 0.199);
 }
+
 .ability-content:hover .logo::before {
   height: 145%;
   width: 145%;
   animation: geometry infinite 10s;
 }
+
 .description {
   min-height: 105px;
 }
 
 @keyframes geometry {
+
   0%,
   15% {
     border-radius: 50px;
@@ -158,6 +151,7 @@ export default {
     transform: rotateZ(90deg);
     border-radius: 25px;
   }
+
   80%,
   100% {
     transform: rotateZ(0deg);

@@ -3,21 +3,9 @@
     <page-title :title="$route.name" :divisor="false" />
     <div class="user-info px-3 mr-3">
       <b-row class="h-100 align-items-center">
-        <fas
-          icon="question-circle"
-          class="text-info mr-3"
-          v-b-tooltip="$t($root.lang, 'Controls')"
-        />
-        <b-button
-          @click="$emit('lang', 'en')"
-          :variant="$root.lang === 'en' ? 'info' : 'link'"
-          >EN</b-button
-        >
-        <b-button
-          @click="$emit('lang', 'pt')"
-          :variant="$root.lang === 'pt' ? 'info' : 'link'"
-          >PT</b-button
-        >
+        <fas icon="question-circle" class="text-info mr-3" v-b-tooltip="$t('Controls')" />
+        <b-button @click="$emit('lang', 'en')" :variant="$root.lang === 'en' ? 'info' : 'link'">EN</b-button>
+        <b-button @click="$emit('lang', 'pt')" :variant="$root.lang === 'pt' ? 'info' : 'link'">PT</b-button>
       </b-row>
     </div>
   </b-row>
@@ -40,6 +28,7 @@ export default {
     background-color: rgba(255, 255, 255, 0.05);
   }
 }
+
 #page-header {
   position: fixed;
   height: 85px;
@@ -47,6 +36,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 2;
 }
+
 .user-info:hover {
   cursor: default;
 }

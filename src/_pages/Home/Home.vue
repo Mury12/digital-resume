@@ -1,35 +1,16 @@
 <template>
   <div>
     <b-container class="body-container">
-      <b-row
-        class="skills-wrapper justify-content-around align-content-center h-100"
-        style="padding-top: 85px"
-      >
-        <span
-          class="box-selected-close pointer"
-          @click="selected = -1"
-          :class="selected >= 0 ? '' : 'fade-out'"
-        >
+      <b-row class="skills-wrapper justify-content-around align-content-center h-100" style="padding-top: 85px">
+        <span class="box-selected-close pointer" @click="selected = -1" :class="selected >= 0 ? '' : 'fade-out'">
           <fas icon="times" class="fa-3x"></fas>
         </span>
-        <skill-item
-          @select="selected = $event"
-          v-for="(skill, index) in $root.skills"
-          :skill="skill"
-          :selected="selected"
-          :index="index"
-          :key="index"
-        />
+        <skill-item @select="selected = $event" v-for="(skill, index) in $root.skills" :skill="skill" :selected="selected"
+          :index="index" :key="index" />
 
         <b-col class="position-relative" hidden>
-          <b-modal
-            id="description-modal"
-            :title="modal.title"
-            hide-footer
-            body-class="border-none"
-            header-class="border-none"
-            content-class="border-none"
-          >
+          <b-modal id="description-modal" :title="modal.title" hide-footer body-class="border-none"
+            header-class="border-none" content-class="border-none">
             <div class="modal-content" v-html="modal.content"></div>
           </b-modal>
         </b-col>
@@ -37,11 +18,7 @@
     </b-container>
 
     <transition mode="out-in" name="cluster-in">
-      <div
-        class="box-selected position-fixed"
-        v-if="selected !== -1"
-        :key="selected"
-      >
+      <div class="box-selected position-fixed" v-if="selected !== -1" :key="selected">
         <skill-set :skill="$root.skills[selected]" @modal="openModal"></skill-set>
       </div>
     </transition>
@@ -64,6 +41,7 @@ export default {
       },
     };
   },
+
   methods: {
     openModal($e) {
       this.modal = $e;
@@ -89,6 +67,9 @@ export default {
     lang() {
       return this.$root.lang;
     },
+    skills() {
+      return this.$root.skills;
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -109,8 +90,8 @@ export default {
 .fade-in {
   opacity: 1 !important;
 }
+
 .fade-out {
   opacity: 0 !important;
 }
-
 </style>

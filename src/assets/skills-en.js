@@ -116,7 +116,7 @@ export default [
         description:
           "I Work with NodeJS since 2020, including more common back-end frameworks such as Express, Fastify, CryptoJS and Sequelize.",
         libs: [],
-        level: 3,
+        level: 4,
       },
       {
         name: "Typescript",
@@ -125,7 +125,7 @@ export default [
            I have been working with this technology since 2020 and have discovered a new life to the NodeJS platform that 
            I was very disappointed using it. MVC and other OOP implementations are possible with no difficulties and it makes me feel very trust about NodeJS Framework 😁`,
         libs: [],
-        level: 3.5,
+        level: 4.5,
       },
       {
         name: "MongoDB",
@@ -138,8 +138,6 @@ export default [
       {
         name: "Docker",
         image: "docker.png",
-        description:
-          "1 year working with docker. I have got it a little later but I'm learning a lot and almost getting in touch with Swarm.",
         libs: [],
         level: 2,
       },

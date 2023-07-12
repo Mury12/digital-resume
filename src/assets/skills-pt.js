@@ -116,7 +116,7 @@ export default [
         description:
           "Trabalho com NodeJS desde 2020, incluindo as bibliotecas mais comuns, como ExpressJS, Fastify, CryptoJS, JWT e Sequelize.",
         libs: [],
-        level: 3,
+        level: 4,
       },
       {
         name: "Typescript",
@@ -125,7 +125,7 @@ export default [
                 e descobri uma nova vida para o NodeJS, uma plataforma que eu me decepcionei bastante no passado pela falta de estrutura e o resultado bagunçado.
                 Com TypeScript, o MVC torna-se possível junto ao JS e acabei por ficar bem confiante com o framework 😁`,
         libs: [],
-        level: 4,
+        level: 4.5,
       },
       {
         name: "MongoDB",
@@ -139,8 +139,6 @@ export default [
       {
         name: "Docker",
         image: "docker.png",
-        description:
-          "Um pouco menos de dois anos trabalhando com Docker. Acabei chegando um pouco tarde, mas estou bastante empolgado para aprender Docker Swarm :)",
         libs: [],
         level: 2,
       },

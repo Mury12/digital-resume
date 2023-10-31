@@ -355,11 +355,14 @@ export default [
     description: `
         <p>Você pode me encontrar em:</p>
         <ul class="m-0 p-0" style="list-style-type: none">
+        <li><a target="_blank" href="https://andremury.com">Lançamentos musicais</a></li>
+        <li><a target="_blank" href="https://dollarsoundtrack.com">Dollar Soundtrack</a></li>
         <li><a target="_blank" href="https://www.linkedin.com/in/andremury">Linkedin</a></li>
         <li><a target="_blank" href="https://github.com/mury12">Github (Perfil Pessoal/Portfolio)</a></li>
         <li><a target="_blank" href="https://github.com/andremury">Github (Perfil de Trabalho)</a></li>
         <li><a target="_blank" href="https://open.spotify.com/artist/5aw5ZuQB4ElCVsrPkSvtLn?si=d747c21cd41b463b">Spotify</a></li>
         <li><a target="_blank" href="https://soundcloud.com/andremury">Soundcloud</a></li>
+        <li><a target="_blank" href="https://instagram.com/andmury.music">Instagram</a></li>
         </ul>
         Você também pode me <a href ="mailto:mury63@gmail.com">enviar um e-mail</a><br/>
         Obrigado pela sua visita!

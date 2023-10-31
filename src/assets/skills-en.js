@@ -351,11 +351,14 @@ export default [
         <p>You can find me in:</p>
         <ul class="m-0 p-0" style="list-style-type: none">
         <li><a target="_blank" href="https://www.linkedin.com/in/andremury">Linkedin</a></li>
+        <li><a target="_blank" href="https://andremury.com">Musician webpage</a></li>
+        <li><a target="_blank" href="https://dollarsoundtrack.com">Dollar Soundtrack</a></li>
         <li><a target="_blank" href="https://github.com/mury12">Github (Personal/Portfolio Account)</a></li>
         <li><a target="_blank" href="https://github.com/andremury">Github (Work Account)</a></li>
         <li><a target="_blank" href="https://gitlab.com/mury12">Gitlab</a></li>
         <li><a target="_blank" href="https://open.spotify.com/artist/5aw5ZuQB4ElCVsrPkSvtLn?si=d747c21cd41b463b">Spotify</a></li>
         <li><a target="_blank" href="https://soundcloud.com/andremury">Soundcloud</a></li>
+        <li><a target="_blank" href="https://instagram.com/andmury.music">Instagram</a></li>
         </ul>
         And you can also <a href ="mailto:mury63@gmail.com">mail me</a><br/>
         Thanks for your visit.

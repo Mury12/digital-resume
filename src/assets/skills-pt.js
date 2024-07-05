@@ -38,7 +38,7 @@ export default [
         name: "Inglês",
         image: "language.png",
         imageFilter: "invert(1)",
-        level: 3,
+        level: 4,
         description:
           "Mantenho uma conversa técnica ou informal sem muitos problemas.",
       },

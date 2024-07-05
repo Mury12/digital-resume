@@ -38,7 +38,7 @@ export default [
         name: "English",
         image: "language.png",
         imageFilter: "invert(1)",
-        level: 3,
+        level: 4,
         description:
           "Very good listening, good writing and medium speaking. I am trying to improve this skill the best I can :)",
       },

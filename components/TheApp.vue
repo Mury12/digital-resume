@@ -1,0 +1,243 @@
+<template>
+  <div id="app" ref="app" :class="{ hide: hide }">
+    <transition mode="out-in" name="fade">
+      <div :key="lang" class="">
+        <div v-if="!lang">
+          <div
+            class="
+              position-absolute
+              w-100
+              h-100
+              d-flex
+              flex-column
+              justify-content-center
+            "
+          >
+            <h2>Welcome! Please, select a language</h2>
+            <h5 class="text-secondary">
+              Bem vindo! Por favor, selecione um idioma
+            </h5>
+            <div class="mt-3 d-md-flex m-auto m-md-0 justify-content-center">
+              <div
+                ref="lang-en"
+                class="
+                  pointer
+                  langselector-btn
+                  d-flex
+                  align-items-center
+                  my-2
+                  justify-content-center
+                "
+                @click="select('en')"
+              >
+                English
+              </div>
+              <div
+                ref="lang-pt"
+                class="
+                  pointer
+                  langselector-btn
+                  d-flex
+                  align-items-center
+                  my-2
+                  justify-content-center
+                "
+                @click="select('pt')"
+              >
+                Português
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <div class="background-mask"></div>
+          <div class="page-body">
+            <page-header :lang="lang" @lang="lang = $event" />
+            <div id="main" class="">
+              <router-view :key="$route.name" :skills="skills"></router-view>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </div>
+</template>
+  
+  <script>
+import PageHeader from './PageHeader.vue';
+export default {
+  name: 'TheApp',
+  components: {
+    PageHeader,
+  },
+  data() {
+    return {
+      navbarIsOpen: false,
+      hide: false,
+      minAppWidth: 0,
+      windowWidth: 0,
+      translated: 0,
+      buttons: {
+        right: false,
+        left: false,
+      },
+      lang: 'en',
+      skills: [],
+    };
+  },
+
+  watch: {
+    $route: {
+      handler() {
+        document.title = (this.$route.meta.title || '') + ' | ' + 'Andre Mury';
+      },
+    },
+    lang(n, o) {
+      if (n !== o) {
+        this.mountSkills(n);
+        this.$root.lang = n;
+      }
+    },
+  },
+
+  mounted() {
+    clearInterval(this.iv);
+    this.$session.start();
+    document.title = (this.$route.meta.title || '') + ' | ' + 'Andre Mury';
+    this.$nextTick(() => {
+      this.windowWidth = window.innerWidth;
+      document.addEventListener('keyup', this.listener);
+    });
+  },
+  methods: {
+    select(lang) {
+      if (lang === 'en') {
+        this.$refs['lang-en'].className += ' selected ';
+        this.$refs['lang-pt'].className += ' unselected ';
+      } else if (lang === 'pt') {
+        this.$refs['lang-en'].className += ' unselected ';
+        this.$refs['lang-pt'].className += ' selected ';
+      }
+      document.removeEventListener('keyup', this.listener);
+      setTimeout(() => {
+        this.lang = lang;
+      }, 3000);
+    },
+    toggler(e) {
+      this.navbarIsOpen = e;
+    },
+    closePage() {
+      this.hide = true;
+      window.location = '/';
+      setTimeout(() => {}, 200);
+      setTimeout(() => {
+        this.hide = false;
+      }, 1000);
+    },
+    mountSkills($lang) {
+      this.lang = $lang;
+      this.skills = `@/assets/skills-${$lang}.js`;
+    },
+    listener(e) {
+      if (e.key === '1') {
+        this.select('en');
+      } else if (e.key === '2') {
+        this.select('pt');
+      }
+    },
+  },
+};
+</script>
+  <style scoped>
+.scrollleft-icon {
+  left: 10px;
+  animation: arrow-pulse-left 10s infinite;
+}
+.scrollleft-icon:hover,
+.scrollright-icon:hover {
+  opacity: 0.8;
+  animation: none;
+}
+.scrollleft-icon,
+.scrollright-icon {
+  position: fixed;
+  top: calc(50% - 1.5em);
+  opacity: 0.3;
+}
+.scrollright-icon {
+  right: 10px;
+  animation: arrow-pulse-right 10s infinite;
+}
+.langselector-btn:nth-of-type(2n + 1).unselected {
+  transition: 1s;
+  opacity: 0;
+  transform: rotate(-20deg);
+  margin-left: -315px;
+}
+.langselector-btn:nth-of-type(2n).unselected {
+  transition: 1s;
+  opacity: 0;
+  transform: rotate(20deg);
+  margin-right: -315px;
+}
+
+.langselector-btn.selected {
+  transition: 1s;
+  transition-delay: 0.8s;
+  transform: scale(2);
+  background-color: black;
+}
+
+.under-construction {
+  height: 100vh;
+}
+
+@keyframes arrow-pulse-right {
+  20% {
+    transform: translateX(0);
+    opacity: 0.3;
+  }
+  30% {
+    transform: translateX(13px) scaleY(0.8);
+    opacity: 1;
+  }
+  33% {
+    transform: translateX(20px) scaleY(0.6);
+    opacity: 0;
+  }
+  40% {
+    transform: translateX(-20px) scaleY(0.4);
+    opacity: 0;
+  }
+  55%,
+  100% {
+    transform: translateX(-0px);
+    opacity: 0.3;
+  }
+}
+@keyframes arrow-pulse-left {
+  20% {
+    transform: translateX(0);
+    opacity: 0.3;
+  }
+  30% {
+    transform: translateX(-13px) scaleY(0.8);
+    opacity: 1;
+  }
+  33% {
+    transform: translateX(-20px) scaleY(0.6);
+    opacity: 0;
+  }
+  40% {
+    transform: translateX(+20px) scaleY(0.4);
+    opacity: 0;
+  }
+  55%,
+  100% {
+    transform: translateX(+0px);
+    opacity: 0.3;
+  }
+}
+</style>
+  
+  
